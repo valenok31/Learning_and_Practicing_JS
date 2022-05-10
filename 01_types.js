@@ -1,7 +1,15 @@
-const arr = [21, 22, 43, 4, 15, -Infinity, 76, 37, 48, 59, 10];
-const arr_cop = [...arr];
+function camelize(str) {
+    return str.split('-').map(
+        (b,e) => {
+            if(e>0){
+            b = b.split('');
+            b[0] = b[0].toUpperCase();
+            let c = b.join('')
+            //console.log(c)
+            return c}else{return b}
+        }
+    ).join('');
+}
 
-arr.reverse();
 
-console.log(arr);
-console.log(arr_cop);
+console.log(camelize('class-div-map'));
