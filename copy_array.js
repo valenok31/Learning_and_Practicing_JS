@@ -2,9 +2,10 @@
 
 let arr = [1, 2, 3, 4, 5];
 
-let arrS = arr.slice;
+let arr_slice = arr.slice;
 let arrD = [...arr];
-let arrCC = arr.concat();
-let arrJSON = JSON.parse(JSON.stringify(arr))
+let arr_concat = arr.concat();
+let arr_filter = arr.filter(()=>true)
+let arr_JSON = JSON.parse(JSON.stringify(arr))
 
-console.log(arrCC)
+console.log(arr_concat)

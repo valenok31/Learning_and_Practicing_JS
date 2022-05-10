@@ -1,10 +1,7 @@
-// Copy Array
+const arr = [21, 22, 43, 4, 15, -Infinity, 76, 37, 48, 59, 10];
+const arr_cop = [...arr];
 
-let arr = [1, 2, 3, 4, 5];
+arr.reverse();
 
-let arrS = arr.slice;
-let arrD = [...arr];
-let arrCC = arr.concat();
-let arrJSON = JSON.parse(JSON.stringify(arr))
-
-console.log(arrCC)
+console.log(arr);
+console.log(arr_cop);
