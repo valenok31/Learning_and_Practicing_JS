@@ -8,4 +8,5 @@ let arr_concat = arr.concat();
 let arr_filter = arr.filter(()=>true)
 let arr_JSON = JSON.parse(JSON.stringify(arr))
 
+
 console.log(arr_concat)
