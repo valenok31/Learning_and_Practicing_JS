@@ -1,11 +1,16 @@
-const obj1 = {
-    main: 1,
-    single: 2,
-    ther: 3,
-    feth: 4
-}
-const obj2 = {};
+let calculator = {
+    read(a=1, b=1) {
+        this.a = a;
+        this.b = b;
+    },
+    sum() {
+        return this.a + this.b
+    },
+    mul() {
+        return this.a * this.b
+    }
+};
 
-Object.assign(obj2, obj1);
-
-console.log(obj2)
+calculator.read();
+console.log(calculator.sum());
+console.log(calculator.mul());
