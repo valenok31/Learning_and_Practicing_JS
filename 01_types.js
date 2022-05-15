@@ -1,23 +1,15 @@
-function Peopel(name = 'Anonim', age = 0) {
-    this.name = name;
-    this.age = age;
-    this.date = () => `${this.name} - ${2022 - this.age}`;
+function Calculator() {
+    this.read = (a, b) => {
+        this.a = a;
+        this.b = b;
+    };
+    this.sum = () => this.a + this.b
+    this.mul = () => this.a*this.b
 };
 
-nika = new Peopel('Nika', 41);
-goga = new Peopel('Goga', 44);
-alis = new Peopel('Alisa', 8);
-andr = new Peopel('Andron', 38);
-an = new Peopel;
+let calculator = new Calculator();
 
-console.log(alis.date())
+calculator.read(3,2)
+console.log(calculator.sum())
 
-function eroba(){
-    let a = 4;
-     this.b = ()=> a;
-    return a
-}
 
-let r = new eroba();
-
-console.log(r.b())
