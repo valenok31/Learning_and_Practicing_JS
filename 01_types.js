@@ -1,14 +1,11 @@
-function Accumulator(startingValue) {
-    this.value = startingValue;
-    this.read = (prompt) => this.value += prompt
-}
+let userAdmin = {
+    admin() {
+        console.log("Я админ");
+    }
+};
 
+let userGuest = {};
 
-let accumulator = new Accumulator(1); // начальное значение 1
+userAdmin.admin?.(); // Я админ
 
-accumulator.read(1); // прибавит ввод prompt к текущему значению
-accumulator.read(1); // прибавит ввод prompt к текущему значению
-
-console.log(accumulator.value); // выведет сумму этих значений
-
-
+userGuest.admjkgjyggu?.uhk?.jjj?.in?.(); // ничего не произойдет (такого метода нет)
