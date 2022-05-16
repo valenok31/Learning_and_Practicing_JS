@@ -1,15 +1,14 @@
-function Calculator() {
-    this.read = (a, b) => {
-        this.a = a;
-        this.b = b;
-    };
-    this.sum = () => this.a + this.b
-    this.mul = () => this.a*this.b
-};
+function Accumulator(startingValue) {
+    this.value = startingValue;
+    this.read = (prompt) => this.value += prompt
+}
 
-let calculator = new Calculator();
 
-calculator.read(3,2)
-console.log(calculator.sum())
+let accumulator = new Accumulator(1); // начальное значение 1
+
+accumulator.read(1); // прибавит ввод prompt к текущему значению
+accumulator.read(1); // прибавит ввод prompt к текущему значению
+
+console.log(accumulator.value); // выведет сумму этих значений
 
 
