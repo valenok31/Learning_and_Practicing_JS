@@ -1,6 +1,2 @@
-let str = "this is a secret message";
-let crypto = str.split(' ').map(a => parseInt(a, 36)).join(' ');
-console.log(crypto);
-
-let deCrypto = crypto.split(' ').map(a => (+a).toString(36)).join(' ');
-console.log(deCrypto);
+console.log( 99999999999999998  );
+console.log( 99999999999999998 == 100000000000000000);
