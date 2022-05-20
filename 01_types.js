@@ -1,9 +1,17 @@
-let map = new Map();
-let fun = (a)=>{
-    return a*2
+let a = 'rebus';
+let b;
+let obj = {
+    [a]:3,
+    'b':5,
+    c:34,
+    d:'let',
+    e:true,
+    f:new Map([
+        [8,true],
+        [true,'po'],
+        [NaN,'uoi']
+    ]),
 }
 
-map.set(fun(), fun());    // строка в качестве ключа
 
-
-console.log(map.get(fun(3)))
+console.log(obj.f)
