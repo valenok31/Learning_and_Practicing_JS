@@ -1,7 +1,7 @@
 let a = 'rebus';
-let b;
+let arr = [1,2,3,4,5,7,7,8,88,76,5,4,3,]
 let obj = {
-    [a]:3,
+    [arr]:arr,
     'b':5,
     c:34,
     d:'let',
@@ -14,4 +14,6 @@ let obj = {
 }
 
 
-console.log(obj.f)
+console.log(Object.values(obj))
+console.log(Object.keys(obj))
+console.log(Object.entries(obj))
