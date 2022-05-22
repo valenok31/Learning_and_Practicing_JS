@@ -1,5 +1,13 @@
-let inp = 'маршак самуил';
+let obj = {
+    a: 34,
+    b: 'fds',
+    c: {aa: 33, bb: 543, cc: {aaa: 'fsdsdf', bbb: 'dsffsdf'}}
+}
 
-let [name, surname] = inp.split(' ')
+let obj3 = {...obj};
 
-console.log(`${surname}, ${name}`)
+let json = JSON.stringify(obj)
+let obj2 = JSON.parse(json);
+
+
+console.log(obj3 === obj)
