@@ -1,4 +1,4 @@
-let str = 'this is a secret message';
+let str = 'cba ba a';
 let crypto = str.split(' ').map(a => parseInt(a, 36)).join(' ');
 console.log(crypto)
 
