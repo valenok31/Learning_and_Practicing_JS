@@ -6,5 +6,5 @@
 
     }
 
-    console.log(maxArgument(3,543,5,436,5,63,45,23,23,544))
+    console.log(maxArgument(3,543,5,4489))
 
