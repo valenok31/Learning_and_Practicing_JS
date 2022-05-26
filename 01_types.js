@@ -1,4 +1,10 @@
-let arr = 'hellow'
+function makeWorker(a=0) {
 
-    console.log([...arr])
+    console.log(a)
+}
 
+makeWorker(1);
+
+let work = makeWorker;
+
+work();
