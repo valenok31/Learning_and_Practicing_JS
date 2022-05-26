@@ -1,10 +1,12 @@
-function makeWorker(a=0) {
 
-    console.log(a)
-}
+// сделать информацию о текущем пользователе глобальной, для предоставления доступа всем скриптам
+globalThis.currentUser = {
+    name: "John"
+};
 
-makeWorker(1);
+// где угодно в коде
+console.log(currentUser.name); // John
 
-let work = makeWorker;
-
-work();
+// или, если у нас есть локальная переменная с именем "currentUser",
+// получим её из window явно (безопасно!)
+console.log(globalThis.currentUser.name); // John
