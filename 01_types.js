@@ -1,13 +1,28 @@
-'use strict'
-
-let a = 222;
-let b=8;
-let c = {
-    b:333,
-    foo(b){
-       return b;
-    }
+function slow(z) {
+    // здесь могут быть ресурсоёмкие вычисления
+    console.log(`Called with ${z}`);
+    return z;
 }
 
-a=c.foo;
-console.log(a(8))
+function cachingDecorator(func) {
+    let cache = new Map();
+
+    return function(x) {
+        if (cache.has(x)) {    // если кеш содержит такой x,
+            return cache.get(x); // читаем из него результат
+        }
+
+        let result = func(x); // иначе, вызываем функцию
+
+        cache.set(x, result); // и кешируем (запоминаем) результат
+        return result;
+    };
+}
+
+slow = cachingDecorator(slow);
+
+console.log( slow(1) ); // slow(1) кешируем
+console.log( "Again: " + slow(1) ); // возвращаем из кеша
+
+console.log( slow(2) ); // slow(2) кешируем
+console.log( "Again: " + slow(2) ); // возвращаем из кеша
