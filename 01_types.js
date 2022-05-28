@@ -1,12 +1,13 @@
+'use strict'
 
-// сделать информацию о текущем пользователе глобальной, для предоставления доступа всем скриптам
-globalThis.currentUser = {
-    name: "John"
-};
+let a = 222;
+let b=8;
+let c = {
+    b:333,
+    foo(b){
+       return b;
+    }
+}
 
-// где угодно в коде
-console.log(currentUser.name); // John
-
-// или, если у нас есть локальная переменная с именем "currentUser",
-// получим её из window явно (безопасно!)
-console.log(globalThis.currentUser.name); // John
+a=c.foo;
+console.log(a(8))
