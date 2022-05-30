@@ -1,28 +1,19 @@
-function slow(z) {
-    // здесь могут быть ресурсоёмкие вычисления
-    console.log(`Called with ${z}`);
+function slowT(z) {
+    console.log(`z: ${z}`);
     return z;
 }
 
 function cachingDecorator(func) {
-    let cache = new Map();
-
-    return function(x) {
-        if (cache.has(x)) {    // если кеш содержит такой x,
-            return cache.get(x); // читаем из него результат
-        }
-
-        let result = func(x); // иначе, вызываем функцию
-
-        cache.set(x, result); // и кешируем (запоминаем) результат
+    return function(xt) {
+        let result = func(xt);
         return result;
     };
 }
+//slow = function (xt){
+//         return slowT(xt);
+//     };
 
-slow = cachingDecorator(slow);
 
-console.log( slow(1) ); // slow(1) кешируем
-console.log( "Again: " + slow(1) ); // возвращаем из кеша
-
-console.log( slow(2) ); // slow(2) кешируем
-console.log( "Again: " + slow(2) ); // возвращаем из кеша
+slow = cachingDecorator(slowT);
+console.log(cachingDecorator(slowT)(5))
+console.log( slow(1) );
