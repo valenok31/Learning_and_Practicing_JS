@@ -1,8 +1,14 @@
-function slow(x = 0) {
-    for (let i = 0; i < 1_000_000_000; i++) {
+let worker = {
+    someMethod() {
+        return 1;
+    },
+    slow(x = 0) {
+        for (let i = 0; i < 1_000_000_000; i++) {
+        }
+        return x*this.someMethod();
     }
-    return x
 }
+
 
 function cachingDecorator(func) {
     let cache = new Map();
@@ -19,13 +25,7 @@ function cachingDecorator(func) {
     };
 }
 
-slow = cachingDecorator(slow);
+console.log("Again: " + worker.slow(1)); // возвращаем из кеша
 
-console.log("Again: " + slow(1)); // возвращаем из кеша
-console.log("Again: " + slow(2)); // возвращаем из кеша
-console.log("Again: " + slow(1)); // возвращаем из кеша
-console.log("Again: " + slow(1)); // возвращаем из кеша
-console.log("Again: " + slow(3)); // возвращаем из кеша
-console.log("Again: " + slow(2)); // возвращаем из кеша
-console.log("Again: " + slow(2)); // возвращаем из кеша
-console.log("Again: " + slow(1)); // возвращаем из кеша
+worker.slow = cachingDecorator(worker.slow);
+console.log("Again: " + worker.slow(1)); // возвращаем из кеша
