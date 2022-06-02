@@ -18,7 +18,7 @@ function cachingDecorator(func) {
             return cache.get(x); // читаем из него результат
         }
 
-        let result = func(x); // иначе, вызываем функцию
+        let result = func.call(this, x); // иначе, вызываем функцию
 
         cache.set(x, result); // и кешируем (запоминаем) результат
         return result;
@@ -28,4 +28,5 @@ function cachingDecorator(func) {
 console.log("Again: " + worker.slow(1)); // возвращаем из кеша
 
 worker.slow = cachingDecorator(worker.slow);
+console.log("Again: " + worker.slow(1)); // возвращаем из кеша
 console.log("Again: " + worker.slow(1)); // возвращаем из кеша
