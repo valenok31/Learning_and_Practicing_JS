@@ -30,3 +30,5 @@ console.log("Again: " + worker.slow(1)); // возвращаем из кеша
 worker.slow = cachingDecorator(worker.slow);
 console.log("Again: " + worker.slow(1)); // возвращаем из кеша
 console.log("Again: " + worker.slow(1)); // возвращаем из кеша
+console.log("Again: " + worker.slow(1)); // возвращаем из кеша
+console.log("Again: " + worker.slow(1)); // возвращаем из кеша
