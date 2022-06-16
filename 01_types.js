@@ -1,14 +1,15 @@
-let obj = {
-    get propName() {
-        console.log(5)
-        // геттер, срабатывает при чтении obj.propName
-    },
+class User {
 
-    set propName(value) {
-        console.log(value)
-        // сеттер, срабатывает при записи obj.propName = value
+    constructor(name) {
+        this.name = name;
     }
-};
 
-obj.propName = 8;
-obj.propName;
+    sayHi() {
+        console.log(this.name);
+    }
+
+}
+
+// Использование:
+let user = new User("Иван");
+user.sayHi();
