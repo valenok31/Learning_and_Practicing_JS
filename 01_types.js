@@ -1,15 +1,10 @@
-class User {
-
-    constructor(name) {
-        this.name = name;
-    }
-
-    sayHi() {
-        console.log(this.name);
-    }
+class Task{
+constructor(title='', normal=false){
+    this.title=title,
+        this.normal=normal
 
 }
+}
+let task = new Task('Hello!!', true);
 
-// Использование:
-let user = new User("Иван");
-user.sayHi();
+console.log(task.title)
