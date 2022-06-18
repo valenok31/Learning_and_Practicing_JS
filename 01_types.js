@@ -1,10 +1,13 @@
-class Task{
-constructor(title='', normal=false){
-    this.title=title,
-        this.normal=normal
+class User {
+    constructor(){
+        console.log('RIOTUIOR')
+    }
 
-}
-}
-let task = new Task('Hello!!', true);
+    name = "Аноним";
 
-console.log(task.title)
+    sayHi() {
+        console.log(`Привет, ${this.name}!`)
+    }
+}
+
+new User;
