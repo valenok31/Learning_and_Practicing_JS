@@ -1,19 +1,19 @@
-class Country {
-    constructor() {
-        this.name = arguments[0];
-    }
-    set name(countryName){
-        this._name = countryName
-    }
-    get name(){
-        console.log(`${this._name} in gud`)
-    }
+try {
+
+    console.log('Начало блока try');  // (1) <--
+
+
+    console.log('Конец блока try');   // (2) <--
+jhg
 }
+catch {
+    console.log('Начало блока catch');  // (1) <--
 
-let russ = new Country('Russia')
+    console.log('Конец блока catch');   // (2) <--
+}
+finally {
+    console.log('Начало блока finally');  // (1) <--
 
-russ.name = 34
 
-
-
-russ.name;
+    console.log('Конец блока finally');   // (2) <--
+}
