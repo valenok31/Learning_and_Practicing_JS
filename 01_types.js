@@ -1,19 +1,11 @@
-try {
-
-    console.log('Начало блока try');  // (1) <--
-
-
-    console.log('Конец блока try');   // (2) <--
-jhg
+function first(y) {
+    console.log(10);
+    y();
 }
-catch {
-    console.log('Начало блока catch');  // (1) <--
 
-    console.log('Конец блока catch');   // (2) <--
+function second(a, b) {
+    console.log(a * b);
+
 }
-finally {
-    console.log('Начало блока finally');  // (1) <--
 
-
-    console.log('Конец блока finally');   // (2) <--
-}
+first(()=>second(2,4));
