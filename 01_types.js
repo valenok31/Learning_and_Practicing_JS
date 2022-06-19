@@ -1,13 +1,19 @@
-class User {
-    constructor(){
-        console.log('RIOTUIOR')
+class Country {
+    constructor() {
+        this.name = arguments[0];
     }
-
-    name = "Аноним";
-
-    sayHi() {
-        console.log(`Привет, ${this.name}!`)
+    set name(countryName){
+        this._name = countryName
+    }
+    get name(){
+        console.log(`${this._name} in gud`)
     }
 }
 
-new User;
+let russ = new Country('Russia')
+
+russ.name = 34
+
+
+
+russ.name;
