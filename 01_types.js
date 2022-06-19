@@ -1,11 +1,12 @@
-function first(y) {
-    console.log(10);
-    y();
+function func2() {
+    for (let i = 0; i < 1000000000; i++) {
+    }
+    console.log(5)
 }
 
-function second(a, b) {
-    console.log(a * b);
-
+function func1() {
+    console.log(3);
 }
 
-first(()=>second(2,4));
+func2();
+func1()
