@@ -1,12 +1,13 @@
-function func2() {
-    for (let i = 0; i < 1000000000; i++) {
-    }
-    console.log(5)
-}
+let a= 10;
 
-function func1() {
-    console.log(3);
-}
+let b = new Promise ((resolve, reject)=>{
 
-func2();
-func1()
+    setTimeout(()=> {resolve(a=50)},1000)
+
+})
+
+b.then(()=>{
+    console.log(a)
+});
+
+console.log(a)
