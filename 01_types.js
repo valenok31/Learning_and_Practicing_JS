@@ -1,13 +1,15 @@
-let a= 10;
+function f1() {
+    setTimeout(()=>console.log(1), 1000)
+}
 
-let b = new Promise ((resolve, reject)=>{
+function f2() {
+    setTimeout(()=>console.log(2), 2000)
+}
 
-    setTimeout(()=> {resolve(a=50)},1000)
+function f3() {
+    setTimeout(()=>console.log(3), 3000)
+}
 
-})
-
-b.then(()=>{
-    console.log(a)
-});
-
-console.log(a)
+f1();
+f2();
+f3();
