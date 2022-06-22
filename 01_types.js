@@ -1,15 +1,9 @@
-function f1() {
-    setTimeout(()=>console.log(1), 1000)
-}
+let promise = new Promise(function(resolve) {
+    setTimeout(function() {
+        resolve([1, 2, 3, 4, 5]);
+    }, 1000);
+});
 
-function f2() {
-    setTimeout(()=>console.log(2), 2000)
-}
-
-function f3() {
-    setTimeout(()=>console.log(3), 3000)
-}
-
-f1();
-f2();
-f3();
+promise.then(function(result) {
+    console.log(result); // выведет массив с результатом
+});
