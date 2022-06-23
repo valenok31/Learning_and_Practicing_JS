@@ -1,13 +1,22 @@
-let func = function (resolve, reect) {
-    console.log(typeof reect)
+let text = {
+    a: 34,
+    b: 45,
+    c: function r() {
+        return this.a;
+    }
+}
+
+
+let func = function (resolve, reject) {
     setTimeout(function () {
         let isError = false;
 
-        if (!!isError) {
-            resolve([1, 2, 3, 4, 5]);   // данные промиса
+        if (!isError) {
+            text.c=text.c.bind(text);
+            resolve(text.c);   // данные промиса
 
         } else {
-            reect('error in promise'); // ваш текст ошибки
+            reject('error in promise'); // ваш текст ошибки
         }
     }, 500);
 }
@@ -15,8 +24,7 @@ let func = function (resolve, reect) {
 
 let promise = new Promise(func);
 
-console.log(typeof promise.then)
 
-promise.then(result => console.log(result),
+promise.then((r) => console.log(r()),
     error => console.log(error)
 );
