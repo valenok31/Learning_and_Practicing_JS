@@ -25,10 +25,12 @@ let func = function (resolve, reject) {
 let promise = new Promise(func);
 
 
-promise.then((r) => console.log(r()),
-    error => console.log(error)
-);
 
-promise.then((r) => console.log(r()),
+
+let promMass = {
+    promises: new Promise(func)
+}
+
+promMass.promises.then((r) => console.log(r()),
     error => console.log(error)
 );
