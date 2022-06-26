@@ -28,3 +28,7 @@ let promise = new Promise(func);
 promise.then((r) => console.log(r()),
     error => console.log(error)
 );
+
+promise.then((r) => console.log(r()),
+    error => console.log(error)
+);
