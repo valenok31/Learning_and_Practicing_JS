@@ -1,12 +1,18 @@
-async function f() {
+const promise = new Promise((resolve, reject) => {
 
-    let promise = new Promise((resolve, reject) => {
-        setTimeout(() => resolve("готово!"), 1000)
-    });
+    const randomNumber = Math.random();
+    setTimeout(() => {
+        if(randomNumber < .5) {
+            resolve(`Все прошло отлично! = ${randomNumber}`);
+        } else {
+            reject(new Error(`Что-то пошло не так = ${randomNumber}`));
+        }
+    }, randomNumber*5000);
+});
 
-    let result = await promise; // будет ждать, пока промис не выполнится (*)
-
-    console.log(result); // "готово!"
-}
-
-f();
+promise.then(
+    (x)=> console.log(x)
+)
+.catch(
+    (x)=> console.log(x)
+)
