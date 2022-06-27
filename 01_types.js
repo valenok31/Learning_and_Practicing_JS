@@ -1,36 +1,12 @@
-let text = {
-    a: 34,
-    b: 45,
-    c: function r() {
-        return this.a;
-    }
+async function f() {
+
+    let promise = new Promise((resolve, reject) => {
+        setTimeout(() => resolve("готово!"), 1000)
+    });
+
+    let result = await promise; // будет ждать, пока промис не выполнится (*)
+
+    console.log(result); // "готово!"
 }
 
-
-let func = function (resolve, reject) {
-    setTimeout(function () {
-        let isError = false;
-
-        if (!isError) {
-            text.c=text.c.bind(text);
-            resolve(text.c);   // данные промиса
-
-        } else {
-            reject('error in promise'); // ваш текст ошибки
-        }
-    }, 500);
-}
-
-
-let promise = new Promise(func);
-
-
-
-
-let promMass = {
-    promises: new Promise(func)
-}
-
-promMass.promises.then((r) => console.log(r()),
-    error => console.log(error)
-);
+f();
