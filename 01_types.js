@@ -34,7 +34,7 @@ prom1.then(
     )
 
 function ret() {
-    console.log('Start')
+    console.log(true + 'Start')
 }
 
 
