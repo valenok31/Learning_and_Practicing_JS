@@ -1,42 +1,34 @@
-const prom1 = new Promise((resolve, reject) => {
-    let random = Math.random()
-    setTimeout(() => {
-        if (random < 0.6) {
-            resolve(random)
-        } else {
-            reject('Error')
+const prom = new Promise(
+    (resolve, reject) => {
+        let rand = Math.random();
+        setTimeout(
+            () => {
+                if (rand < 0.2) {
+                    resolve(['resolve', rand])
+                } else {
+                    reject('reject');
+                }
+            }, rand*1000)
+    })
+
+
+prom.then(
+    (x) => {
+        console.log(x[1])
+        return x;
+    }
+)
+    .then(
+        (x) => {
+            console.log(x[0] + ' 2 then')
         }
-    }, 2000)
-})
-
-const prom2 = new Promise(
-    (resolve, reject) => {
-        resolve('Ok');
-        reject('False')
+    ).catch(
+    (x)=>{
+        console.log(x)
     }
 )
-
-const prom3 = new Promise(
-    (resolve, reject) => {
-        resolve('Ok');
-        reject('False')
+.finally(
+    ()=> {
+        console.log('End')
     }
 )
-
-prom1.then(
-    (x) => console.log(x)
-)
-    .catch(
-        (x) => console.log(Error)
-    )
-    .finally(
-        () => console.log('End')
-    )
-
-function ret() {
-    console.log(true + 'Start')
-}
-
-
-new ret;
-
