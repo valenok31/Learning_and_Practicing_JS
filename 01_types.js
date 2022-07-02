@@ -13,7 +13,6 @@ const prom = new Promise((resolve, reject) => {
 prom.then(
     (x) => {
         console.log(x)
-        throw new Error ("error!!!")
 
     }
 )
