@@ -1,28 +1,11 @@
-const prom = new Promise((resolve, reject) => {
-    let rand = Math.random();
-    setTimeout(() => {
-        if (rand < 0.2) {
-            resolve('resolve')
-        } else {
-            reject('reject');
-        }
-    }, rand * 1000)
-})
+const promise = Promise.resolve(17)
 
-
-prom.then(
-    (x) => {
-        console.log(x)
-
-    }
-)
-    .catch(
-        error=> {
-            console.log(error)
-        }
-    )
-    .finally(
-    () => {
-        console.log('End')
+promise.then(
+    function fulfilledReaction(value){
+        console.log({value})
+    },
+    function rejectedReaction(error){
+        console.log({error})
+        throw error
     }
 )
