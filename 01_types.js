@@ -1,11 +1,13 @@
-const promise = Promise.resolve(17)
+const promise = Promise.reject(17)
 
 promise.then(
-    function fulfilledReaction(value){
-        console.log({value})
+    function fulfilledReaction(value) {
+
+        let err = 'fatal'
+        console.log({value, err})
     },
-    function rejectedReaction(error){
+    function rejectedReaction(error) {
         console.log({error})
-        throw error
+
     }
 )
