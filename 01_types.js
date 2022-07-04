@@ -1,13 +1,14 @@
-async function loadJson(url) {
-    let  response = await fetch(url)
+const myPromise = () => Promise.resolve('вопросик решен')
 
-    if (response.status == 200) {
-        return response.json();
-    } else {
-        throw new Error(response.status);
-    }
-
+function firstFunction() {
+    myPromise().then(res => console.log(res))
+    console.log('1')
 }
 
-loadJson('no-such-user.json') // (3)
-    .catch(console.log); // Error: 404
+async function secondFunction() {
+    console.log(await myPromise())
+    console.log('2')
+}
+
+firstFunction()
+secondFunction()
