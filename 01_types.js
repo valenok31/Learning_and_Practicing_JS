@@ -1,38 +1,22 @@
-const prom1 = new Promise((resolve, reject) => {
-    let rand = Math.random();
-    setTimeout(() => {
-        if (rand < 0.8) {
-            resolve('1 = ' + rand);
-        } else {
-            reject('Err')
-        }
-    }, rand * 1000)
-})
-const prom2 = new Promise((resolve, reject) => {
-    let rand = Math.random();
-    setTimeout(() => {
-        if (rand < 0.8) {
-            resolve('2 = ' + rand);
-        } else {
-            reject('Err')
-        }
-    }, rand * 1000)
-})
-const prom3 = new Promise((resolve, reject) => {
-    let rand = Math.random();
-    setTimeout(() => {
-        if (rand < 0.8) {
-            resolve('3 = ' + rand);
-        } else {
-            reject('Err')
-        }
-    }, rand * 1000)
-})
+// Функция задержки
+// с возвращением случайного числа
+const delayAndGetRandom = (ms) => {
+    return new Promise(resolve => setTimeout(
+        () => {
+            const val = Math.trunc(Math.random() * 100);
+            resolve(val);
+        }, ms
+    ));
+};
 
+async function fn() {
+    const a = await 9;
+    const b = await delayAndGetRandom(1000);
+    const c = await 5;
+    await delayAndGetRandom(1000);
 
-Promise.all([prom3, prom1, prom2]).then(
-    x => console.log(x)
-)
-    .catch(
-        x => console.log(x)
-    )
+    return a + b * c;
+}
+
+// Вызов fn
+fn().then(console.log);
