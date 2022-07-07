@@ -1,22 +1,13 @@
-// Функция задержки
-// с возвращением случайного числа
-const delayAndGetRandom = (ms) => {
-    return new Promise(resolve => setTimeout(
-        () => {
-            const val = Math.trunc(Math.random() * 100);
-            resolve(val);
-        }, ms
-    ));
-};
+const promi = new Promise ((resolve, reject)=> {
+        let rand = Math.random();
+        if (rand < 0.5) {
+            resolve('Ok');
 
-async function fn() {
-    const a = await 9;
-    const b = await delayAndGetRandom(1000);
-    const c = await 5;
-    await delayAndGetRandom(1000);
+        } else {
+            reject('Err')
+        }
+    }
+ );
 
-    return a + b * c;
-}
-
-// Вызов fn
-fn().then(console.log);
+promi.then(x => console.log(x))
+    .catch(x=> console.log(x))
