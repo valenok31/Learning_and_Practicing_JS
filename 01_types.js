@@ -1,18 +1,19 @@
-let hello =  async () => { return "Hello" };
-
-hello().then((value) => console.log(value))
-hello().then(console.log)
-
-hello().then((x)=>{
-    console.log(x)
-})
+async function foo1() {
+    return await 'ok'
+}
 
 
-const promis1 = new Promise ((resolve, reject)=> {
-    if (false){
-        resolve('Ok')
-    }else{reject ('Error')}
-})
+function foo2() {
+    return Promise.resolve(1).then((x) => x)
+}
 
-promis1.then(console.log)
-    .catch(console.log)
+foo3().then(console.log)
+foo1().then(console.log)
+foo2().then(console.log)
+
+function foo3() {
+    return Promise.resolve(2).then((t) => t);
+}
+
+
+
