@@ -1,19 +1,42 @@
-async function foo1() {
-    return await 'ok'
-}
+const promis1 = new Promise(
+    (result, reject) => {
+        let rand = Math.random();
+        setTimeout(() => {
+            if (rand < 0.5) {
+                result(rand);
+            } else {
+                reject(rand);
+            }
+        }, 1000)
+
+    }
+);
+
+const promis2 = new Promise(
+    (result, reject) => {
+        let rand = Math.random();
+        setTimeout(() => {
+            if (rand < 0.5) {
+                result(rand);
+            } else {
+                reject(rand);
+            }
+        }, 1000)
+
+    }
+);
+
+console.log('Start');
+promis1.then(x => {
+    console.log('1')
+    return x
+})
+    .then(console.log)
+    .catch(console.log);
+
+promis2.then(x => console.log(x))
+    .catch(console.log);
 
 
-function foo2() {
-    return Promise.resolve(1).then((x) => x)
-}
 
-foo3().then(console.log)
-foo1().then(console.log)
-foo2().then(console.log)
-
-function foo3() {
-    return Promise.resolve(2).then((t) => t);
-}
-
-
-
+console.log('Finish')
