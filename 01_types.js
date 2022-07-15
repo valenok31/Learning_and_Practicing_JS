@@ -1,23 +1,12 @@
-const promis2 = new Promise(
-    (result, reject) => {
-        let rand = Math.random();
-        setTimeout(() => {
-            if (rand < 0.5) {
-                result(rand);
-            } else {
-                reject(rand);
-            }
-        }, 1000)
+async function f() {
 
-    }
-);
+    let promise = new Promise((resolve, reject) => {
+        setTimeout(() => resolve("готово!"), 1000)
+    });
 
+    let result = await promise; // будет ждать, пока промис не выполнится (*)
 
-console.log('Start');
+    console.log(result); // "готово!"
+}
 
-
-promis2.then(console.log)
-    .catch(console.log);
-
-
-console.log('Finish')
+f();
