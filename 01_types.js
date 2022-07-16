@@ -10,3 +10,13 @@ async function f() {
 }
 
 f();
+
+let a = {name: 'Veronika'}
+
+let b = a;
+
+a.name = 'Griga'
+a = {name: 'Alisa'}
+
+console.log(b.name)
+console.log(a)
