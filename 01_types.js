@@ -1,15 +1,19 @@
-async function f() {
+const propsi = new Promise(
+    (resolve, reject) => {
+        let rand = Math.random();
+        setTimeout(() => {
+            if(rand<0.5){
+                resolve(rand)
+            }else{
+                reject('Err')
+            }
 
-    let promise = new Promise((resolve, reject) => {
-        setTimeout(() => resolve("готово!"), 1000)
-    });
-    console.log('start')
-    let result = await promise; // будет ждать, пока промис не выполнится (*)
-    console.log(result); // "готово!"
+        }, 1000)
 
-}
+    }
+)
 
-console.log('final')
-f();
-
-console.log('End')
+propsi
+    .then(console.log, ()=>console.log('123'))
+    .catch((x)=> console.log(x))
+    .finally(()=>console.log('456'))
