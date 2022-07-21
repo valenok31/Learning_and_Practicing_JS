@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src='1_task.js'></script>
-</head>
-
-<body>
+<div id="elem">
+    <div id="elem-content">Element</div>
+</div>
 
 <script>
-    document.body.style.background = 'red'; // сделать фон красным
-    setTimeout(() => document.body.style.background = '', 3000);
+    // получить элемент
+    let elem7 = document.getElementById('elem');
 
+    // сделать его фон красным
+    window['elem-content'].style.background = 'red';
 </script>
-
-
-<div>278965</div>
-</body>
-</html>
