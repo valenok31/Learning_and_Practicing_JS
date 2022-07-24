@@ -1,13 +1,19 @@
 <style>
-    .alert {
-        padding: 15px;
-        border: 1px solid #d6e9c6;
-        border-radius: 4px;
-        color: #3c763d;
-        background-color: #dff0d8;
+    iframe { /* ифрейм с сайта-жертвы */
+        width: 400px;
+        height: 100px;
+        position: absolute;
+        top:0; left:-20px;
+        opacity: 0.5; /* в реальности opacity:0 */
+        z-index: 1;
     }
 </style>
 
-<div class="alert">
-    <strong>Hello!</strong>You lessen very messagh.
-</div>
+<div>Нажми, чтобы разбогатеть:</div>
+
+<!-- Url с сайта-жертвы -->
+<iframe src="/clickjacking/facebook.html"></iframe>
+
+<button>Нажмите сюда!</button>
+
+<div>...И всё будет супер (у меня, хакера)!</div>
