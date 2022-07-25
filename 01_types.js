@@ -14,3 +14,4 @@ const props = new Promise (
 
 props.then((x)=> console.log(x))
 .catch((x)=>console.log(x))
+.finally(log)
