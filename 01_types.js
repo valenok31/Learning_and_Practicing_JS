@@ -1,19 +1,16 @@
-const propsi = new Promise(
-    (resolve, reject) => {
-        let rand = Math.random();
-        setTimeout(() => {
-            if(rand<0.5){
-                resolve(rand)
+const props = new Promise (
+    (resolve, reject)=>{
+        let random = Math.random();
+        setTimeout(()=>{
+            if(random<0.5){
+                resolve('Ok!')
             }else{
-                reject('Err')
+                reject('Error!')
             }
-
-        }, 1000)
+        }, random*3000)
 
     }
 )
 
-propsi
-    .then(console.log, ()=>console.log('123'))
-    .catch((x)=> console.log(x))
-    .finally(()=>console.log('456'))
+props.then((x)=> console.log(x))
+.catch((x)=>console.log(x))
