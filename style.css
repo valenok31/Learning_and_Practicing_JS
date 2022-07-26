@@ -1,0 +1,13 @@
+td {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    text-align: center;
+    cursor: pointer;
+}
+td:hover{
+    background-color: yellow;
+}
+table{
+    border: red solid 1px;
+}
