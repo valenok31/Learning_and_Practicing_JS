@@ -6,22 +6,22 @@ for (let i = 1; i < 1; i++) {
     div.innerHTML = i;
     wrapper.append(div);
 }
-let arr = [['X',4,2,5,8,4,3,8,0],[4,'X',2,6,8,1,3,0,0],[1,2,'X',4,5,6,7,8,9],
-    [7,4,2,'X',8,3,9,8,0],[5,4,5,5,'X',4,5,8,0],[0,1,2,4,8,'X',3,8,0],
-    [9,4,2,5,8,4,'X',9,0],[3,4,3,5,8,4,3,'X',3],[4,4,4,5,8,4,4,8,'X']];
+let arr = [['X',5, 1, 3, 4, 6, 9, 7, 8],[7,'X', 9, 6, 1, 3, 2, 5, 8],[2,8,'X',1, 5, 9, 4, 6, 3],
+    [5,8,9,'X',7, 1, 4, 3, 6],[2, 7, 9, 1,'X',4, 5, 8, 3],[9, 2, 3, 7, 4,'X',6,5,8],
+    [9, 7, 8, 6, 2, 5,'X',4,3],[4, 8, 7, 1, 6, 2, 3,'X',9],[1, 5, 7, 3, 2, 8, 4, 6,'X']];
 let arrTu=[];
 let sum=0;
 
 function eventClickTdBox(event) {
     let idElem = event.currentTarget;
     idElem.classList.toggle("article")
-sum+=idElem.innerHTML
+sum+=+idElem.innerHTML;
     let wrapper=document.getElementById('wrapper');
     let divs = wrapper.getElementsByTagName('div');
     let i=0;
         arrTu = arr[idElem.id];
-
-        console.log(arr)
+    console.log(sum)
+        //console.log(arr)
     for (let div of divs) {
 
         arr[i][idElem.id]='S';
