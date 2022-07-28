@@ -10,18 +10,21 @@ let arr = [['X',4,2,5,8,4,3,8,0],[4,'X',2,6,8,1,3,0,0],[1,2,'X',4,5,6,7,8,9],
     [7,4,2,'X',8,3,9,8,0],[5,4,5,5,'X',4,5,8,0],[0,1,2,4,8,'X',3,8,0],
     [9,4,2,5,8,4,'X',9,0],[3,4,3,5,8,4,3,'X',3],[4,4,4,5,8,4,4,8,'X']];
 let arrTu=[];
+let sum=0;
 
 function eventClickTdBox(event) {
     let idElem = event.currentTarget;
     idElem.classList.toggle("article")
-
+sum+=idElem.innerHTML
     let wrapper=document.getElementById('wrapper');
     let divs = wrapper.getElementsByTagName('div');
     let i=0;
         arrTu = arr[idElem.id];
-        console.log(arrTu)
+
+        console.log(arr)
     for (let div of divs) {
 
+        arr[i][idElem.id]='S';
             div.innerHTML = arrTu[i];
             i++
 
