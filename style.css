@@ -1,13 +1,43 @@
-td {
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 40px;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.wrapper {
+    display: grid;
+    gap: 10px;
+/*    grid-template-columns:  150px 150px 150px;
+    grid-template-rows: 150px 150px 150px;*/
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    min-height: 100vh;
+    justify-content: center;
+    align-content: center;
+
+}
+
+.kletka {
+    background-color: skyblue;
+    /* Размещаем контейнеры по центру */
+    display: grid;
+    place-items: center;
     cursor: pointer;
 }
-td:hover{
-    background-color: yellow;
+
+.article {
+    background-color: #8dff1b;
+
 }
-table{
-    border: red solid 1px;
+
+.kletka:hover {
+    border: 2px solid red;
 }
+
