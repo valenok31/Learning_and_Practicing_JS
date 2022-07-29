@@ -16,8 +16,8 @@ body {
     gap: 10px;
 /*    grid-template-columns:  150px 150px 150px;
     grid-template-rows: 150px 150px 150px;*/
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: repeat(4, 100px);
     min-height: 100vh;
     justify-content: center;
     align-content: center;
@@ -41,3 +41,15 @@ body {
     border: 2px solid red;
 }
 
+.button__reset{
+    display: grid;
+    place-items: center;
+    background-color: gainsboro;
+    grid-column: span 3;
+}
+.wrapper__score{
+    display: block;
+text-align: center;
+    background-color: gainsboro;
+    height: 50px;
+}
