@@ -3,9 +3,13 @@ let     arr = [
     [43, 85, 58, 48, 68, 46, 74, 72, 22], [53, 60, 83, 42, 51, 91, 81, 37, 57], [56, 44, 77, 64, 66, 38, 52, 13, 40],
     [71, 11, 78, 34, 28, 39, 36, 21, 31], [90, 47, 94, 30, 99, 20, 86, 41, 63], [19, 61, 26, 33, 98, 82, 50, 69, 24]];
 let arrTu = [];
+let arrSum = [];
 let sum = 0;
 let wrapper = document.getElementById('wrapper');
 let divs = wrapper.getElementsByTagName('div');
+let prover =0;
+
+
 
 function eventClickTdBox(event) {
     let idElem = event.currentTarget;
@@ -20,6 +24,19 @@ function eventClickTdBox(event) {
         }
     }
     wrapper__score.innerHTML = sum;
+
+
+
+
+    for(let sdiv of divs){
+        prover += +sdiv.innerHTML;
+        //console.log(prover)
+    }
+    if(prover==0){
+        arrSum.push(sum)
+        console.log(arrSum)
+        wrapper__score_arr.innerHTML=arrSum;
+    }else {prover=0}
 }
 
 
@@ -31,9 +48,9 @@ for (let div of divs) {
 
 let resetKletka = () => {
     let divs = wrapper.getElementsByTagName('div');
-    console.log(sum)
+
     for (let div of divs) {
-        console.log(div.className);
+        //console.log(div.className);
         div.innerHTML = '';
     }
     arr = [
