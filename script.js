@@ -25,9 +25,6 @@ function eventClickTdBox(event) {
     }
     wrapper__score.innerHTML = sum;
 
-
-
-
     for(let sdiv of divs){
         prover += +sdiv.innerHTML;
         //console.log(prover)
@@ -39,9 +36,6 @@ function eventClickTdBox(event) {
     }else {prover=0}
 }
 
-
-//let wrapper = document.getElementById('wrapper');
-//let divs = wrapper.getElementsByTagName('div');
 for (let div of divs) {
     div.onclick = eventClickTdBox;
 }
@@ -61,3 +55,14 @@ let resetKletka = () => {
     sum = 0;
     wrapper__score.innerHTML = 'sum';
 }
+let props = new Promise (
+    (resolve, reject)=>{
+        if(true){
+            resolve('Ok');
+        }else{
+            reject('Error')
+        }
+    }
+)
+
+props.then(console.log)
