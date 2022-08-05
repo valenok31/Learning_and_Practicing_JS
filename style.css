@@ -13,7 +13,7 @@ body {
 
 .wrapper {
     display: grid;
-    gap: 10px;
+    gap: 20px;
 /*    grid-template-columns:  150px 150px 150px;
     grid-template-rows: 150px 150px 150px;*/
     grid-template-columns: 100px 100px 100px;
@@ -30,6 +30,7 @@ body {
     display: grid;
     place-items: center;
     cursor: pointer;
+    border-radius: 50px;
 }
 
 .article {
