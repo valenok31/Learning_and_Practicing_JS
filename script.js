@@ -13,6 +13,7 @@ const clickedSquare = function (event) {
     let idEvent = document.getElementById(event.target.id);
     if (idEvent.innerHTML != 'X') {
         idEvent.style.backgroundColor = 'red';
+        console.log(event.target.dataset.getr);
 
         sum += +event.target.innerHTML;
         sum2.push(+event.target.innerHTML);
@@ -34,11 +35,15 @@ const clickedSquare = function (event) {
     }
 }
 
-/*for (let divK of divs) {
-    divK.onclick = clickedSquare;
-}*/
+for (let divK of divs) {
+    //divK.onclick = clickedSquare;
+    divK.addEventListener('click', clickedSquare)
 
-wrapper.onclick = clickedSquare;
+
+}
+
+/*wrapper.onclick = clickedSquare;*/
+
 
 
 const resetClick = function () {
