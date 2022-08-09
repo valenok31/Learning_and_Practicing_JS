@@ -9,6 +9,16 @@ body {
     font-size: 40px;
     width: 100%;
     min-height: 100vh;
+    text-align: center;
+}
+.content{
+    display: grid;
+    grid-template-columns: 350px;
+    grid-template-rows: 350px;
+    min-height: calc(100vh - 150px);
+    justify-content: center;
+    align-content: center;
+    background-color: darkorange;
 }
 
 .wrapper {
@@ -18,10 +28,11 @@ body {
         grid-template-rows: 150px 150px 150px;*/
     /* grid-template-columns: 100px 100px 100px;*/
     grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(4, 100px);
-    min-height: calc(100vh - 150px);
+    grid-template-rows: repeat(3, 100px);
+    /*min-height: 350px;*/
     justify-content: center;
     align-content: center;
+
 }
 
 .kletka {
