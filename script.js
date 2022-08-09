@@ -10,10 +10,10 @@ let content = document.getElementById('content');
 let divs = wrapper.getElementsByTagName('div');
 
 
-wrapper.addEventListener('click', ()=>alert('wrapper'));
+
 
 const clickedSquare = function (event) {
-    //alert(event.clientX);
+    alert(event.clientX);
     let idEvent = document.getElementById(event.target.id);
     if (idEvent.inneHTML != 'X') {
 
@@ -48,7 +48,9 @@ const clickedSquare = function (event) {
 }*/
 
 /*wrapper.onclick = clickedSquare;*/
+wrapper.addEventListener('click', ()=>alert('wrapper'));
 content.addEventListener('click', clickedSquare);
+content.addEventListener('click', ()=>alert('content'));
 
 const resetClick = function () {
     for (let divK of divs) {
