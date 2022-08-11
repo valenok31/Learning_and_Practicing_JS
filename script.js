@@ -14,10 +14,9 @@ let divs = wrapper.getElementsByTagName('div');
 
 const clickedSquare = function (event) {
     if(event.target.className !== "kletka") return
-   // let idEvent = document.getElementById(event.target.id); //WTF??
-    let idEvent = event.target; //WTF??
-    console.log(event.target == idEvent)
-    if (event.target.innerHTML != 'X') {
+    let idEvent = event.target;
+    console.log(event.target === idEvent)
+    if (event.target.innerHTML !== 'X') {
 
         idEvent.style.backgroundColor = 'red';
         //console.log(event.target.dataset.getr);
@@ -30,34 +29,29 @@ const clickedSquare = function (event) {
         })
         document.getElementById('wrapper__score').innerHTML = z;
         for (let divK of divs) {
-            document.getElementById(divK.id).innerHTML = arr[event.target.id][divK.id];
+            let regen = Math.random()*100;
+            regen = Math.trunc(regen);
+            //document.getElementById(divK.id).innerHTML = arr[event.target.id][divK.id];
+            document.getElementById(divK.id).innerHTML = regen;
+
             arr[divK.id][event.target.id] = 'X';
         }
         idEvent.innerHTML = 'X';
-        if (sum2.length == 9) {
+        if (sum2.length === 9) {
             arrSum.push(z)
             document.getElementById('wrapper__score_arr').innerHTML = arrSum;
-            //console.log(arrSum)
         }
     }
 }
 
-/*for (let divK of divs) {
-    //divK.onclick = clickedSquare;
-    divK.addEventListener('click', clickedSquare)
 
-
-}*/
-
-/*wrapper.onclick = clickedSquare;*/
-//wrapper.addEventListener('click', ()=>alert('wrapper'));
 content.addEventListener('click', clickedSquare);
-//content.addEventListener('click', ()=>alert('content'));
+
 
 const resetClick = function () {
     for (let divK of divs) {
         divK.innerHTML = '';
-        divK.style = '';
+        divK.style = null;
         divK.title = '';
     }
     arr = [
