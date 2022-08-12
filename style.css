@@ -13,45 +13,26 @@ body {
 }
 .content{
     display: grid;
-    grid-template-columns: 350px;
-    grid-template-rows: 350px;
+    grid-template-columns: 100vw;
+    grid-template-rows: calc(100vh - 150px);
     min-height: calc(100vh - 150px);
-    justify-content: center;
-    align-content: center;
-    background-color: darkorange;
+    /*justify-content: center;
+    align-content: center;*/
+    background-color: #22ff00;
 }
 
 .wrapper {
-    display: grid;
-    gap: 5px;
-    /*    grid-template-columns:  150px 150px 150px;
-        grid-template-rows: 150px 150px 150px;*/
-    /* grid-template-columns: 100px 100px 100px;*/
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
-    /*min-height: 350px;*/
-    justify-content: center;
-    align-content: center;
+width: 80%;
+    justify-self: center;
+    align-self: center;
+    background-color: antiquewhite;
 
 }
-
-.kletka {
-    background-color: skyblue;
-    /* Размещаем контейнеры по центру */
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    border-radius: 50px;
-}
-
 .article {
     background-color: #8dff1b;
 
 }
 
-.kletka:hover {
-    border: 2px solid red;
-}
 
 .button__reset {
     display: block;
