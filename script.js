@@ -1,10 +1,12 @@
 let taskText = "Advertisers study how people learn so that they can 'teach' them to respond to their advertising. They want us to be interested, to try something, and then to do it again. These are the elements of learning: interest, experience and repetition. If an advert can achieve this, it is successful. If an advert works well, the same technique can be used to advertise different things. So, for example, in winter if the weather is cold and you see a family having a warming cup of tea and feeling cosy, you may be interested and note the name of the tea ... Here the same technique is being used as with the cool, refreshing drink.";
 let rightRow = document.getElementById('rightRow');
 let leftRow = document.getElementById('leftRow');
+let boxErrors = document.getElementById('boxErrors');
 rightRow.innerHTML = taskText;
 let taskTextRight = rightRow.innerHTML;
 taskTextRight=taskTextRight.split('');
 let arr = [];
+let numberErrors=0;
 
 
 const deleteRight = function (event) {
@@ -22,6 +24,8 @@ const deleteRight = function (event) {
             document.body.style.backgroundColor='red';
             setTimeout(()=>{
                 document.body.style.backgroundColor='';
+                numberErrors+=1;
+                boxErrors.innerHTML = numberErrors;
                 },50
             )
            // alert(event.key)
