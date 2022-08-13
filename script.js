@@ -4,42 +4,42 @@ let leftRowBox = document.getElementById('leftRowBox');
 let boxErrors = document.getElementById('boxErrors');
 rightRow.innerHTML = taskText;
 let taskTextRight = rightRow.innerHTML;
-taskTextRight=taskTextRight.split('');
+taskTextRight = taskTextRight.split('');
 let arr = [];
-let numberErrors=0;
-let numberLetters=0;
-
-
+let numberErrors = 0;
+let numberLetters = 0;
 
 const deleteRight = function (event) {
-    //if(event.key===taskTextRight[0]){
-    if(true){
-        numberLetters +=1;
+    if (event.key === taskTextRight[0]) {
+        //if(true){
+        numberLetters += 1;
         calculationError(numberErrors, numberLetters);
-   arr.push(taskTextRight.shift());
-   if(arr.length>100){
-       arr.shift();
-       leftRowBox.innerHTML = arr.join('');
-   }else{
-       leftRowBox.innerHTML = arr.join('');
-   }
-    rightRow.innerHTML = taskTextRight.join('');
-    }else{
-        if(event.key!=='Shift'){
-            document.body.style.backgroundColor='red';
-            setTimeout(()=>{
-                document.body.style.backgroundColor='';
-                numberErrors+=1;
+        arr.push(taskTextRight.shift());
+        if (arr.length > 100) {
+            arr.shift();
+            leftRowBox.innerHTML = arr.join('');
+        } else {
+            leftRowBox.innerHTML = arr.join('');
+        }
+        rightRow.innerHTML = taskTextRight.join('');
+    } else {
+        if (event.key !== 'Shift') {
+            document.body.style.backgroundColor = 'red';
+            setTimeout(() => {
+                document.body.style.backgroundColor = '';
+                numberErrors += 1;
                 calculationError(numberErrors, numberLetters);
-                },50
-            )
-           // alert(event.key)
+            }, 50)
         }
     }
 }
 
-function calculationError (numberErrors, numberLetters){
-    boxErrors.innerHTML = Math.round((100-numberErrors*100/(numberLetters+1))*100)/100;
+function calculationError(numberErrors, numberLetters) {
+    let calculation = (100 - numberErrors * 100 / (numberLetters + 1));
+    if (calculation < 0) {
+        calculation = 0;
+    }
+    boxErrors.innerHTML = calculation.toFixed(1);
 }
 
 document.addEventListener("keydown", deleteRight)
