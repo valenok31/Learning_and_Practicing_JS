@@ -19,7 +19,12 @@ const deleteRight = function (event) {
     rightRow.innerHTML = taskTextRight.join('');
     }else{
         if(event.key!=='Shift'){
-            alert(event.key)
+            document.body.style.backgroundColor='red';
+            setTimeout(()=>{
+                document.body.style.backgroundColor='';
+                },50
+            )
+           // alert(event.key)
         }
     }
 }
