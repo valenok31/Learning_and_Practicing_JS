@@ -14,6 +14,7 @@ body {
     display: grid;
     grid-template-columns: 50% 50%;
     min-height: calc(100vh - 150px);
+    overflow: hidden;
 }
 
 .string {
@@ -29,8 +30,17 @@ body {
     overflow: hidden; /* Обрезаем содержимое */
 }
 .string:first-child {
+    display: block;
     text-align: right;
     color: rgb(206, 206, 206);
     overflow: hidden;
-    float: right;
+}
+
+.string__box{
+    position: relative;
+    left: -200%;
+    display: inline-block;
+    /*background-color: yellow;*/
+    width: 300%;
+
 }
