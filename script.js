@@ -8,17 +8,14 @@ taskTextRight = taskTextRight.split('');
 let arr = [];
 let numberErrors = 0;
 let numberLetters = 0;
-let start  = 0;
-let end = 0;
+
 
 const deleteRight = function (event) {
     if (event.key === taskTextRight[0]) {
-        //if(true){
         numberLetters += 1;
-        if(numberLetters===1){
+        if (numberLetters === 1) {
             timer(true);
         }
-
         calculationError(numberErrors, numberLetters);
         arr.push(taskTextRight.shift());
         if (arr.length > 100) {
@@ -33,8 +30,7 @@ const deleteRight = function (event) {
             document.body.style.backgroundColor = 'red';
             setTimeout(() => {
                 document.body.style.backgroundColor = '';
-                //numberErrors += 1;
-                if(numberErrors<=numberLetters)numberErrors+=1;
+                if (numberErrors <= numberLetters) numberErrors += 1;
                 calculationError(numberErrors, numberLetters);
             }, 50)
         }
@@ -42,45 +38,25 @@ const deleteRight = function (event) {
 }
 
 function calculationError(numberErrors, numberLetters) {
-/*    if(numberLetters>=1)  {*/
-        let calculation = (100 - numberErrors * 100 / (numberLetters + 1));
-        /*        if (calculation < 0) {
-                    calculation = 0;
-                }*/
-        boxErrors.innerHTML = calculation.toFixed(1) + '% accuracy';
-        //boxErrors.innerHTML = numberLetters;
-
-/*    }*/
-
-
+    let calculation = (100 - numberErrors * 100 / (numberLetters + 1));
+    boxErrors.innerHTML = calculation.toFixed(1) + '% accuracy';
 }
 
 document.addEventListener("keydown", deleteRight)
-//timer();
 
-function timer (startTimer=false){
+function timer(startTimer = false) {
     let timeInterval = 60;
-    if(startTimer){
-        start  = Date.now();
-       let timerId = setInterval(()=> {
-            end = Date.now();
-            tim.innerHTML = ((end-start)/1000).toFixed(1);
+    if (startTimer) {
+        let start = Date.now();
+        let timerId = setInterval(() => {
+            let end = Date.now();
+            document.getElementById('tim').innerHTML = ((end - start) / 1000).toFixed(1);
         }, 100)
-
-        setTimeout(()=>{
+        setTimeout(() => {
             clearInterval(timerId);
             document.removeEventListener("keydown", deleteRight)
-            benchmark.innerHTML = (numberLetters*60/timeInterval + ' characters/minute');
-        }, timeInterval*1000)
-
+            document.getElementById('benchmark').innerHTML = (numberLetters * 60 / timeInterval + ' characters/minute');
+        }, timeInterval * 1000)
     }
-
-
 }
-
-
-
-
-
-
 
