@@ -13,6 +13,9 @@ const deleteRight = function (event) {
     if (event.key === taskTextRight[0]) {
         //if(true){
         numberLetters += 1;
+        if(numberLetters===1) {
+            startTime();
+        }
         calculationError(numberErrors, numberLetters);
         arr.push(taskTextRight.shift());
         if (arr.length > 100) {
@@ -35,11 +38,17 @@ const deleteRight = function (event) {
 }
 
 function calculationError(numberErrors, numberLetters) {
-    let calculation = (100 - numberErrors * 100 / (numberLetters + 1));
-    if (calculation < 0) {
-        calculation = 0;
+  if(numberLetters>=1)  {
+        let calculation = (100 - numberErrors * 100 / (numberLetters + 1));
+        if (calculation < 0) {
+            calculation = 0;
+        }
     }
     boxErrors.innerHTML = calculation.toFixed(1);
+}
+
+function startTime(){
+    alert('R')
 }
 
 document.addEventListener("keydown", deleteRight)
