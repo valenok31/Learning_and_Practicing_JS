@@ -55,27 +55,23 @@ function calculationError(numberErrors, numberLetters) {
 
 }
 
-function startTime(){
-    return Date.now();
-}
-
-
 document.addEventListener("keydown", deleteRight)
 //timer();
 
 function timer (startTimer=false){
+    let timeInterval = 60;
     if(startTimer){
-        start  = startTime();
+        start  = Date.now();
        let timerId = setInterval(()=> {
-            end = startTime();
+            end = Date.now();
             tim.innerHTML = ((end-start)/1000).toFixed(1);
         }, 100)
 
         setTimeout(()=>{
             clearInterval(timerId);
             document.removeEventListener("keydown", deleteRight)
-            benchmark.innerHTML = (numberLetters + ' characters/minute');
-        }, 60000)
+            benchmark.innerHTML = (numberLetters*60/timeInterval + ' characters/minute');
+        }, timeInterval*1000)
 
     }
 
