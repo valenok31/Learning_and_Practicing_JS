@@ -8,14 +8,17 @@ taskTextRight = taskTextRight.split('');
 let arr = [];
 let numberErrors = 0;
 let numberLetters = 0;
+let start  = startTime();
+let end = 0;
 
 const deleteRight = function (event) {
     if (event.key === taskTextRight[0]) {
         //if(true){
         numberLetters += 1;
-        if(numberLetters===1) {
-            startTime();
+        if(numberLetters===1){
+
         }
+
         calculationError(numberErrors, numberLetters);
         arr.push(taskTextRight.shift());
         if (arr.length > 100) {
@@ -30,7 +33,8 @@ const deleteRight = function (event) {
             document.body.style.backgroundColor = 'red';
             setTimeout(() => {
                 document.body.style.backgroundColor = '';
-                numberErrors += 1;
+                //numberErrors += 1;
+                if(numberErrors<=numberLetters)numberErrors+=1;
                 calculationError(numberErrors, numberLetters);
             }, 50)
         }
@@ -38,19 +42,32 @@ const deleteRight = function (event) {
 }
 
 function calculationError(numberErrors, numberLetters) {
-  if(numberLetters>=1)  {
+/*    if(numberLetters>=1)  {*/
         let calculation = (100 - numberErrors * 100 / (numberLetters + 1));
-        if (calculation < 0) {
-            calculation = 0;
-        }
-    }
-    boxErrors.innerHTML = calculation.toFixed(1);
+        /*        if (calculation < 0) {
+                    calculation = 0;
+                }*/
+        boxErrors.innerHTML = calculation.toFixed(1);
+        //boxErrors.innerHTML = numberLetters;
+
+/*    }*/
+
+
 }
 
 function startTime(){
-    alert('R')
+    return Date.now();
 }
 
 document.addEventListener("keydown", deleteRight)
+
+
+setInterval(()=> {
+    end = startTime();
+    tim.innerHTML = Math.floor((end-start)/1000);
+}, 1000)
+
+
+
 
 
