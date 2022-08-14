@@ -8,15 +8,16 @@ taskTextRight = taskTextRight.split('');
 let arr = [];
 let numberErrors = 0;
 let numberLetters = 0;
-let start  = startTime();
+let start  = 0;
 let end = 0;
+let s=0;
 
 const deleteRight = function (event) {
     if (event.key === taskTextRight[0]) {
         //if(true){
         numberLetters += 1;
         if(numberLetters===1){
-
+            timer(true);
         }
 
         calculationError(numberErrors, numberLetters);
@@ -59,13 +60,25 @@ function startTime(){
     return Date.now();
 }
 
+
 document.addEventListener("keydown", deleteRight)
+timer();
+
+function timer (startTimer=false){
+    if (startTimer){
+        s=1;
+        start  = startTime();
+    }
+    if(s===1){
+        setInterval(()=> {
+            end = startTime();
+            tim.innerHTML = Math.floor((end-start)/1000);
+        }, 1000)
+    }
+
+}
 
 
-setInterval(()=> {
-    end = startTime();
-    tim.innerHTML = Math.floor((end-start)/1000);
-}, 1000)
 
 
 
