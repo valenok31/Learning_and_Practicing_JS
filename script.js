@@ -10,7 +10,6 @@ let numberErrors = 0;
 let numberLetters = 0;
 let start  = 0;
 let end = 0;
-let s=0;
 
 const deleteRight = function (event) {
     if (event.key === taskTextRight[0]) {
@@ -48,7 +47,7 @@ function calculationError(numberErrors, numberLetters) {
         /*        if (calculation < 0) {
                     calculation = 0;
                 }*/
-        boxErrors.innerHTML = calculation.toFixed(1);
+        boxErrors.innerHTML = calculation.toFixed(1) + '% accuracy';
         //boxErrors.innerHTML = numberLetters;
 
 /*    }*/
@@ -62,19 +61,24 @@ function startTime(){
 
 
 document.addEventListener("keydown", deleteRight)
-timer();
+//timer();
 
 function timer (startTimer=false){
-    if (startTimer){
-        s=1;
+    if(startTimer){
         start  = startTime();
-    }
-    if(s===1){
-        setInterval(()=> {
+       let timerId = setInterval(()=> {
             end = startTime();
-            tim.innerHTML = Math.floor((end-start)/1000);
-        }, 1000)
+            tim.innerHTML = ((end-start)/1000).toFixed(1);
+        }, 100)
+
+        setTimeout(()=>{
+            clearInterval(timerId);
+            document.removeEventListener("keydown", deleteRight)
+            benchmark.innerHTML = (numberLetters + ' characters/minute');
+        }, 60000)
+
     }
+
 
 }
 
