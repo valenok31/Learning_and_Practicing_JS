@@ -9,12 +9,13 @@ taskText[6] = "In the United States, education is mainly the responsibility of s
 taskText[7] = "At the high school level, there are some specialized schools. They include schools that emphasize vocational subjects like business or auto mechanics. Most high schools are general schools. High school students are often involved in the non-academic activities that their school offers -for example, in drama clubs, sports teams, or the school newspaper.";
 taskText[8] = "Birmingham developed engineering, chemicals, electronics and car manufacture. Cambridge is famous for software engineering (making programs for computers) and bio-chemical and bio-genetic products. Cattle-farming is the speciality of the west of England, Northern Ireland and Scotland.";
 taskText[9] = "The original base of British industry was coal-mining, iron and steel and textiles. Today the most productive sectors include high-tech industries, chemicals, finance and the service sectors, especially banking, insurance and tourism.";
+taskText[10] = "use strict alert prompt confirm boolean true false null undefined object symbol typeof string bigint function value Number if else width height for while do break continue switch case default return Function Expression Function Declaration arrow functions event target current capture";
 
 
 let rightRow = document.getElementById('rightRow');
 let leftRowBox = document.getElementById('leftRowBox');
 let boxErrors = document.getElementById('boxErrors');
-rightRow.innerHTML = taskText[Math.floor(Math.random()*10)];
+rightRow.innerHTML = taskText[Math.floor(Math.random()*11)];
 let taskTextRight = rightRow.innerHTML;
 taskTextRight = taskTextRight.split('');
 let arr = [];
