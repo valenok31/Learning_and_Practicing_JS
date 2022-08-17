@@ -54,7 +54,13 @@ function calculationError(numberErrors, numberLetters) {
     let calculation = (100 - numberErrors * 100 / (numberLetters + 1));
     boxErrors.innerHTML = calculation.toFixed(1) + '% accuracy';
 }
-
+function displayNone (){
+    if(true){
+        let settings = document.getElementById('setting');
+        settings.style.display = 'none'
+    }
+}
+displayNone();
 document.addEventListener("keydown", deleteRight)
 
 function timer(startTimer = false) {
