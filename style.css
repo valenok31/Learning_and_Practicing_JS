@@ -42,5 +42,26 @@ body {
     display: inline-block;
     /*background-color: yellow;*/
     width: 300%;
+}
 
+.setting{
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 999;
+    background-color: gainsboro;
+    display: grid;
+    /*display: none;*/
+    grid-template-columns: 100vw;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.setting__time{
+    justify-self: center;
+    align-self: center;
+    background-color: yellow;
 }
