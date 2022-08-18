@@ -21,6 +21,9 @@ taskTextRight = taskTextRight.split('');
 let arr = [];
 let numberErrors = 0;
 let numberLetters = 0;
+//localStorage.record = 0;
+
+document.getElementById('benchmark').innerHTML = localStorage.record;
 
 
 const deleteRight = function (event) {
@@ -64,17 +67,21 @@ displayNone();
 document.addEventListener("keydown", deleteRight)
 
 function timer(startTimer = false) {
-    let timeInterval = 60;
+
+    let timeInterval = 10;
     if (startTimer) {
-        let start = Date.now();
+            let start = Date.now();
         let timerId = setInterval(() => {
             let end = Date.now();
             document.getElementById('tim').innerHTML = ((end - start) / 1000).toFixed(1);
         }, 100)
         setTimeout(() => {
             clearInterval(timerId);
+            let benchmark = numberLetters * 60 / timeInterval;
+            if(benchmark > localStorage.record) {localStorage.record = benchmark}
+
             document.removeEventListener("keydown", deleteRight)
-            document.getElementById('benchmark').innerHTML = (numberLetters * 60 / timeInterval + ' characters/minute');
+            document.getElementById('benchmark').innerHTML = (benchmark + ' characters/minute');
         }, timeInterval * 1000)
     }
 }
