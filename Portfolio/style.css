@@ -1,0 +1,6 @@
+.myCanvas{
+    width: 500px;
+    height: 500px;
+    background-color:#eee;
+    border:1px solid #ccc;
+}
