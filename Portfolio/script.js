@@ -1,32 +1,52 @@
-let s=10;
-let canvas = document.getElementById("myCanvas"),
-    context = canvas.getContext("2d");
-context.lineWidth = 1;
+let s = 150;
+let z = 75;
+let ter;
+let flag = true;
+let canvas = document.getElementById("myCanvas");
+context = canvas.getContext("2d");
+context.lineWidth = 2;
+context.lineHeight = 2;
+renderX(s, z);
 
-
-function renderX (x){
+function renderX(x, y) {
     context.beginPath();
-    context.clearRect(0,0,500,500);
-    context.moveTo(x, 80);
-    context.lineTo(150, 140);
-    context.lineTo(160, 110);
+    context.scale(1,1);
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.arc(x, y, 3, 0, Math.PI * 2, false);
     context.closePath();
+    context.fill();
     context.strokeStyle = "red";
     context.stroke();
-    console.log(x);
-
 }
 
 
-
-
-
 document.addEventListener("keydown", deleteRight)
+document.addEventListener("keyup", deleteLeft)
 
-function deleteRight(){
-    s=s+2;
-    renderX(s);
+function deleteRight(event) {
+    if (flag) {
+        ter = setInterval(() => {
+            if (event.key === 'ArrowRight') {
+                s += 1
+            }
+            if (event.key === 'ArrowLeft') {
+                s -= 1
+            }
+            if (event.key === 'ArrowDown') {
+                z += 1
+            }
+            if (event.key === 'ArrowUp') {
+                z -= 1
+            }
+            renderX(s, z);
+        }, 1);
+        flag = false;
+    }
+}
 
+function deleteLeft() {
+    clearInterval(ter);
+    flag = true;
 }
 
 
