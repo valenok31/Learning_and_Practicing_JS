@@ -5,6 +5,9 @@ for (let ar of cell) {
     ar.addEventListener('click', turn);
 }
 
+const heads='rgb(255, 60, 0)';
+const tails='rgb(205,92,92)';
+
 
 function turn(event) {
 
@@ -23,8 +26,8 @@ function turn(event) {
     idClick.animate(newspaperSpinning, newspaperTiming);
 
     setTimeout(() => {
-        if(this.style.backgroundColor==='rgb(255, 60, 0)')
-        {idClick.style.backgroundColor = '#CD5C5CFF';}else{idClick.style.backgroundColor = '#FF3C00FF';}
+        if(this.style.backgroundColor===heads)
+        {idClick.style.backgroundColor = tails;this.innerHTML = '';}else{idClick.style.backgroundColor = heads;this.innerHTML = 'jk';}
         console.log(this.style.backgroundColor)
     }, 150);
 
