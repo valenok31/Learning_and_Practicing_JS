@@ -1,6 +1,6 @@
 let cell = document.getElementById('cell');
-cell = cell.children;
-for (let ar of cell) {
+//cell = cell.children;
+for (let ar of cell.children) {
     ar.addEventListener('click', turn);
 }
 
@@ -8,7 +8,8 @@ const heads = 'rgb(255, 60, 0)';
 const tails = 'rgb(205,92,92)';
 let playingCards=[];
 function generatorCard (){
-    for(let i=0; i<9; i++){
+    let ziz=cell.querySelectorAll('div');
+    for(let i=0; i<ziz.length; i++){
         playingCards.push(Math.floor(Math.random()*10))
     }
     console.log(playingCards)
