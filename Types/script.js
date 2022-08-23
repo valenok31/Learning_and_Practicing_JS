@@ -1,44 +1,37 @@
 let cell = document.getElementById('cell');
-//cell = cell.children;
-/*for (let ar of cell.children) {
-    ar.addEventListener('click', turn);
-}*/
-
 const heads = 'rgb(255, 60, 0)';
-const tails = 'rgb(205,92,92)';
-let playingCards=[];
+const tails = 'rgb(141,255,27)';
+let playingCards = [];
+let numberCities = 9;
+let cardA;
+let cardB;
 
-function createCard(){
-    for(let i =0; i < 19; i++){
+function createCard() {
+    for (let i = 0; i < numberCities; i++) {
         let div = document.createElement('div');
         div.id = `${i}`;
         div.className = 'city';
+        div.style.backgroundColor = tails;
         div.addEventListener('click', turn);
         cell.append(div);
     }
 }
 
 
-function generatorCard (){
-    let ziz=cell.querySelectorAll('div');
-    for(let i=0; i<ziz.length; i++){
-        playingCards.push(Math.floor(Math.random()*10))
+function generatorCard() {
+    for (let i = 0; i < numberCities; i++) {
+        playingCards.push(Math.floor(Math.random() * 10))
     }
-    console.log(playingCards)
 }
-
-
-
-
 
 createCard();
 generatorCard();
+
 function turn(event) {
     let idClick = event.target.id;
     idClick = document.getElementById(idClick);
     flip(idClick);
-    setTimeout(()=>changingColor(idClick), 150);
-   // console.log(idClick.id)
+    setTimeout(() => changingColor(idClick), 150);
 }
 
 function flip(idClick) {
@@ -62,5 +55,26 @@ function changingColor(idClick) {
     } else {
         idClick.style.backgroundColor = heads;
         idClick.innerHTML = playingCards[idClick.id];
+        coincidences(idClick, playingCards[idClick.id]);
+
     }
 }
+
+function coincidences(idClick, playingCards){
+    if(cardA){cardB =playingCards;}else{cardA = playingCards;}
+
+    if(cardA && cardB){
+        if(cardA===cardB){
+            idClick.style.backgroundColor = 'rgb(27,202,255)';
+        }
+        if(cardA!==cardB){
+            cardA=undefined;
+            cardB=undefined;
+            flip(idClick);
+        }
+    }
+
+    console.log(cardA)
+    console.log(cardB)
+}
+
