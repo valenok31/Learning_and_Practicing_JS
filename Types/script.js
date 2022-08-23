@@ -1,18 +1,30 @@
 let cell = document.getElementById('cell');
 cell = cell.children;
-//console.log(cell)
 for (let ar of cell) {
     ar.addEventListener('click', turn);
 }
 
-const heads='rgb(255, 60, 0)';
-const tails='rgb(205,92,92)';
+const heads = 'rgb(255, 60, 0)';
+const tails = 'rgb(205,92,92)';
+let playingCards=[];
+function generatorCard (){
+    for(let i=0; i<9; i++){
+        playingCards.push(Math.floor(Math.random()*10))
+    }
+    console.log(playingCards)
+}
 
+generatorCard();
 
 function turn(event) {
-
     let idClick = event.target.id;
     idClick = document.getElementById(idClick);
+    flip(idClick);
+    setTimeout(()=>changingColor(idClick), 150);
+   // console.log(idClick.id)
+}
+
+function flip(idClick) {
     const newspaperSpinning = [
         {transform: 'scaleX(1)'},
         {transform: 'scaleX(0)'},
@@ -24,14 +36,14 @@ function turn(event) {
         iterations: 1,
     }
     idClick.animate(newspaperSpinning, newspaperTiming);
-
-    setTimeout(() => {
-        if(this.style.backgroundColor===heads)
-        {idClick.style.backgroundColor = tails;this.innerHTML = '';}else{idClick.style.backgroundColor = heads;this.innerHTML = 'jk';}
-        console.log(this.style.backgroundColor)
-    }, 150);
-
-
-
 }
 
+function changingColor(idClick) {
+    if (idClick.style.backgroundColor === heads) {
+        idClick.style.backgroundColor = tails;
+        idClick.innerHTML = '';
+    } else {
+        idClick.style.backgroundColor = heads;
+        idClick.innerHTML = playingCards[idClick.id];
+    }
+}
