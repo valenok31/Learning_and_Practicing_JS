@@ -2,9 +2,9 @@ let cell = document.getElementById('cell');
 const heads = 'rgb(255, 60, 0)';
 const tails = 'rgb(141,255,27)';
 let playingCards = [];
-let numberCities = 9;
-let cardA;
-let cardB;
+let numberCities = 16;
+let cardA = false;
+let cardB = false;
 
 function createCard() {
     for (let i = 0; i < numberCities; i++) {
@@ -28,10 +28,14 @@ createCard();
 generatorCard();
 
 function turn(event) {
-    let idClick = event.target.id;
-    idClick = document.getElementById(idClick);
+    //console.log(event)
+    let idClick = event.target;
     flip(idClick);
-    setTimeout(() => changingColor(idClick), 150);
+    setTimeout(() => {
+        changingColor(idClick);
+        coincidences(idClick);
+    }, 150);
+
 }
 
 function flip(idClick) {
@@ -55,26 +59,39 @@ function changingColor(idClick) {
     } else {
         idClick.style.backgroundColor = heads;
         idClick.innerHTML = playingCards[idClick.id];
-        coincidences(idClick, playingCards[idClick.id]);
-
     }
 }
 
-function coincidences(idClick, playingCards){
-    if(cardA){cardB =playingCards;}else{cardA = playingCards;}
+function coincidences(idClick) {
+    if (cardA) {
+        cardB = idClick;
+    } else {
+        cardA = idClick;
+    }
+    console.log(cardA);
+    console.log(cardB);
+    if (cardA && cardB) {
+        if (playingCards[cardA.id] === playingCards[cardB.id]) {
+            cardA.style.backgroundColor = 'rgb(27,202,255)';
+            cardB.style.backgroundColor = 'rgb(27,202,255)';
+            cardA = false;
+            cardB = false;
+        }
+        if (playingCards[cardA.id] !== playingCards[cardB.id]) {
 
-    if(cardA && cardB){
-        if(cardA===cardB){
-            idClick.style.backgroundColor = 'rgb(27,202,255)';
+            setTimeout(() => {
+                flip(cardA);
+                changingColor(cardA);
+                flip(cardB);
+                changingColor(cardB);
+                cardA = false;
+                cardB = false;
+            }, 500)
         }
-        if(cardA!==cardB){
-            cardA=undefined;
-            cardB=undefined;
-            flip(idClick);
-        }
+
     }
 
-    console.log(cardA)
-    console.log(cardB)
+    //console.log(cardA)
+    //console.log(cardB)
 }
 
