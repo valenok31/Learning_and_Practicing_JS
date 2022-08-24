@@ -19,10 +19,27 @@ function createCard() {
 
 
 function generatorCard() {
-    for (let i = 0; i < numberCities; i++) {
+    for(let r=0;r<numberCities; r++) {
+        let randomNumber = Math.floor(Math.random() * 10);
+        if(!playingCards[r]){
+            playingCards[r] = randomNumber;
+            let double = Math.floor(Math.random() * numberCities);
+            while (playingCards[double]) {
+                double = Math.floor(Math.random() * numberCities);
+                console.log(double);
+            }
+            playingCards[double] = randomNumber;
+        }
+
+    }
+    console.log(playingCards)
+    }
+
+
+/*    for (let i = 0; i < numberCities/2; i++) {
         playingCards.push(Math.floor(Math.random() * 10))
     }
-}
+}*/
 
 createCard();
 generatorCard();
