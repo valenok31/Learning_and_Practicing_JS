@@ -17,11 +17,28 @@ function createCard() {
     }
 }
 
-
 function generatorCard() {
-    for(let r=0;r<numberCities; r++) {
+    let firstHalf = [];
+    for (let i = 0; i < numberCities / 2; i++) {
+        firstHalf.push(Math.floor(Math.random() * 10))
+    }
+    let secondHalf = [...firstHalf];
+    shuffle(secondHalf);
+    playingCards = firstHalf.concat(secondHalf);
+    console.log(playingCards)
+}
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function generatorCard2() {
+    for (let r = 0; r < numberCities; r++) {
         let randomNumber = Math.floor(Math.random() * 10);
-        if(!playingCards[r]){
+        if (!playingCards[r]) {
             playingCards[r] = randomNumber;
             let double = Math.floor(Math.random() * numberCities);
             while (playingCards[double]) {
@@ -30,16 +47,10 @@ function generatorCard() {
             }
             playingCards[double] = randomNumber;
         }
-
     }
     console.log(playingCards)
-    }
+}
 
-
-/*    for (let i = 0; i < numberCities/2; i++) {
-        playingCards.push(Math.floor(Math.random() * 10))
-    }
-}*/
 
 createCard();
 generatorCard();
