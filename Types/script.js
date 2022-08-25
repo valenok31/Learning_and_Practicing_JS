@@ -55,16 +55,35 @@ function generatorCard2() {
 createCard();
 generatorCard();
 
+function status(bul) {
+    if (!bul) {
+        document.body.style.backgroundColor = 'red';
+    }
+    if (bul) {
+        document.body.style.backgroundColor = '';
+    }
+}
+
 function turn(event) {
     //console.log(event)
+    status(false);
     let idClick = event.target;
+
     flip(idClick);
-    setTimeout(() => {
-        changingColor(idClick);
-        coincidences(idClick);
-    }, 150);
+
+
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            changingColor(idClick);
+            coincidences(idClick);
+            resolve(true);
+        }, 150);
+
+    }).then((resolve) => status(resolve))
+
 
 }
+
 
 function flip(idClick) {
     const newspaperSpinning = [
@@ -72,13 +91,16 @@ function flip(idClick) {
         {transform: 'scaleX(0)'},
         {transform: 'scaleX(1)'},
     ];
-
     const newspaperTiming = {
         duration: 300,
         iterations: 1,
     }
+
     idClick.animate(newspaperSpinning, newspaperTiming);
+
+
 }
+
 
 function changingColor(idClick) {
     if (idClick.style.backgroundColor === heads) {
