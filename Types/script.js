@@ -5,6 +5,7 @@ let playingCards = [];
 let numberCities = 16;
 let cardA = false;
 let cardB = false;
+let flag = false;
 
 function createCard() {
     for (let i = 0; i < numberCities; i++) {
@@ -12,7 +13,7 @@ function createCard() {
         div.id = `${i}`;
         div.className = 'city';
         div.style.backgroundColor = tails;
-        div.addEventListener('click', turn);
+        div.addEventListener('click', flip);
         cell.append(div);
     }
 }
@@ -25,7 +26,6 @@ function generatorCard() {
     let secondHalf = [...firstHalf];
     shuffle(secondHalf);
     playingCards = firstHalf.concat(secondHalf);
-    //console.log(playingCards)
 }
 
 function shuffle(array) {
@@ -43,12 +43,10 @@ function generatorCard2() {
             let double = Math.floor(Math.random() * numberCities);
             while (playingCards[double]) {
                 double = Math.floor(Math.random() * numberCities);
-                //console.log(double);
             }
             playingCards[double] = randomNumber;
         }
     }
-    // console.log(playingCards)
 }
 
 
@@ -57,68 +55,54 @@ generatorCard();
 
 function status(bul) {
     if (!bul) {
-        document.body.style.backgroundColor = 'red';
+        console.log('start')
+        flag=false;
     }
     if (bul) {
-        document.body.style.backgroundColor = '';
+        console.log('end')
+        flag=true;
     }
 }
 
-function turn(event) {
-    //console.log(event.target)
+function flip(event) {
 
     status(false);
     let idClick = event.target;
 
-    flip(idClick);
-
-
-}
-
-
-function flip(idClick) {
-    /*    const newspaperSpinning = [
-            {transform: 'scaleX(1)'},
-            {transform: 'scaleX(0)'},
-            {transform: 'scaleX(1)'},
-        ];
-        const newspaperTiming = {
-            duration: 400,
-            iterations: 1,
-        }*/
-
-
     idClick.addEventListener('transitionend', () => {
-        changingColor(idClick);
-        coincidences(idClick);
+
         idClick.style.width = '100px';
-        idClick.addEventListener('transitionend', () => status(true));
+        idClick.addEventListener('transitionend', () => {
+            status(true);
+            changingColor(idClick);
+            coincidences(idClick);
+        });
     });
-    //idClick.animate(newspaperSpinning, newspaperTiming);
     idClick.style.width = '0px';
-
-
 }
 
 
 function changingColor(idClick) {
-    if (idClick.style.backgroundColor === heads) {
-        idClick.style.backgroundColor = tails;
-        idClick.innerHTML = '';
-    } else {
-        idClick.style.backgroundColor = heads;
-        idClick.innerHTML = playingCards[idClick.id];
+
+{
+
+        if (idClick.style.backgroundColor === heads) {
+            idClick.style.backgroundColor = tails;
+            idClick.innerHTML = '';
+        } else {
+            idClick.style.backgroundColor = heads;
+            idClick.innerHTML = playingCards[idClick.id];
+        }
     }
 }
 
 function coincidences(idClick) {
+    console.log(cardA, cardB);
     if (cardA) {
         cardB = idClick;
     } else {
         cardA = idClick;
     }
-    //console.log(cardA);
-    //console.log(cardB);
     if (cardA && cardB) {
         if (playingCards[cardA.id] === playingCards[cardB.id]) {
             cardA.style.backgroundColor = 'rgb(27,202,255)';
@@ -130,17 +114,13 @@ function coincidences(idClick) {
 
             setTimeout(() => {
                 flip(cardA);
-                changingColor(cardA);
+                //changingColor(cardA);
                 flip(cardB);
-                changingColor(cardB);
+                //changingColor(cardB);
                 cardA = false;
                 cardB = false;
             }, 500)
         }
-
     }
-
-    //console.log(cardA)
-    //console.log(cardB)
 }
 
