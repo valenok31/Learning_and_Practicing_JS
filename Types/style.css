@@ -1,13 +1,13 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     background-color: cornflowerblue;
 }
 
-.grid{
+.grid {
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -17,7 +17,7 @@ body{
     align-items: center;
 }
 
-.cell{
+.cell {
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(4, 1fr);
@@ -26,11 +26,12 @@ body{
     align-items: center;
 }
 
-.city{
+.city {
     display: grid;
     width: 100px;
     height: 100px;
-
+    transition-property: width;
+    transition-duration: 500ms;
     justify-items: center;
     align-items: center;
 }

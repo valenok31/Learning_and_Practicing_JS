@@ -25,7 +25,7 @@ function generatorCard() {
     let secondHalf = [...firstHalf];
     shuffle(secondHalf);
     playingCards = firstHalf.concat(secondHalf);
-    console.log(playingCards)
+    //console.log(playingCards)
 }
 
 function shuffle(array) {
@@ -43,12 +43,12 @@ function generatorCard2() {
             let double = Math.floor(Math.random() * numberCities);
             while (playingCards[double]) {
                 double = Math.floor(Math.random() * numberCities);
-                console.log(double);
+                //console.log(double);
             }
             playingCards[double] = randomNumber;
         }
     }
-    console.log(playingCards)
+    // console.log(playingCards)
 }
 
 
@@ -65,38 +65,37 @@ function status(bul) {
 }
 
 function turn(event) {
-    //console.log(event)
+    //console.log(event.target)
+
     status(false);
     let idClick = event.target;
 
     flip(idClick);
 
 
-    new Promise((resolve, reject) => {
-        setTimeout(() => {
-            changingColor(idClick);
-            coincidences(idClick);
-            resolve(true);
-        }, 150);
-
-    }).then((resolve) => status(resolve))
-
-
 }
 
 
 function flip(idClick) {
-    const newspaperSpinning = [
-        {transform: 'scaleX(1)'},
-        {transform: 'scaleX(0)'},
-        {transform: 'scaleX(1)'},
-    ];
-    const newspaperTiming = {
-        duration: 300,
-        iterations: 1,
-    }
+    /*    const newspaperSpinning = [
+            {transform: 'scaleX(1)'},
+            {transform: 'scaleX(0)'},
+            {transform: 'scaleX(1)'},
+        ];
+        const newspaperTiming = {
+            duration: 400,
+            iterations: 1,
+        }*/
 
-    idClick.animate(newspaperSpinning, newspaperTiming);
+
+    idClick.addEventListener('transitionend', () => {
+        changingColor(idClick);
+        coincidences(idClick);
+        idClick.style.width = '100px';
+        idClick.addEventListener('transitionend', () => status(true));
+    });
+    //idClick.animate(newspaperSpinning, newspaperTiming);
+    idClick.style.width = '0px';
 
 
 }
@@ -118,8 +117,8 @@ function coincidences(idClick) {
     } else {
         cardA = idClick;
     }
-    console.log(cardA);
-    console.log(cardB);
+    //console.log(cardA);
+    //console.log(cardB);
     if (cardA && cardB) {
         if (playingCards[cardA.id] === playingCards[cardB.id]) {
             cardA.style.backgroundColor = 'rgb(27,202,255)';
