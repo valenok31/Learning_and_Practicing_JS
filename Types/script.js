@@ -13,7 +13,7 @@ function createCard() {
         div.id = `${i}`;
         div.className = 'city';
         div.style.backgroundColor = tails;
-        div.addEventListener('click', flip);
+        div.addEventListener('click', turn);
         cell.append(div);
     }
 }
@@ -56,26 +56,32 @@ generatorCard();
 function status(bul) {
     if (!bul) {
         console.log('start')
-        flag=false;
+        flag = false;
     }
     if (bul) {
         console.log('end')
-        flag=true;
+        flag = true;
     }
 }
 
-function flip(event) {
-
+function turn(event) {
     status(false);
     let idClick = event.target;
+    flip(idClick);
+    setTimeout(() => {
+        coincidences(idClick);
+    }, 1000)
+    setTimeout(() => {
+        changingColor(idClick);
+    }, 500)
 
+}
+
+function flip(idClick) {
     idClick.addEventListener('transitionend', () => {
-
         idClick.style.width = '100px';
         idClick.addEventListener('transitionend', () => {
             status(true);
-            changingColor(idClick);
-            coincidences(idClick);
         });
     });
     idClick.style.width = '0px';
@@ -83,16 +89,17 @@ function flip(event) {
 
 
 function changingColor(idClick) {
-
-{
-
-        if (idClick.style.backgroundColor === heads) {
+    if (idClick.style.backgroundColor === heads) {
+        setTimeout(()=>{
             idClick.style.backgroundColor = tails;
+        },500)
+        setTimeout(()=>{
             idClick.innerHTML = '';
-        } else {
-            idClick.style.backgroundColor = heads;
-            idClick.innerHTML = playingCards[idClick.id];
-        }
+        },300)
+    } else {
+        idClick.style.backgroundColor = heads;
+        idClick.innerHTML = playingCards[idClick.id];
+
     }
 }
 
@@ -111,12 +118,12 @@ function coincidences(idClick) {
             cardB = false;
         }
         if (playingCards[cardA.id] !== playingCards[cardB.id]) {
-
             setTimeout(() => {
+                //alert('qrewt')
                 flip(cardA);
-                //changingColor(cardA);
+                changingColor(cardA);
                 flip(cardB);
-                //changingColor(cardB);
+                changingColor(cardB);
                 cardA = false;
                 cardB = false;
             }, 500)
