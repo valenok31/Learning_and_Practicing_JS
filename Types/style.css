@@ -30,8 +30,11 @@ body {
     display: grid;
     width: 100px;
     height: 100px;
-    transition-property: width;
+    transition-property: width,font-size;
     /*transition-duration: 2000ms;*/
     justify-items: center;
     align-items: center;
+    font-family: 'Comfortaa', cursive;
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
 }

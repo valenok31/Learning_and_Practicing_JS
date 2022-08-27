@@ -67,11 +67,13 @@ function flip(idClick) {
     status(false);
     idClick.addEventListener('transitionend', () => {
         idClick.style.width = '100px';
+        idClick.style.fontSize = '30px';
         idClick.addEventListener('transitionend', () => {
             status(true);
         });
     });
     idClick.style.width = '0px';
+    idClick.style.fontSize = '0px';
 }
 
 
@@ -83,10 +85,9 @@ function changingColor(idClick) {
         setTimeout(() => {
             idClick.innerHTML = '';
         }, timeTurn)
-    } else {
+    }else {
         idClick.style.backgroundColor = heads;
         idClick.innerHTML = playingCards[idClick.id];
-
     }
 }
 
@@ -94,10 +95,12 @@ function coincidences(idClick) {
     //console.log(cardA, cardB);
     if (cardA) {
         cardB = idClick;
+        cardA.addEventListener("click", turn);
     } else {
         cardA = idClick;
+        cardA.removeEventListener("click", turn);
     }
-    if (cardA && cardB) {
+    if ((cardA && cardB) && (cardA !== cardB)) {
         if (playingCards[cardA.id] === playingCards[cardB.id]) {
             cardA.style.backgroundColor = 'rgb(27,202,255)';
             cardB.style.backgroundColor = 'rgb(27,202,255)';
@@ -114,7 +117,7 @@ function coincidences(idClick) {
                 changingColor(cardB);
                 cardA = false;
                 cardB = false;
-            }, timeTurn*2)
+            }, timeTurn*3)
         }
     }
 }
