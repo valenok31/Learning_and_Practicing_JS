@@ -5,27 +5,27 @@ let playingCards = [];
 let numberCities = 16;
 let cardA = false;
 let cardB = false;
-let flag = false;
+let flag = true;
+let timeTurn = 100;
+
 
 function createCard() {
     for (let i = 0; i < numberCities; i++) {
         let div = document.createElement('div');
         div.id = `${i}`;
         div.className = 'city';
+        div.style.transitionDuration = timeTurn +'ms';
         div.style.backgroundColor = tails;
         div.addEventListener('click', turn);
         cell.append(div);
     }
 }
 
-function generatorCard() {
-    let firstHalf = [];
-    for (let i = 0; i < numberCities / 2; i++) {
-        firstHalf.push(Math.floor(Math.random() * 10))
-    }
+function generatorCard(){
+    let firstHalf=[1,2,3,4,5,6,7,8];
     let secondHalf = [...firstHalf];
-    shuffle(secondHalf);
     playingCards = firstHalf.concat(secondHalf);
+    shuffle(playingCards);
 }
 
 function shuffle(array) {
@@ -35,49 +35,36 @@ function shuffle(array) {
     }
 }
 
-function generatorCard2() {
-    for (let r = 0; r < numberCities; r++) {
-        let randomNumber = Math.floor(Math.random() * 10);
-        if (!playingCards[r]) {
-            playingCards[r] = randomNumber;
-            let double = Math.floor(Math.random() * numberCities);
-            while (playingCards[double]) {
-                double = Math.floor(Math.random() * numberCities);
-            }
-            playingCards[double] = randomNumber;
-        }
-    }
-}
-
-
 createCard();
 generatorCard();
 
 function status(bul) {
     if (!bul) {
-        console.log('start')
         flag = false;
     }
     if (bul) {
-        console.log('end')
         flag = true;
     }
 }
 
 function turn(event) {
-    status(false);
-    let idClick = event.target;
-    flip(idClick);
-    setTimeout(() => {
-        coincidences(idClick);
-    }, 1000)
-    setTimeout(() => {
-        changingColor(idClick);
-    }, 500)
 
+    let idClick = event.target;
+    console.log(idClick)
+    if(flag){
+        flip(idClick);
+
+        setTimeout(() => {
+            changingColor(idClick);
+        }, timeTurn)
+        setTimeout(() => {
+            coincidences(idClick);
+        }, timeTurn)
+    }
 }
 
 function flip(idClick) {
+    status(false);
     idClick.addEventListener('transitionend', () => {
         idClick.style.width = '100px';
         idClick.addEventListener('transitionend', () => {
@@ -90,12 +77,12 @@ function flip(idClick) {
 
 function changingColor(idClick) {
     if (idClick.style.backgroundColor === heads) {
-        setTimeout(()=>{
+        setTimeout(() => {
             idClick.style.backgroundColor = tails;
-        },500)
-        setTimeout(()=>{
+        }, timeTurn)
+        setTimeout(() => {
             idClick.innerHTML = '';
-        },300)
+        }, timeTurn)
     } else {
         idClick.style.backgroundColor = heads;
         idClick.innerHTML = playingCards[idClick.id];
@@ -104,7 +91,7 @@ function changingColor(idClick) {
 }
 
 function coincidences(idClick) {
-    console.log(cardA, cardB);
+    //console.log(cardA, cardB);
     if (cardA) {
         cardB = idClick;
     } else {
@@ -114,19 +101,20 @@ function coincidences(idClick) {
         if (playingCards[cardA.id] === playingCards[cardB.id]) {
             cardA.style.backgroundColor = 'rgb(27,202,255)';
             cardB.style.backgroundColor = 'rgb(27,202,255)';
+            cardA.removeEventListener("click", turn);
+            cardB.removeEventListener("click", turn);
             cardA = false;
             cardB = false;
         }
         if (playingCards[cardA.id] !== playingCards[cardB.id]) {
             setTimeout(() => {
-                //alert('qrewt')
                 flip(cardA);
                 changingColor(cardA);
                 flip(cardB);
                 changingColor(cardB);
                 cardA = false;
                 cardB = false;
-            }, 500)
+            }, timeTurn*2)
         }
     }
 }
