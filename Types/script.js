@@ -22,7 +22,10 @@ function createCard() {
 }
 
 function generatorCard(){
-    let firstHalf=[1,2,3,4,5,6,7,8];
+    let firstHalf=[];
+    for(let i=1;i<=numberCities/2;i++){
+        firstHalf.push(i)
+    }
     let secondHalf = [...firstHalf];
     playingCards = firstHalf.concat(secondHalf);
     shuffle(playingCards);
@@ -67,7 +70,7 @@ function flip(idClick) {
     status(false);
     idClick.addEventListener('transitionend', () => {
         idClick.style.width = '100px';
-        idClick.style.fontSize = '30px';
+        idClick.style.fontSize = '50px';
         idClick.addEventListener('transitionend', () => {
             status(true);
         });
