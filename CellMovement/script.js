@@ -8,10 +8,11 @@ for (let elem of cellSelect) {
 function selectIdBox(event) {
     if (event.relatedTarget.className === 'cell') {
         console.log(event.relatedTarget)
-        let a=event.target.innerHTML;
+        let a = event.target.innerHTML;
+        let b = event.relatedTarget.innerHTML;
         event.target.innerHTML = event.relatedTarget.innerHTML
         event.relatedTarget.innerHTML = a;
-        //event.target.innerHTML = 'end'
+        //[a, b] = [b, a];
     }
     event.target.style.backgroundColor = 'red';
     event.relatedTarget.style.backgroundColor = '';
