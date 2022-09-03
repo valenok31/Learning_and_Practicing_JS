@@ -1,23 +1,27 @@
 let fieldPlaying = document.getElementById('fieldPlaying');
+let cell = document.getElementById('0');
 let cellSelect = fieldPlaying.querySelectorAll('div');
-let unblocked = false;
-for (let elem of cellSelect) {
-    elem.addEventListener('click', selectIdBox);
-    elem.addEventListener('mouseover', fer);
-}
+
+window.addEventListener('mousemove', selectIdBox);
+
 
 function selectIdBox(event) {
-    unblocked = !unblocked;
-    unblocked ? event.target.style.backgroundColor = 'red' : event.target.style.backgroundColor = '';
+
+    cell.innerHTML = event.offsetX + '/' + event.offsetY
+
+    let scrollHeight = document.documentElement.scrollHeight;
+    let clientHeightDDE = document.documentElement.clientHeight;
+    let pageYOffset = window.pageYOffset;
+    let clientHeightDB = document.body.clientHeight;
+    console.log(pageYOffset + '/' + clientHeightDDE + '/' + clientHeightDB + '/' + scrollHeight)
+
+    if(window.pageYOffset + document.documentElement.clientHeight === document.body.clientHeight){
+        let div = document.createElement('div');
+        div.className = "cell";
+        div.innerHTML = "<strong>Всем привет!</strong> Вы прочитали важное сообщение.";
+
+        fieldPlaying.append(div);
+    }
+
 }
 
-function fer(event) {
-    console.log(unblocked)
-    if (event.relatedTarget.className === 'cell' && unblocked) {
-        let a = event.target.innerHTML;
-        event.target.innerHTML = event.relatedTarget.innerHTML
-        event.relatedTarget.innerHTML = a;
-        event.target.style.backgroundColor = 'red';
-        event.relatedTarget.style.backgroundColor = '';
-    }
-}

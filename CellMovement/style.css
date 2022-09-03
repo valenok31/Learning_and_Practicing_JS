@@ -4,7 +4,7 @@
 }
 
 body {
-
+    height: 500px;
 }
 
 .field{
@@ -20,8 +20,8 @@ body {
 .field__playing{
     display: grid;
     gap: 0px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     justify-items: center;
     align-items: center;
 }
@@ -30,9 +30,11 @@ body {
     display: grid;
     width: 100px;
     height: 100px;
+    padding: 0px;
     justify-items: center;
     align-items: center;
-    font-size: 50px;
-    border: gray solid 2px;
+    font-size: 20px;
+    border: 10px skyblue solid;
+/*background-color: cornflowerblue;*/
     cursor: pointer;
 }
