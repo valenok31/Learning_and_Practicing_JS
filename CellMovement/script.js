@@ -8,8 +8,7 @@ for (let elem of cellSelect) {
 
 function selectIdBox(event) {
     unblocked = !unblocked;
-    unblocked ? event.target.style.backgroundColor = 'red' : event.target.style.backgroundColor = ''
-    //event.target.style.backgroundColor = 'red';
+    unblocked ? event.target.style.backgroundColor = 'red' : event.target.style.backgroundColor = '';
 }
 
 function fer(event) {
