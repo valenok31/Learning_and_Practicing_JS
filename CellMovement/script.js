@@ -1,23 +1,51 @@
+selectIdBox();
 let fieldPlaying = document.getElementById('fieldPlaying');
 window.addEventListener('scroll', selectIdBox);
 let colorDiv1 = `#${generatorColor()}`;
 let colorDiv2 = `#${generatorColor()}`;
+let infoTest;
+let n = 0;
 
 function generatorColor() {
     let RR = Math.round(Math.random() * 239 + 16);
-     //RR = 250
+    //RR = 250
     let GG = Math.round(Math.random() * 239 + 16);
     let BB = Math.round(Math.random() * 239 + 16);
     return RR.toString(16) + '' + GG.toString(16) + '' + BB.toString(16);
 }
 
-function addDiv(i) {
+
+// Make a request for a user with a given ID
+axios.get('https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&attractionId=1&apikey=zj1LCjwJVG5B88c4HGfjkaY6PAMxz6nV')
+    .then(function (response) {
+        // handle success
+        //infoTest = response.data._embedded.events;
+        console.log(response);
+    })
+    .catch(function (error) {
+        // handle error
+        console.log(error);
+    })
+    .then(function () {
+        // always executed
+    });
+
+
+function enumeration() {
+    return n++;
+}
+
+
+async function addDiv(i) {
+    let idN = enumeration();
+    //console.log(await infoTest)
+    let infTes = await infoTest[idN].name;
     colorDiv2 = colorDiv1;
     colorDiv1 = `#${generatorColor()}`;
     let div = document.createElement('div');
     div.className = "cell";
-    div.innerHTML = `<strong>${colorDiv1}</strong>`;
-    //div.style.backgroundColor = colorDiv;
+    div.id = idN;
+    div.innerHTML = `<strong>${infTes}</strong>`;
     div.style.background = "linear-gradient(to top, " + colorDiv1 + ", " + colorDiv2 + ")";
     fieldPlaying.append(div);
 }
