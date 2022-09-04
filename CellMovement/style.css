@@ -30,7 +30,7 @@ body {
 .cell{
     display: grid;
     width: calc(100vw - 17px);
-    height: 50px;
+    height: 100px;
     padding: 0px;
     justify-items: center;
     align-items: center;
