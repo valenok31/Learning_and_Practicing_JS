@@ -1,6 +1,10 @@
 let fieldPlaying = document.getElementById('fieldPlaying');
-let inputClick = document.getElementById('inputClick');
+//let inputClick = document.getElementById('inputClick');
+let inputAllData = document.getElementById('inputAllData');
+let keyword = document.getElementById('keyword');
+let search = document.getElementById('search');
 inputClick.addEventListener('click',inputClickFunc);
+search.addEventListener('click',searchR);
 window.addEventListener('scroll', selectIdBox);
 let colorDiv1 = `#${generatorColor()}`;
 let colorDiv2 = `#${generatorColor()}`;
@@ -9,12 +13,21 @@ let n = 0;
 let queryTag = '';
 
 
+function searchR() {
+    queryTag = keyword.value;
+    console.log(queryTag)
+    fieldPlaying.innerHTML = '';
+    n = 0;
+    werwer(queryTag);
+}
+
+
 function inputClickFunc(event){
     console.log(event.target.innerHTML)
     if(event.target.innerHTML==='all'){queryTag = ''}
     if(event.target.innerHTML==='summ'){queryTag = event.target.innerHTML}
     if(event.target.innerHTML==='Forest'){queryTag = event.target.innerHTML}
-    if(event.target.innerHTML==='Toronto'){queryTag = event.target.innerHTML}
+    if(event.target.innerHTML==='tour'){queryTag = event.target.innerHTML}
     if(event.target.innerHTML==='New'){queryTag = event.target.innerHTML}
     fieldPlaying.innerHTML = '';
     n = 0;
@@ -34,9 +47,10 @@ function werwer(queryTag) {// Make a request for a user with a given ID
     const instance = axios.create({
         baseURL: 'https://ridb.recreation.gov/api/v1/tours?',
     });
-    let axiosE = instance.get(`w=0&query=${queryTag}&limit=50&offset=0&apikey=53351234-6c6c-4392-a4b8-d38d53df1462`);
+    let axiosE = instance.get(`w=0&query=${queryTag}&limit=600&offset=0&apikey=53351234-6c6c-4392-a4b8-d38d53df1462`);
     axiosE.then(function (response) {
         // handle success
+        inputAllData.innerHTML = response.data.METADATA.RESULTS.TOTAL_COUNT
         infoTest = response.data.RECDATA;
         //infoTest = response.data._embedded.events;
         console.log(response.data.RECDATA);
