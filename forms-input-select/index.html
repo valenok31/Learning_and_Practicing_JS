@@ -7,13 +7,33 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-<form name='my'>
-    <select id="select">
-        <option value="apple">Яблоко</option>
-        <option value="pear">Груша</option>
-        <option value="banana">Банан</option>
-    </select>
-</form>
+
+
+Ваш email: <input type="email" id="input">
+
+<div id="error"></div>
+
+<!--<script>
+    let input = document.getElementById('input');
+    let error = document.getElementById('error');
+
+    input.onblur = function () {
+        if (!input.value.includes('@')) { // не email
+            input.classList.add('invalid');
+            error.innerHTML = 'Пожалуйста, введите правильный email.'
+        }
+    };
+
+    input.onfocus = function () {
+        if (this.classList.contains('invalid')) {
+            // удаляем индикатор ошибки, т.к. пользователь хочет ввести данные заново
+            this.classList.remove('invalid');
+            error.innerHTML = "";
+        }
+    };
+</script>-->
+
+
 </body>
 <script src='script.js'></script>
 </html>
