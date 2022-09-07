@@ -13,12 +13,12 @@ function generatorColor() {
     return RR.toString(16) + '' + GG.toString(16) + '' + BB.toString(16);
 }
 // Make a request for a user with a given ID
-axios.get('https://developer.nps.gov/api/v1/thingstodo?api_key=T5gTJZDEaZfpkqesXqOMWWUUYn7782HUQt0FbJ4k&q=Astronomy')
+axios.get('https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&classificationName=Pop&size=100&apikey=zj1LCjwJVG5B88c4HGfjkaY6PAMxz6nV')
     .then(function (response) {
         // handle success
-        infoTest = response.data.data;
         //infoTest = response.data._embedded.events;
-        console.log(response.data.data);
+        infoTest = response.data._embedded.events;
+        console.log(response.data._embedded.events.length);
         let iMin = Math.min(infoTest.length, 10);
         for (let i = 0; i < iMin; i++) {
             addDiv()
@@ -42,13 +42,16 @@ async function addDiv() {
     let idN = enumeration();
     //console.log(await infoTest)
     let infTes = await infoTest[idN];
+    let infTesW = await infoTest[idN]._embedded.venues[0];
+    let infTesA = await infoTest[idN]._embedded.attractions[0];
     colorDiv2 = colorDiv1;
     colorDiv1 = `#${generatorColor()}`;
     let div = document.createElement('div');
     div.className = "cell";
-    div.id = idN;
-    div.title = infTes.shortDescription;
-    div.innerHTML = `<strong>${infTes.title}</strong>`;
+    //div.id = idN;
+    let werety = infTes.images[2].url;
+    div.style.background = `url(${werety}) no-repeat center/cover`;
+    div.innerHTML = `<p><strong>${infTesA.name} - ${infTesW.city.name}</strong></p>`;
     //div.style.background = "linear-gradient(to top, " + colorDiv1 + ", " + colorDiv2 + ")";
     div.style.backgroundColor = colorDiv1;
     fieldPlaying.append(div);

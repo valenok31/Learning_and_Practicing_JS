@@ -8,6 +8,7 @@ window.addEventListener('scroll', selectIdBox);
 let colorDiv1 = `#${generatorColor()}`;
 let colorDiv2 = `#${generatorColor()}`;
 let infoTest;
+let infoTest2;
 let n = 0;
 let queryTag = '';
 
@@ -48,16 +49,19 @@ function werwer(queryTag) {// Make a request for a user with a given ID
 }
 
 function photoSearch(photoInfo) {
-    const instance = axios.create({
+    const instance2 = axios.create({
         baseURL: 'https://ridb.recreation.gov/api/v1/',
     });
-    instance.get(`/facilities/${photoInfo}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
+    instance2.get(`/facilities/${photoInfo}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
         .then(function (response) {
-            infoTest = response.data.RECDATA;
+            infoTest2 = response.data.RECDATA;
+            console.log(infoTest2[0].URL)
+           // return `${infoTest2[0].URL}`;
 
-            console.log(infoTest[0].URL)
         });
-    return `https://cdn.recreation.gov/public/images/68615.jpg`;
+    //return `https://cdn.recreation.gov/public/images/68615.jpg`;
+    return `${infoTest2[0].URL}`;
+    //return `123456`;
 }
 
 
@@ -75,9 +79,11 @@ async function addDiv() {
     div.className = "cell";
     div.id = idN;
     let photoInfo = infTes.FacilityID;
-    console.log(`url(${photoSearch(photoInfo)}) no-repeat center/cover`)
-    div.style.background = `url(${photoSearch(photoInfo)}) no-repeat center/cover`;
-    div.innerHTML = `<strong>${infTes.TourName}</strong>`;
+    let werety = infTes.ENTITYMEDIA[0].URL;
+    let promisPhoto = await photoSearch(photoInfo);
+    console.log(werety)
+    div.style.background = `url(${werety}) no-repeat center/cover`;
+    div.innerHTML = `<p><strong>${infTes.TourType}</strong></p>`;
     infTes.TourDescription === '' ? div.title = 'none' : div.title = infTes.TourDescription
     div.style.backgroundColor = colorDiv1;
     fieldPlaying.append(div);
@@ -93,7 +99,7 @@ function selectIdBox(event) {
     let clientHeightDDE = document.documentElement.clientHeight;
     let pageYOffset = window.pageYOffset;
 
-    if ((pageYOffset + clientHeightDDE) > (scrollHeight - 100)) {
+    if ((pageYOffset + clientHeightDDE) > (scrollHeight - 300)) {
         addDiv();
     }
 }
