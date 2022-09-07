@@ -1,9 +1,8 @@
 let fieldPlaying = document.getElementById('fieldPlaying');
 //let inputClick = document.getElementById('inputClick');
 let inputAllData = document.getElementById('inputAllData');
-let keyword = document.getElementById('keyword');
+let keyword = document.getElementById('keywordS');
 let search = document.getElementById('search');
-inputClick.addEventListener('click',inputClickFunc);
 search.addEventListener('click',searchR);
 window.addEventListener('scroll', selectIdBox);
 let colorDiv1 = `#${generatorColor()}`;
@@ -22,24 +21,12 @@ function searchR() {
 }
 
 
-function inputClickFunc(event){
-    console.log(event.target.innerHTML)
-    if(event.target.innerHTML==='all'){queryTag = ''}
-    if(event.target.innerHTML==='summ'){queryTag = event.target.innerHTML}
-    if(event.target.innerHTML==='Forest'){queryTag = event.target.innerHTML}
-    if(event.target.innerHTML==='tour'){queryTag = event.target.innerHTML}
-    if(event.target.innerHTML==='New'){queryTag = event.target.innerHTML}
-    fieldPlaying.innerHTML = '';
-    n = 0;
-    werwer(queryTag);
-}
-
 
 function generatorColor() {
     let RR = Math.round(Math.random() * 239 + 16);
     //RR = 250
-    let GG = Math.round(Math.random() * 239 + 16);
-    let BB = Math.round(Math.random() * 239 + 16);
+    let GG = Math.round(Math.random() * 39 + 216);
+    let BB = Math.round(Math.random() * 39 + 216);
     return RR.toString(16) + '' + GG.toString(16) + '' + BB.toString(16);
 }
 werwer(queryTag)
