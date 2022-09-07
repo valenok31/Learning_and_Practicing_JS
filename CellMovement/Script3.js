@@ -3,7 +3,7 @@ let fieldPlaying = document.getElementById('fieldPlaying');
 let inputAllData = document.getElementById('inputAllData');
 let keyword = document.getElementById('keywordS');
 let search = document.getElementById('search');
-search.addEventListener('click',searchR);
+search.addEventListener('click', searchR);
 window.addEventListener('scroll', selectIdBox);
 let colorDiv1 = `#${generatorColor()}`;
 let colorDiv2 = `#${generatorColor()}`;
@@ -14,12 +14,10 @@ let queryTag = '';
 
 function searchR() {
     queryTag = keyword.value;
-    console.log(queryTag)
     fieldPlaying.innerHTML = '';
     n = 0;
     werwer(queryTag);
 }
-
 
 
 function generatorColor() {
@@ -29,23 +27,37 @@ function generatorColor() {
     let BB = Math.round(Math.random() * 39 + 216);
     return RR.toString(16) + '' + GG.toString(16) + '' + BB.toString(16);
 }
+
 werwer(queryTag)
+
 function werwer(queryTag) {// Make a request for a user with a given ID
     const instance = axios.create({
-        baseURL: 'https://ridb.recreation.gov/api/v1/tours?',
+        baseURL: 'https://ridb.recreation.gov/api/v1/',
     });
-    let axiosE = instance.get(`w=0&query=${queryTag}&limit=600&offset=0&apikey=53351234-6c6c-4392-a4b8-d38d53df1462`);
-    axiosE.then(function (response) {
-        // handle success
-        inputAllData.innerHTML = response.data.METADATA.RESULTS.TOTAL_COUNT
-        infoTest = response.data.RECDATA;
-        //infoTest = response.data._embedded.events;
-        console.log(response.data.RECDATA);
-        let iMin = Math.min(infoTest.length, 10);
-        for (let i = 0; i < 10; i++) {
-            addDiv()
-        }
+    instance.get(`tours?w=0&query=${queryTag}&limit=600&offset=0&apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
+        .then(function (response) {
+            inputAllData.innerHTML = response.data.METADATA.RESULTS.TOTAL_COUNT
+            infoTest = response.data.RECDATA;
+            let iMin = Math.min(infoTest.length, 10);
+            for (let i = 0; i < iMin; i++) {
+                addDiv()
+            }
+        });
+
+
+}
+
+function photoSearch(photoInfo) {
+    const instance = axios.create({
+        baseURL: 'https://ridb.recreation.gov/api/v1/',
     });
+    instance.get(`/facilities/${photoInfo}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
+        .then(function (response) {
+            infoTest = response.data.RECDATA;
+
+            console.log(infoTest[0].URL)
+        });
+    return `https://cdn.recreation.gov/public/images/68615.jpg`;
 }
 
 
@@ -56,21 +68,20 @@ function enumeration() {
 
 async function addDiv() {
     let idN = enumeration();
-    //console.log(await infoTest)
     let infTes = await infoTest[idN];
-    //let infTesW = await infoTest[idN]._embedded.venues[0];
     colorDiv2 = colorDiv1;
     colorDiv1 = `#${generatorColor()}`;
     let div = document.createElement('div');
     div.className = "cell";
     div.id = idN;
+    let photoInfo = infTes.FacilityID;
+    console.log(`url(${photoSearch(photoInfo)}) no-repeat center/cover`)
+    div.style.background = `url(${photoSearch(photoInfo)}) no-repeat center/cover`;
     div.innerHTML = `<strong>${infTes.TourName}</strong>`;
-    infTes.TourDescription==='' ?  div.title = 'none' :  div.title = infTes.TourDescription
-    //div.style.background = "linear-gradient(to top, " + colorDiv1 + ", " + colorDiv2 + ")";
+    infTes.TourDescription === '' ? div.title = 'none' : div.title = infTes.TourDescription
     div.style.backgroundColor = colorDiv1;
     fieldPlaying.append(div);
 }
-
 
 
 function selectIdBox(event) {
