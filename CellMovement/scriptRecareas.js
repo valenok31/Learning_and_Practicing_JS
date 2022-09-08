@@ -4,6 +4,7 @@ let inputAllData = document.getElementById('inputAllData');
 let keyword = document.getElementById('keywordS');
 let search = document.getElementById('search');
 search.addEventListener('click', searchR);
+fieldPlaying.addEventListener('click', flippingPhotos);
 window.addEventListener('scroll', selectIdBox);
 let colorDiv1 = `#${generatorColor()}`;
 let colorDiv2 = `#${generatorColor()}`;
@@ -24,6 +25,7 @@ function werwer(queryTag1, offset = 0) {
             inputAllData.innerHTML = response.data.METADATA.RESULTS.TOTAL_COUNT
             infoTest = response.data.RECDATA;
             for (let num of infoTest) {
+                //console.log(num);
                 instance.get(`/recareas/${num.RecAreaID}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
                     .then(function (response) {
                         stopScroll = true;
@@ -46,12 +48,13 @@ function addDiv(infTes, werety) {
     fieldPlaying.append(div);
 }
 
-function photoSearch(photoInfo) {
-    instance.get(`/recareas/${photoInfo}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
-        .then(function (response) {
-            let infoTest2 = response.data.RECDATA;
-            return `${infoTest2[0].URL}`;
-        });
+function flippingPhotos(photoInfo) {
+    if(photoInfo.target.className==='cell'){
+        instance.get(`/recareas/${photoInfo.target.id}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
+            .then(function (response) {
+                photoInfo.target.style.background = `url(${response.data.RECDATA[1].URL}) no-repeat center/cover`;
+            });
+    }
 }
 
 
