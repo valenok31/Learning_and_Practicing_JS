@@ -12,7 +12,6 @@ let infoTest2;
 let n = 0;
 let queryTag = '';
 
-
 function searchR() {
     queryTag = keyword.value;
     fieldPlaying.innerHTML = '';
@@ -29,22 +28,26 @@ function generatorColor() {
     return RR.toString(16) + '' + GG.toString(16) + '' + BB.toString(16);
 }
 
-werwer(queryTag)
+werwer(queryTag);
+
 
 function werwer(queryTag) {// Make a request for a user with a given ID
     const instance = axios.create({
         baseURL: 'https://ridb.recreation.gov/api/v1/',
     });
-    instance.get(`recareas?query=${queryTag}&limit=500&offset=0&apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
+    instance.get(`recareas?query=${queryTag}&limit=50&offset=0&apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
         .then(function (response) {
             inputAllData.innerHTML = response.data.METADATA.RESULTS.TOTAL_COUNT
             infoTest = response.data.RECDATA;
-            let iMin = Math.min(infoTest.length, 10);
-            for (let i = 0; i < iMin; i++) {
-                addDiv()
-            }
+            addDiv();
         });
 
+
+    console.log(infoTest)
+/*    let iMin = Math.min(infoTest.length, 10);
+    for (let i = 0; i < iMin; i++) {
+        addDiv()
+    }*/
 
 }
 
@@ -55,12 +58,13 @@ function photoSearch(photoInfo) {
     instance2.get(`/recareas/${photoInfo}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
         .then(function (response) {
             infoTest2 = response.data.RECDATA;
-            console.log(infoTest2[0].URL)
+
             // return `${infoTest2[0].URL}`;
 
         });
     //return `https://cdn.recreation.gov/public/images/68615.jpg`;
     return `${infoTest2[0].URL}`;
+    console.log(infoTest2[0].URL)
     //return `123456`;
 }
 
@@ -78,7 +82,7 @@ async function addDiv() {
     let div = document.createElement('div');
     div.className = "cell";
     div.id = idN;
-   let werety = await photoSearch(infTes.RecAreaID);
+   let werety = photoSearch(infTes.RecAreaID);
 
     console.log(infTes)
     div.style.background = `url(${werety}) no-repeat center/cover`;
