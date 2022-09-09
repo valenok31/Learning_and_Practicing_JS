@@ -10,6 +10,7 @@ let colorDiv1 = `#${generatorColor()}`;
 let colorDiv2 = `#${generatorColor()}`;
 let infoTest;
 let offsetS;
+let cachingPhotos={};
 let n = 0;
 let stopScroll = true;
 let queryTag = '';
@@ -25,9 +26,11 @@ function werwer(queryTag1, offset = 0) {
             inputAllData.innerHTML = response.data.METADATA.RESULTS.TOTAL_COUNT
             infoTest = response.data.RECDATA;
             for (let num of infoTest) {
-                //console.log(num);
+
                 instance.get(`/recareas/${num.RecAreaID}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
                     .then(function (response) {
+                        cachingPhotos[`${num.RecAreaID}`]= response.data.RECDATA;
+
                         stopScroll = true;
                         addDiv(num, response.data.RECDATA[0].URL)
                     });
@@ -50,10 +53,26 @@ function addDiv(infTes, werety) {
 
 function flippingPhotos(photoInfo) {
     if(photoInfo.target.className==='cell'){
-        instance.get(`/recareas/${photoInfo.target.id}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
+/*        instance.get(`/recareas/${photoInfo.target.id}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
             .then(function (response) {
                 photoInfo.target.style.background = `url(${response.data.RECDATA[1].URL}) no-repeat center/cover`;
-            });
+            });*/
+        let i=0;
+        let k=0;
+        let photoL = photoInfo.target.id;
+        let thisPhoto = photoInfo.target.style.backgroundImage.slice(5,-2);
+        //console.log(cachingPhotos[`${photoL}`]);
+for (let nem of cachingPhotos[`${photoL}`]){
+
+    if(thisPhoto===nem.URL){
+        console.log(i);
+        k=i
+    }
+    i++;
+}
+        //console.log(thisPhoto);
+        photoInfo.target.style.background = `url(${cachingPhotos[`${photoL}`][k+1].URL}) no-repeat center/cover`;
+
     }
 }
 
