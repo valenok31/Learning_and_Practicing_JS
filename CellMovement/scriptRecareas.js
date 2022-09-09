@@ -10,7 +10,7 @@ let colorDiv1 = `#${generatorColor()}`;
 let colorDiv2 = `#${generatorColor()}`;
 let infoTest;
 let offsetS;
-let cachingPhotos={};
+let cachingPhotos = {};
 let n = 0;
 let stopScroll = true;
 let queryTag = '';
@@ -29,10 +29,10 @@ function werwer(queryTag1, offset = 0) {
 
                 instance.get(`/recareas/${num.RecAreaID}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
                     .then(function (response) {
-                        cachingPhotos[`${num.RecAreaID}`]= response.data.RECDATA;
+                        cachingPhotos[`${num.RecAreaID}`] = response.data.RECDATA;
 
                         stopScroll = true;
-                        addDiv(num, response.data.RECDATA[0].URL)
+                        addDiv(num, response.data.RECDATA)
                     });
             }
         });
@@ -44,35 +44,30 @@ function addDiv(infTes, werety) {
     let div = document.createElement('div');
     div.className = "cell";
     div.id = infTes.RecAreaID;
-    div.style.background = `url(${werety}) no-repeat center/cover`;
-    div.innerHTML = `<p><strong>${infTes.RecAreaName}</strong></p>`;
+    div.dataset.title = infTes.RecAreaName;
+    div.style.background = `url(${werety[0].URL}) no-repeat center/cover`;
+    //div.innerHTML = `<div><strong>${infTes.RecAreaName}</strong></div>`;
+    div.innerHTML = `<div><strong>${infTes.RecAreaName}</strong></div><div><strong>1 / ${werety.length}</strong></div>`;
     infTes.Keywords === '' ? div.title = 'none' : div.title = infTes.Keywords;
     div.style.backgroundColor = colorDiv1;
     fieldPlaying.append(div);
 }
 
 function flippingPhotos(photoInfo) {
-    if(photoInfo.target.className==='cell'){
-/*        instance.get(`/recareas/${photoInfo.target.id}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
-            .then(function (response) {
-                photoInfo.target.style.background = `url(${response.data.RECDATA[1].URL}) no-repeat center/cover`;
-            });*/
-        let i=0;
-        let k=0;
+    if (photoInfo.target.className === 'cell') {
+        let i = 0;
+        let k = 0;
         let photoL = photoInfo.target.id;
-        let thisPhoto = photoInfo.target.style.backgroundImage.slice(5,-2);
-        //console.log(cachingPhotos[`${photoL}`]);
-for (let nem of cachingPhotos[`${photoL}`]){
-
-    if(thisPhoto===nem.URL){
-        console.log(i);
-        k=i
-    }
-    i++;
-}
-        //console.log(thisPhoto);
-        photoInfo.target.style.background = `url(${cachingPhotos[`${photoL}`][k+1].URL}) no-repeat center/cover`;
-
+        let thisPhoto = photoInfo.target.style.backgroundImage.slice(5, -2);
+        for (let nem of cachingPhotos[`${photoL}`]) {
+            i++;
+            if (thisPhoto === nem.URL) {
+                k = i
+            }
+        }
+        console.log(photoInfo.target.dataset.title);
+        photoInfo.target.style.background = `url(${cachingPhotos[`${photoL}`][k].URL}) no-repeat center/cover`;
+        photoInfo.target.innerHTML = `<div><strong>${photoInfo.target.dataset.title}</strong></div><div><strong>${k + 1} / ${cachingPhotos[photoL].length}</strong></div>`;
     }
 }
 
