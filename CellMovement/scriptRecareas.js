@@ -1,10 +1,15 @@
 let fieldPlaying = document.getElementById('fieldPlaying');
 //let inputClick = document.getElementById('inputClick');
 let inputAllData = document.getElementById('inputAllData');
+//let switchImages = document.getElementById('switchImages');
+fieldPlaying.addEventListener('click', flippingPhotos);
+let noneDiv = document.getElementById('noneDiv');
 let keyword = document.getElementById('keywordS');
 let search = document.getElementById('search');
 search.addEventListener('click', searchR);
-fieldPlaying.addEventListener('click', flippingPhotos);
+noneDiv.addEventListener('click', () => {
+    fieldPlaying.classList.toggle("noneElem")
+});
 window.addEventListener('scroll', selectIdBox);
 let colorDiv1 = `#${generatorColor()}`;
 let colorDiv2 = `#${generatorColor()}`;
@@ -30,14 +35,14 @@ function werwer(queryTag1, offset = 0) {
                 instance.get(`/recareas/${num.RecAreaID}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
                     .then(function (response) {
                         cachingPhotos[`${num.RecAreaID}`] = response.data.RECDATA;
-                        console.log(response.data.RECDATA)
                         stopScroll = true;
                         // addDiv(num, response.data.RECDATA);
                         addDiv(num, response.data.RECDATA);
                     }).catch(function (response) {
+                    return;
                     stopScroll = true;
                     // addDiv(num, response.data.RECDATA);
-let err = [{URL: "https://f-present.ru/uploads/product/images/62b2eb8f4df91.jpg"}]
+                    let err = [{URL: "https://f-present.ru/uploads/product/images/62b2eb8f4df91.jpg"}]
                     addDiv(num, err);
                 });
             }
@@ -53,27 +58,37 @@ function addDiv(infTes, werety) {
     div.dataset.title = infTes.RecAreaName;
     div.style.background = `url(${werety[0].URL}) no-repeat center/cover`;
     //div.innerHTML = `<div><strong>${infTes.RecAreaName}</strong></div>`;
-    div.innerHTML = `<div><strong>${infTes.RecAreaName}</strong></div><div><strong>1 / ${werety.length}</strong></div>`;
+    div.innerHTML = `<div><strong>${infTes.RecAreaName}</strong></div><div><span id='switchImagesL' class='switchImagesL'><<</span> 1 / ${werety.length} <span id='switchImagesR' class='switchImagesR'>>></span></div>`;
     infTes.Keywords === '' ? div.title = 'none' : div.title = infTes.Keywords;
     div.style.backgroundColor = colorDiv1;
     fieldPlaying.append(div);
 }
 
 function flippingPhotos(photoInfo) {
-    if (photoInfo.target.className === 'cell') {
+    photoInfo = photoInfo.target;
+    let lr = 0;
+    if (photoInfo.className === 'switchImagesL') {
+        photoInfo = photoInfo.parentNode.parentNode;
+        lr = -1;
+    }
+    if (photoInfo.className === 'switchImagesR') {
+        photoInfo = photoInfo.parentNode.parentNode;
+        lr = 1;
+    }
+    if (photoInfo.className === 'cell') {
         let i = 0;
         let k = 0;
-        let photoL = photoInfo.target.id;
-        let thisPhoto = photoInfo.target.style.backgroundImage.slice(5, -2);
+        let photoL = photoInfo.id;
+        let thisPhoto = photoInfo.style.backgroundImage.slice(5, -2);
         for (let nem of cachingPhotos[`${photoL}`]) {
-            i++;
             if (thisPhoto === nem.URL) {
-                k = i
+                console.log(i)
+                k = i + lr;
             }
+            i++;
         }
-        console.log(photoInfo.target.dataset.title);
-        photoInfo.target.style.background = `url(${cachingPhotos[`${photoL}`][k].URL}) no-repeat center/cover`;
-        photoInfo.target.innerHTML = `<div><strong>${photoInfo.target.dataset.title}</strong></div><div><strong>${k + 1} / ${cachingPhotos[photoL].length}</strong></div>`;
+        photoInfo.style.background = `url(${cachingPhotos[`${photoL}`][k].URL}) no-repeat center/cover`;
+        photoInfo.innerHTML = `<div><strong>${photoInfo.dataset.title}</strong></div><div><span id='switchImagesL' class='switchImagesL'><<</span> ${k + 1} / ${cachingPhotos[photoL].length} <span id='switchImagesR' class='switchImagesR'>>></span></div>`;
     }
 }
 
