@@ -30,10 +30,16 @@ function werwer(queryTag1, offset = 0) {
                 instance.get(`/recareas/${num.RecAreaID}/media?apikey=53351234-6c6c-4392-a4b8-d38d53df1462`)
                     .then(function (response) {
                         cachingPhotos[`${num.RecAreaID}`] = response.data.RECDATA;
-
+                        console.log(response.data.RECDATA)
                         stopScroll = true;
-                        addDiv(num, response.data.RECDATA)
-                    });
+                        // addDiv(num, response.data.RECDATA);
+                        addDiv(num, response.data.RECDATA);
+                    }).catch(function (response) {
+                    stopScroll = true;
+                    // addDiv(num, response.data.RECDATA);
+let err = [{URL: "https://f-present.ru/uploads/product/images/62b2eb8f4df91.jpg"}]
+                    addDiv(num, err);
+                });
             }
         });
 }
