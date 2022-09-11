@@ -51,7 +51,7 @@ body {
     justify-items: center;
     align-items: center;
     font-size: 20px;
-    cursor: pointer;
+
 
 }
 
@@ -61,4 +61,8 @@ body {
 
 .noneElem{
     display: none;
+}
+
+.switchImages{
+    cursor: pointer;
 }

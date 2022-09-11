@@ -57,8 +57,9 @@ function addDiv(infTes, werety) {
     div.id = infTes.RecAreaID;
     div.dataset.title = infTes.RecAreaName;
     div.style.background = `url(${werety[0].URL}) no-repeat center/cover`;
-    //div.innerHTML = `<div><strong>${infTes.RecAreaName}</strong></div>`;
-    div.innerHTML = `<div><strong>${infTes.RecAreaName}</strong></div><div><span id='switchImagesL' class='switchImagesL'><<</span> 1 / ${werety.length} <span id='switchImagesR' class='switchImagesR'>>></span></div>`;
+    div.innerHTML = `<div><strong>${infTes.RecAreaName}</strong></div>
+<div><span id='switchImagesL' class='switchImages'><<</span> 1 / ${werety.length} 
+<span id='switchImagesR' class='switchImages'>>></span></div>`;
     infTes.Keywords === '' ? div.title = 'none' : div.title = infTes.Keywords;
     div.style.backgroundColor = colorDiv1;
     fieldPlaying.append(div);
@@ -67,11 +68,11 @@ function addDiv(infTes, werety) {
 function flippingPhotos(photoInfo) {
     photoInfo = photoInfo.target;
     let lr = 0;
-    if (photoInfo.className === 'switchImagesL') {
+    if (photoInfo.id === 'switchImagesL') {
         photoInfo = photoInfo.parentNode.parentNode;
         lr = -1;
     }
-    if (photoInfo.className === 'switchImagesR') {
+    if (photoInfo.id === 'switchImagesR') {
         photoInfo = photoInfo.parentNode.parentNode;
         lr = 1;
     }
@@ -88,7 +89,9 @@ function flippingPhotos(photoInfo) {
             i++;
         }
         photoInfo.style.background = `url(${cachingPhotos[`${photoL}`][k].URL}) no-repeat center/cover`;
-        photoInfo.innerHTML = `<div><strong>${photoInfo.dataset.title}</strong></div><div><span id='switchImagesL' class='switchImagesL'><<</span> ${k + 1} / ${cachingPhotos[photoL].length} <span id='switchImagesR' class='switchImagesR'>>></span></div>`;
+        photoInfo.innerHTML = `<div><strong>${photoInfo.dataset.title}</strong></div>
+<div><span id='switchImagesL' class='switchImages'><<</span> ${k + 1} / ${cachingPhotos[photoL].length} 
+<span id='switchImagesR' class='switchImages'>>></span></div>`;
     }
 }
 
