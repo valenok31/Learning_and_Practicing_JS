@@ -1,12 +1,14 @@
 let fieldPlaying = document.getElementById('fieldPlaying');
 window.addEventListener('scroll', selectIdBox);
 let keyword = document.getElementById('keywordS');
+let age = document.getElementById('age');
 let search = document.getElementById('search');
 search.addEventListener('click', searchR);
 noneDiv.addEventListener('click', () => {
     fieldPlaying.classList.toggle("noneElem")
 });
 let queryTag = '';
+let dateTime = `2022-09-13`;
 let offsetS;
 let colorDiv1 = `#${generatorColor()}`;
 let colorDiv2 = `#${generatorColor()}`;
@@ -22,11 +24,13 @@ function generatorColor() {
 }
 
 
-werwer(queryTag, offsetS);
+werwer(queryTag, dateTime);
 
-function werwer(queryTag1, offset = 0) {
+function werwer(queryTag1, dateTime = '2022-09-13') {
 // Make a request for a user with a given ID
-    axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?keyword=${queryTag1}&classificationName=-sports&size=100&apikey=zj1LCjwJVG5B88c4HGfjkaY6PAMxz6nV`)
+    axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?keyword=&classificationName=${queryTag1}&size=102&
+    startDateTime=${dateTime}T00:00:00Z&endDateTime=${dateTime}T23:59:59Z
+    &countryCode=US&apikey=zj1LCjwJVG5B88c4HGfjkaY6PAMxz6nV`)
         .then(function (response) {
             // handle success
             //infoTest = response.data._embedded.events;
@@ -48,10 +52,14 @@ function enumeration() {
 }
 
 function searchR() {
-    queryTag = keyword.value;
     fieldPlaying.innerHTML = '';
     n = 0;
-    werwer(queryTag);
+    queryTag = keyword.value;
+    dateTime = age.value;
+
+    if (!dateTime){dateTime='2022-09-13'}
+    console.log(dateTime);
+    werwer(queryTag, dateTime);
 }
 
 
@@ -59,29 +67,20 @@ function addDiv() {
     let idN = enumeration();
     let infTes = infoTest[idN];
     let infTesW =infTes._embedded.venues[0];
-    //let infTesA =infTes._embedded.attractions[0];
-        //let infTesW = await infoTest[idN]._embedded.venues[0];
-    console.log(infTesW.city.name)
-    //let infTesA = await infoTest[idN]._embedded.attractions[0];
-
     colorDiv2 = colorDiv1;
     colorDiv1 = `#${generatorColor()}`;
     let div = document.createElement('div');
     div.className = "cell";
-    //div.id = idN;
+    div.id = idN;
     let werety;
     let weretyH;
-
     for (let heig of infTes.images) {
-        if (heig.height < 400 || heig.height > 1000) {
+        if (heig.height < 200 || heig.height > 600) {
             continue
         }
         werety = heig.url;
         weretyH = heig.height;
-
     }
-
-    //let werety = infTes.images[2].url;
     div.style.background = `url(${werety}) no-repeat center/cover`;
     div.innerHTML = `<div><strong>${infTes.name} - ${infTesW.city.name}</strong></div>`;
     //div.style.background = "linear-gradient(to top, " + colorDiv1 + ", " + colorDiv2 + ")";
@@ -99,7 +98,7 @@ function selectIdBox(event) {
     let clientHeightDDE = document.documentElement.clientHeight;
     let pageYOffset = window.pageYOffset;
 
-    if ((pageYOffset + clientHeightDDE) > (scrollHeight - 100)) {
+    if ((pageYOffset + clientHeightDDE) > (scrollHeight - 500)) {
         addDiv();
     }
 }
