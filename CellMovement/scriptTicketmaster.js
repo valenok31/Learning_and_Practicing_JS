@@ -4,6 +4,9 @@ let keyword = document.getElementById('keywordS');
 let age = document.getElementById('age');
 let search = document.getElementById('search');
 search.addEventListener('click', searchR);
+fieldPlaying.addEventListener('click', openDetails);
+
+
 noneDiv.addEventListener('click', () => {
     fieldPlaying.classList.toggle("noneElem")
 });
@@ -57,8 +60,10 @@ function searchR() {
     queryTag = keyword.value;
     dateTime = age.value;
 
-    if (!dateTime){dateTime='2022-09-13'}
-    console.log(dateTime);
+    if (!dateTime) {
+        dateTime = '2022-09-15'
+    }
+    //console.log(dateTime);
     werwer(queryTag, dateTime);
 }
 
@@ -66,7 +71,7 @@ function searchR() {
 function addDiv() {
     let idN = enumeration();
     let infTes = infoTest[idN];
-    let infTesW =infTes._embedded.venues[0];
+    let infTesW = infTes._embedded.venues[0];
     colorDiv2 = colorDiv1;
     colorDiv1 = `#${generatorColor()}`;
     let div = document.createElement('div');
@@ -82,7 +87,8 @@ function addDiv() {
         weretyH = heig.height;
     }
     div.style.background = `url(${werety}) no-repeat center/cover`;
-    div.innerHTML = `<div><strong>${infTes.name} - ${infTesW.city.name}</strong></div>`;
+    div.innerHTML = `<div id='${infTes.id}'>${infTes.name} - ${infTesW.city.name}</div>`;
+
     //div.style.background = "linear-gradient(to top, " + colorDiv1 + ", " + colorDiv2 + ")";
     div.style.backgroundColor = colorDiv1;
     fieldPlaying.append(div);
@@ -100,6 +106,13 @@ function selectIdBox(event) {
 
     if ((pageYOffset + clientHeightDDE) > (scrollHeight - 500)) {
         addDiv();
+    }
+}
+
+
+function openDetails(event) {
+    if (event.target) {
+        console.log(event.target);
     }
 }
 
