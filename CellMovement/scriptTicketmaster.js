@@ -87,7 +87,7 @@ function addDiv() {
         weretyH = heig.height;
     }
     div.style.background = `url(${werety}) no-repeat center/cover`;
-    div.innerHTML = `<div id='${infTes.id}'>${infTes.name} - ${infTesW.city.name}</div>`;
+    div.innerHTML = `<div id='${infTes.id}' data-about='ok'>${infTes.name} - ${infTesW.city.name}</div>`;
 
     //div.style.background = "linear-gradient(to top, " + colorDiv1 + ", " + colorDiv2 + ")";
     div.style.backgroundColor = colorDiv1;
@@ -111,8 +111,10 @@ function selectIdBox(event) {
 
 
 function openDetails(event) {
-    if (event.target) {
-        console.log(event.target);
+    if (event.target.dataset.about==='ok') {
+        console.log(event.target.dataset.about);
+        fieldPlaying.classList.toggle("noneElem")
+
     }
 }
 
