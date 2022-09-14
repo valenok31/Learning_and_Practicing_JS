@@ -1,17 +1,14 @@
 let fieldPlaying = document.getElementById('fieldPlaying');
+let detailedDescription = document.getElementById('detailedDescription');
 window.addEventListener('scroll', selectIdBox);
 let keyword = document.getElementById('keywordS');
 let age = document.getElementById('age');
 let search = document.getElementById('search');
 search.addEventListener('click', searchR);
 fieldPlaying.addEventListener('click', openDetails);
-
-
-noneDiv.addEventListener('click', () => {
-    fieldPlaying.classList.toggle("noneElem")
-});
+//noneDiv.addEventListener('click', openDetails);
 let queryTag = '';
-let dateTime = `2022-09-13`;
+let dateTime = `2022-09-20`;
 let offsetS;
 let colorDiv1 = `#${generatorColor()}`;
 let colorDiv2 = `#${generatorColor()}`;
@@ -61,7 +58,7 @@ function searchR() {
     dateTime = age.value;
 
     if (!dateTime) {
-        dateTime = '2022-09-15'
+        dateTime = '2022-09-20'
     }
     //console.log(dateTime);
     werwer(queryTag, dateTime);
@@ -111,10 +108,38 @@ function selectIdBox(event) {
 
 
 function openDetails(event) {
-    if (event.target.dataset.about==='ok') {
-        console.log(event.target.dataset.about);
+    if (event.target.dataset.about === 'ok') {
+        //console.log(event.target.dataset.about);
         fieldPlaying.classList.toggle("noneElem")
-
+        detailedDescription.classList.toggle("noneElem");
+        if (detailedDescription.classList.contains("noneElem")) {
+            detailedDescription.firstChild.remove();
+        }
+        if (!detailedDescription.classList.contains("noneElem")) {
+            addDescription(event);
+        }
     }
+}
+
+function addDescription(event) {
+    let descriptionText;
+    let div = document.createElement('div');
+    div.className = "cell";
+    axios.get(`https://app.ticketmaster.com/discovery/v2/events/${event.target.id}.json?apikey=zj1LCjwJVG5B88c4HGfjkaY6PAMxz6nV`)
+        .then(function (response) {
+            descriptionText = response.data;
+            console.log(response.data);
+
+
+            div.innerHTML = `<div>${event.target.innerHTML}</div><div>${descriptionText.pleaseNote}</div><div id='noneDiv' data-about='ok'>X</div>`;
+            console.log(event.target.id)
+            div.style.backgroundColor = `red`;
+            detailedDescription.append(div);
+            noneDiv.addEventListener('click', openDetails);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+
 }
 
