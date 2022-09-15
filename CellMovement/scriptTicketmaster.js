@@ -60,7 +60,6 @@ function searchR() {
     if (!dateTime) {
         dateTime = '2022-09-20'
     }
-    //console.log(dateTime);
     werwer(queryTag, dateTime);
 }
 
@@ -106,16 +105,21 @@ function selectIdBox(event) {
     }
 }
 
+let backTu;
 
 function openDetails(event) {
+
     if (event.target.dataset.about === 'ok') {
-        //console.log(event.target.dataset.about);
         fieldPlaying.classList.toggle("noneElem")
         detailedDescription.classList.toggle("noneElem");
         if (detailedDescription.classList.contains("noneElem")) {
             detailedDescription.firstChild.remove();
+            console.log(backTu);
+            backTu.scrollIntoView()
         }
         if (!detailedDescription.classList.contains("noneElem")) {
+            backTu = event.target.parentNode;
+
             addDescription(event);
         }
     }
@@ -128,11 +132,7 @@ function addDescription(event) {
     axios.get(`https://app.ticketmaster.com/discovery/v2/events/${event.target.id}.json?apikey=zj1LCjwJVG5B88c4HGfjkaY6PAMxz6nV`)
         .then(function (response) {
             descriptionText = response.data;
-            console.log(response.data);
-
-
             div.innerHTML = `<div>${event.target.innerHTML}</div><div>${descriptionText.pleaseNote}</div><div id='noneDiv' data-about='ok'>X</div>`;
-            console.log(event.target.id)
             div.style.backgroundColor = `red`;
             detailedDescription.append(div);
             noneDiv.addEventListener('click', openDetails);
@@ -140,6 +140,4 @@ function addDescription(event) {
         .catch(function (error) {
             console.log(error);
         })
-
 }
-
