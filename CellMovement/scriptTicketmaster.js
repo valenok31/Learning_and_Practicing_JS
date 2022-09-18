@@ -114,8 +114,9 @@ function openDetails(event) {
         detailedDescription.classList.toggle("noneElem");
         if (detailedDescription.classList.contains("noneElem")) {
             detailedDescription.firstChild.remove();
-            console.log(backTu);
-            backTu.scrollIntoView()
+            console.log(window.pageYOffset);
+            //backTu.scrollIntoView()
+            window.scrollTo(0,window.pageYOffset)
         }
         if (!detailedDescription.classList.contains("noneElem")) {
             backTu = event.target.parentNode;
