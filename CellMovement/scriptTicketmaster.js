@@ -109,8 +109,6 @@ function selectIdBox(event) {
 
 function openDetails(event) {
     if (event.target.dataset.about === 'ok') {
-
-
         if (!detailedDescription.classList.contains("noneElem")) {
             fieldPlaying.classList.toggle("noneElem")
             console.log(detailedDescription.firstChild);
@@ -123,7 +121,6 @@ function openDetails(event) {
             console.log('okno');
             addDescription(event);
         }
-
         detailedDescription.classList.toggle("noneElem");
     }
 }
