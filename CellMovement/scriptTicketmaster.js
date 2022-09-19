@@ -14,6 +14,7 @@ let colorDiv1 = `#${generatorColor()}`;
 let colorDiv2 = `#${generatorColor()}`;
 let infoTest;
 let n = 0;
+let backTu;
 
 function generatorColor() {
     let RR = Math.round(Math.random() * 239 + 16);
@@ -58,7 +59,7 @@ function searchR() {
     dateTime = age.value;
 
     if (!dateTime) {
-        dateTime = '2022-09-20'
+        dateTime = '2022-09-29'
     }
     werwer(queryTag, dateTime);
 }
@@ -105,24 +106,25 @@ function selectIdBox(event) {
     }
 }
 
-let backTu;
 
 function openDetails(event) {
-
     if (event.target.dataset.about === 'ok') {
-        fieldPlaying.classList.toggle("noneElem")
-        detailedDescription.classList.toggle("noneElem");
-        if (detailedDescription.classList.contains("noneElem")) {
-            detailedDescription.firstChild.remove();
-            console.log(window.pageYOffset);
-            //backTu.scrollIntoView()
-            window.scrollTo(0,window.pageYOffset)
-        }
-        if (!detailedDescription.classList.contains("noneElem")) {
-            backTu = event.target.parentNode;
 
+
+        if (!detailedDescription.classList.contains("noneElem")) {
+            fieldPlaying.classList.toggle("noneElem")
+            console.log(detailedDescription.firstChild);
+            window.scrollTo(0, backTu)
+            detailedDescription.firstChild.remove();
+        }
+        if (detailedDescription.classList.contains("noneElem")) {
+            backTu = window.pageYOffset;
+            fieldPlaying.classList.toggle("noneElem")
+            console.log('okno');
             addDescription(event);
         }
+
+        detailedDescription.classList.toggle("noneElem");
     }
 }
 
@@ -139,6 +141,6 @@ function addDescription(event) {
             noneDiv.addEventListener('click', openDetails);
         })
         .catch(function (error) {
-            console.log(error);
+            console.log('Dsdfd' + error);
         })
 }
