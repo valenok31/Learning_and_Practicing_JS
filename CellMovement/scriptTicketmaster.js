@@ -84,7 +84,7 @@ function addDiv() {
         weretyH = heig.height;
     }
     div.style.background = `url(${werety}) no-repeat center/cover`;
-    div.innerHTML = `<div id='${infTes.id}' data-about='ok'>${infTes.name} - ${infTesW.city.name}</div>`;
+    div.innerHTML = `<div id='${infTes.id}' data-about='ok'>${infTes.name} (${infTesW.location.latitude}, ${infTesW.location.longitude})</div>`;
 
     //div.style.background = "linear-gradient(to top, " + colorDiv1 + ", " + colorDiv2 + ")";
     div.style.backgroundColor = colorDiv1;
