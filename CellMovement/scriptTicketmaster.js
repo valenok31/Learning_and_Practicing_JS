@@ -6,7 +6,6 @@ let age = document.getElementById('age');
 let search = document.getElementById('search');
 search.addEventListener('click', searchR);
 fieldPlaying.addEventListener('click', openDetails);
-//noneDiv.addEventListener('click', openDetails);
 let queryTag = '';
 let dateTime = `2022-09-20`;
 let offsetS;
@@ -34,7 +33,6 @@ function werwer(queryTag1, dateTime = '2022-09-13') {
     &countryCode=US&apikey=zj1LCjwJVG5B88c4HGfjkaY6PAMxz6nV`)
         .then(function (response) {
             // handle success
-            //infoTest = response.data._embedded.events;
             inputAllData.innerHTML = response.data.page.totalElements;
             infoTest = response.data._embedded.events;
             let iMin = Math.min(infoTest.length, 10);
@@ -85,8 +83,6 @@ function addDiv() {
     }
     div.style.background = `url(${werety}) no-repeat center/cover`;
     div.innerHTML = `<div id='${infTes.id}' data-about='ok'>${infTes.name} (${infTesW.location.latitude}, ${infTesW.location.longitude})</div>`;
-
-    //div.style.background = "linear-gradient(to top, " + colorDiv1 + ", " + colorDiv2 + ")";
     div.style.backgroundColor = colorDiv1;
     fieldPlaying.append(div);
 }
@@ -111,14 +107,13 @@ function openDetails(event) {
     if (event.target.dataset.about === 'ok') {
         if (!detailedDescription.classList.contains("noneElem")) {
             fieldPlaying.classList.toggle("noneElem")
-            console.log(detailedDescription.firstChild);
             window.scrollTo(0, backTu)
             detailedDescription.firstChild.remove();
         }
         if (detailedDescription.classList.contains("noneElem")) {
             backTu = window.pageYOffset;
             fieldPlaying.classList.toggle("noneElem")
-            console.log('okno');
+
             addDescription(event);
         }
         detailedDescription.classList.toggle("noneElem");
@@ -138,6 +133,6 @@ function addDescription(event) {
             noneDiv.addEventListener('click', openDetails);
         })
         .catch(function (error) {
-            console.log('Dsdfd' + error);
+            console.log(error);
         })
 }
