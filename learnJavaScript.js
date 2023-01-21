@@ -1,12 +1,18 @@
-const data = {
-    a: 'string',
-    b: 356,
-    c: true,
+//'use strict'
+const funcNew = function (){
+    console.log('it worked!')
+    return
 }
 
-function fancA(){
-    return this.y
+const obj = {
+    a:3,
+    funcNew (){
+        console.log('and it worked too!')
+        return
+    }
 }
 
 
-console.log(fancA())
+let b = obj.funcNew;
+
+b.call()
