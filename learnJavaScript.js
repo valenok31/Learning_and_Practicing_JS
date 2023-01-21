@@ -1,18 +1,7 @@
-//'use strict'
-const funcNew = function (){
-    console.log('it worked!')
-    return
+function Employee (name, position, yearHired){
+    this.name = name
+    this.position = position
+    this.yearHired = yearHired
 }
 
-const obj = {
-    a:3,
-    funcNew (){
-        console.log('and it worked too!')
-        return
-    }
-}
-
-
-let b = obj.funcNew;
-
-b.call()
+const emp = new Employee('Marko Polo', 'Software Development', 2017)
