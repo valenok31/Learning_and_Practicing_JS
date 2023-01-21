@@ -1,8 +1,12 @@
-let a = [3,2,1,5,4]
+const data = {
+    a: 'string',
+    b: 356,
+    c: true,
+}
+
+function fancA(){
+    return this.y
+}
 
 
-let b = a.sort((a,b)=>{
-    return b-a
-})
-
-console.log(b)
+console.log(fancA())
