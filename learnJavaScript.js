@@ -1,16 +1,4 @@
-function Employee (name, position, yearHired, funcNew){
-    this.name = name
-    this.position = position
-    this.yearHired = yearHired
-    this.funcNew = funcNew
-    return;
-}
 
-const funcNew = function (){
-    return 5
-}
+let f = new Function("a","b", "return a+b")
 
-const emp = new Employee('Marko Polo', 'Software Development', 2017, funcNew())
-
-console.table(emp)
-console.log(emp)
+console.log(f(7,3))
