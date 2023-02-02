@@ -14,36 +14,61 @@
  */
 function sostavChisla(massivChisel, chislo) {
     // код писать только внутри данной функции
-    let result=[]
-    let arrSort = [...massivChisel]
+    let result = []
+    let arr = [...massivChisel]
     if (chislo <= 0) {
         return []
     }
-    if (arrSort.reduce((a, b) => {
+
+    if (arr.reduce((a, b) => {
         return a + b;
-    }) < chislo) {
+    }, 0) < chislo) {
         return []
     }
 
-    arrSort.sort((a, b) => {
-        return a - b
+    arr = arr.filter((x) => {
+        return x <= chislo
     })
 
-    for (let i = arrSort.length - 1; i > 0; i--) {
-        if (arrSort[i] > chislo) {
-            arrSort.pop();
+    arr.sort((a, b) => {
+        return b - a
+    })
+
+
+    function sumHalfResult(arrSum) {
+        return arrSum.reduce((a, b) => {
+            return a + b;
+        }, 0)
+    }
+
+    function rekurs(arrA, chisloA){
+        let halfResult = [];
+        for (let j = 0; j < arrA.length; j++) {
+            halfResult.length = 0
+            for (let i = j; i < arrA.length; i++) {
+                if (chisloA - sumHalfResult(halfResult) - arrA[i] === 0) {
+                    halfResult.push(arrA[i]);
+                    result.push([...halfResult]);
+                    console.log(Math.max.apply(null,halfResult))
+                    //rekurs(halfResult,Math.max(halfResult))
+                    halfResult.length = 0
+                    continue;
+                }
+                if (chisloA - sumHalfResult(halfResult) - arrA[i] > 0) {
+                    halfResult.push(arrA[i]);
+                    // console.log(result)
+                }
+                if (chisloA - sumHalfResult(halfResult) - arrA[i] < 0) {
+                    //halfResult.push(arr[i]);
+                    //return
+                }
+            }
         }
+
     }
 
-    if (arrSort.reduce((a, b) => {
-        return a + b;
-    }) < chislo) {
-        return []
-    }
+    rekurs(arr, chislo)
 
-
-
-    console.log(arrSort)
 
 
     return result;
