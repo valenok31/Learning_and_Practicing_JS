@@ -118,32 +118,14 @@ function sostavChisla(massivChisel, chislo) {
     let halfResult = [];
 
 
-    function rekurs(arrA, seed,half) {
-        if(!arrA[0]){return}
-        let interimResult = arrA.shift();
-        if (seed - interimResult === 0) {
-            half.push(interimResult);
-            result.push([...half]);
-            half.length = 0
-            rekurs(...arrA, interimResult, half)
-        }
-        if (seed - interimResult > 0) {
-            half.push(interimResult);
-           let arrD = arrA.filter((x) => {
-                return x <= seed - interimResult
-            })
-            rekurs(...arrD, seed - interimResult, half)
-        }
-        if (seed - interimResult < 0) {
-            //half.length = 0
-            rekurs(...arrA, seed - interimResult, half)
-        }
-        rekurs(...arrA, arrA.shift(), half)
+    function rekurs(arrA, seed) {
+
+
     }
 
 
 
-    rekurs(arr, chislo,halfResult)
+    rekurs(arr, chislo)
 
     return result
 }
