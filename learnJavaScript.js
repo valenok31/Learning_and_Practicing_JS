@@ -12,6 +12,80 @@
  @param chislo: number[]
  @return Array<Array<number>>
  */
+function sostavChisla001(massivChisel, chislo) {
+    // код писать только внутри данной функции
+    /* let result = []
+     let arr = [...massivChisel]
+     if (chislo <= 0) {
+         return []
+     }
+
+     if (arr.reduce((a, b) => {
+         return a + b;
+     }, 0) < chislo) {
+         return []
+     }
+
+     arr = arr.filter((x) => {
+         return x <= chislo
+     })
+
+     arr = arr.sort((a, b) => {
+         return b - a
+     })
+
+
+     function sumHalfResult(arrSum) {
+         return arrSum.reduce((a, b) => {
+             return a + b;
+         }, 0)
+     }*/
+
+    //console.log(arr)
+    function rekurs(arrA, chisloA) {
+        let halfResult = [];
+        // for (let q = 0; q < arrA.length; q++) {
+        //halfResult.length = 0
+        for (let j = 0; j < arrA.length; j++) {
+            halfResult.length = 0
+            //for (let i = j; i < arrA.length; i++) {
+            for (let i = j; i < arrA.length; i++) {
+                if (chisloA - sumHalfResult(halfResult) - arrA[i] === 0) {
+                    halfResult.push(arrA[i]);
+                    result.push([...halfResult]);
+                    halfResult.length = 0
+                    continue;
+                }
+                if (chisloA - sumHalfResult(halfResult) - arrA[i] > 0) {
+                    halfResult.push(arrA[i]);
+                    // console.log(result)
+                    //continue;
+                }
+                if (chisloA - sumHalfResult(halfResult) - arrA[i] + halfResult[0] > 0) {
+
+                    // console.log(result)
+                    //continue;
+                    //halfResult.shift();
+                    //halfResult.push(arrA[i]);
+                    //halfResult.push(arrA[i]);
+
+                    //return
+                }
+            }
+            //arrA.push(arrA[0])
+            //arrA.shift()
+        }
+        // }
+
+    }
+
+    rekurs(arr, chislo)
+
+
+    return result;
+
+}
+
 function sostavChisla(massivChisel, chislo) {
     // код писать только внутри данной функции
     let result = []
@@ -30,49 +104,48 @@ function sostavChisla(massivChisel, chislo) {
         return x <= chislo
     })
 
-    arr.sort((a, b) => {
+    arr = arr.sort((a, b) => {
         return b - a
     })
-
-
+    //console.log(arr)
     function sumHalfResult(arrSum) {
         return arrSum.reduce((a, b) => {
             return a + b;
         }, 0)
     }
 
-    function rekurs(arrA, chisloA){
-        let halfResult = [];
-        for (let j = 0; j < arrA.length; j++) {
-            halfResult.length = 0
-            for (let i = j; i < arrA.length; i++) {
-                if (chisloA - sumHalfResult(halfResult) - arrA[i] === 0) {
-                    halfResult.push(arrA[i]);
-                    result.push([...halfResult]);
-                    console.log(Math.max.apply(null,halfResult))
-                    //rekurs(halfResult,Math.max(halfResult))
-                    halfResult.length = 0
-                    continue;
-                }
-                if (chisloA - sumHalfResult(halfResult) - arrA[i] > 0) {
-                    halfResult.push(arrA[i]);
-                    // console.log(result)
-                }
-                if (chisloA - sumHalfResult(halfResult) - arrA[i] < 0) {
-                    //halfResult.push(arr[i]);
-                    //return
-                }
-            }
-        }
+    //result.push(sumHalfResult(arr))
+    let halfResult = [];
 
+
+    function rekurs(arrA, seed,half) {
+        if(!arrA[0]){return}
+        let interimResult = arrA.shift();
+        if (seed - interimResult === 0) {
+            half.push(interimResult);
+            result.push([...half]);
+            half.length = 0
+            rekurs(...arrA, interimResult, half)
+        }
+        if (seed - interimResult > 0) {
+            half.push(interimResult);
+           let arrD = arrA.filter((x) => {
+                return x <= seed - interimResult
+            })
+            rekurs(...arrD, seed - interimResult, half)
+        }
+        if (seed - interimResult < 0) {
+            //half.length = 0
+            rekurs(...arrA, seed - interimResult, half)
+        }
+        rekurs(...arrA, arrA.shift(), half)
     }
 
-    rekurs(arr, chislo)
 
 
+    rekurs(arr, chislo,halfResult)
 
-    return result;
-
+    return result
 }
 
 // console.log(sostavChisla([8, 2, 3, 4, 6, 7, 1], 99));
