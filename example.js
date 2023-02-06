@@ -63,7 +63,7 @@ function sostavChisla(massivChisel, chislo) {
         result.push(sum)
     }
 
-    console.log(result.length)
+//    console.log(result.length)
     return result.filter((x) => {
         return x.reduce((a, b) => {
             return a + b
@@ -72,24 +72,28 @@ function sostavChisla(massivChisel, chislo) {
 }
 
 
-console.log(sostavChisla(massivChisel, chislo))
+//console.log(sostavChisla(massivChisel, chislo))
 
 
 let result1 = [];
-let result2 = [];
+let result2 = [1,2,3,4];
 
 function perebor(arr, zveno) {
     if (zveno <= 0) {
         return
     }
 
-    result2.length = 0;
+    //result2.length = 0;
     for (let k = 0; k < arr.length; k++) {
-        perebor(arr, zveno - 1)
-        result2.push(arr[k], arr[k], arr[k], arr[k], arr[k])
+       // perebor(arr, zveno - 1)
+        arr.map((a)=>{
+           return a.push(result2[k])
+        })
+        //result2.push(arr[k], arr[k], arr[k], arr[k], arr[k])
     }
-    result1.push(result2)
-    return result1
+    //result1.push(result2)
+   // return result1
+    return arr
 }
 
-//console.log(perebor([1, 2, 3, 4], 1))
+console.log(perebor([[1], [2], [3], [4]], 1))
