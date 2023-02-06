@@ -1,64 +1,23 @@
-let arr = [7, 8, 3, 4, 5, 6, 1, 2];
-let chislo = 4;
+let massivChisel = [0, 1, 2, 3, 0];
+let chislo = 5;
 
 
-arr = arr.sort((a, b) => {
-    return b - a
-})
+function sostavChisla(massivChisel, chislo) {
+    let result = [];
+    let arr = [...massivChisel];
 
 
-let results1 = [];
-let results2 = [];
-
-function sumHalfResult(arrSum) {
-    return arrSum.reduce((a, b) => {
-        return a + b;
-    }, 0)
-}
-
-if (arr.reduce((a, b) => {
-    return a + b;
-}, 0) < chislo) {
-    console.log('end')
-}
-
-arr = arr.filter((x) => {
-    return x <= chislo
-})
-//rekursia(arr, chislo,0)
-console.log(rekursia(arr, chislo))
-
-
-function rekursia(rarr, seed) {
-    rarr = [...rarr]
-    rarr = rarr.filter((x) => {
-        return x <= seed
-    })
-    if (rarr.length === 0) {
-        return []
+    for (let k = 1; k < arr.length; k++) {
+            vhod(arr[0], arr, k)
     }
 
-    for (let i = 0; i < rarr.length; i++) {
-        if (rarr[i] === seed) {
-            results2.push(rarr[i]);
-            results1.push([...results2]);
 
-            results2.length = 0;
-            //return results1
-            continue;
-        }
-        if (rarr[i] < seed) {
-            let seedarra = seed - rarr[i];
-            results2.push(rarr[i]);
-            rekursia([...rarr], seedarra);
-            //results2.push(ert);
-            continue;
-        }
-        if (rarr[i] > seed) {
-            break;
-        }
+    function vhod(sum, arr, k) {
+            result.push([sum, arr[k]])
     }
-    //results1.push(results2)
-    return results1
+
+    return result;
 }
+
+console.log(sostavChisla(massivChisel, chislo));
 
