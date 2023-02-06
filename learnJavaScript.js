@@ -12,122 +12,71 @@
  @param chislo: number[]
  @return Array<Array<number>>
  */
-function sostavChisla001(massivChisel, chislo) {
-    // код писать только внутри данной функции
-    /* let result = []
-     let arr = [...massivChisel]
-     if (chislo <= 0) {
-         return []
-     }
-
-     if (arr.reduce((a, b) => {
-         return a + b;
-     }, 0) < chislo) {
-         return []
-     }
-
-     arr = arr.filter((x) => {
-         return x <= chislo
-     })
-
-     arr = arr.sort((a, b) => {
-         return b - a
-     })
-
-
-     function sumHalfResult(arrSum) {
-         return arrSum.reduce((a, b) => {
-             return a + b;
-         }, 0)
-     }*/
-
-    //console.log(arr)
-    function rekurs(arrA, chisloA) {
-        let halfResult = [];
-        // for (let q = 0; q < arrA.length; q++) {
-        //halfResult.length = 0
-        for (let j = 0; j < arrA.length; j++) {
-            halfResult.length = 0
-            //for (let i = j; i < arrA.length; i++) {
-            for (let i = j; i < arrA.length; i++) {
-                if (chisloA - sumHalfResult(halfResult) - arrA[i] === 0) {
-                    halfResult.push(arrA[i]);
-                    result.push([...halfResult]);
-                    halfResult.length = 0
-                    continue;
-                }
-                if (chisloA - sumHalfResult(halfResult) - arrA[i] > 0) {
-                    halfResult.push(arrA[i]);
-                    // console.log(result)
-                    //continue;
-                }
-                if (chisloA - sumHalfResult(halfResult) - arrA[i] + halfResult[0] > 0) {
-
-                    // console.log(result)
-                    //continue;
-                    //halfResult.shift();
-                    //halfResult.push(arrA[i]);
-                    //halfResult.push(arrA[i]);
-
-                    //return
-                }
-            }
-            //arrA.push(arrA[0])
-            //arrA.shift()
-        }
-        // }
-
-    }
-
-    rekurs(arr, chislo)
-
-
-    return result;
-
-}
 
 function sostavChisla(massivChisel, chislo) {
     // код писать только внутри данной функции
-    let result = []
-    let arr = [...massivChisel]
-    if (chislo <= 0) {
-        return []
-    }
+    let result = [];
+    let arr = [...massivChisel];
 
     if (arr.reduce((a, b) => {
-        return a + b;
-    }, 0) < chislo) {
+        return a + b
+    }) < chislo) {
         return []
     }
-
-    arr = arr.filter((x) => {
-        return x <= chislo
+    arr.filter((a)=>{
+        return a<=chislo
     })
 
-    arr = arr.sort((a, b) => {
-        return b - a
+    for (let k = 0; k < arr.length; k++) {
+        vhod([arr[k]])
+    }
+
+    for (let j = 0; j < arr.length; j++) {
+        for (let k = j + 1; k < arr.length; k++) {
+            vhod([arr[j], arr[k]])
+        }
+    }
+
+    for (let r = 0; r < arr.length; r++) {
+        for (let j = r + 1; j < arr.length; j++) {
+            for (let k = j + 1; k < arr.length; k++) {
+                vhod([arr[r], arr[j], arr[k]])
+            }
+        }
+    }
+
+    for (let x = 0; x < arr.length; x++) {
+        for (let r = x + 1; r < arr.length; r++) {
+            for (let j = r + 1; j < arr.length; j++) {
+                for (let k = j + 1; k < arr.length; k++) {
+                    vhod([arr[x], arr[r], arr[j], arr[k]])
+                }
+            }
+        }
+    }
+    for (let c = 0; c < arr.length; c++) {
+        for (let x = c + 1; x < arr.length; x++) {
+            for (let r = x + 1; r < arr.length; r++) {
+                for (let j = r + 1; j < arr.length; j++) {
+                    for (let k = j + 1; k < arr.length; k++) {
+                        vhod([arr[c], arr[x], arr[r], arr[j], arr[k]])
+                    }
+                }
+            }
+        }
+    }
+
+
+    function vhod(sum) {
+        result.push(sum)
+    }
+
+    console.log(result.length)
+    return result.filter((x) => {
+        return x.reduce((a, b) => {
+            return a + b
+        }) === chislo
     })
-    //console.log(arr)
-    function sumHalfResult(arrSum) {
-        return arrSum.reduce((a, b) => {
-            return a + b;
-        }, 0)
-    }
-
-    //result.push(sumHalfResult(arr))
-    let halfResult = [];
-
-
-    function rekurs(arrA, seed) {
-
-
-    }
-
-
-
-    rekurs(arr, chislo)
-
-    return result
 }
 
 // console.log(sostavChisla([8, 2, 3, 4, 6, 7, 1], 99));
