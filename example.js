@@ -1,5 +1,5 @@
-let massivChisel = [7, 8, 3, 4, 5, 6, 1, 2, 9, 10, 11, 12, 13];
-let chislo = 8;
+let massivChisel = [1, 2, 3, 4, 5, 6];
+let chislo = 20;
 
 
 function sostavChisla(massivChisel, chislo) {
@@ -17,45 +17,73 @@ function sostavChisla(massivChisel, chislo) {
         return []
     }
 
-    console.log(arr)
 
-    for (let k = 0; k < arr.length; k++) {
-        vhod([arr[k]])
+    let cxrjk = [];
+
+    for (cxrjk[0] = 0; cxrjk[0] < arr.length; cxrjk[0]++) {
+        let erte = [];
+        erte.push(arr[cxrjk[0]])
+        vhod(erte)
+        //vhod([arr[k]])
     }
 
-    for (let j = 0; j < arr.length; j++) {
-        for (let k = j + 1; k < arr.length; k++) {
-            vhod([arr[j], arr[k]])
+    for (cxrjk[0] = 0; cxrjk[0] < arr.length; cxrjk[0]++) {
+        for (cxrjk[1] = cxrjk[0] + 1; cxrjk[1] < arr.length; cxrjk[1]++) {
+            let erte = [];
+            erte.push(arr[cxrjk[0]])
+            erte.push(arr[cxrjk[1]])
+            vhod(erte)
+            //vhod([arr[j], arr[k]])
         }
     }
 
-    for (let r = 0; r < arr.length; r++) {
-        for (let j = r + 1; j < arr.length; j++) {
-            for (let k = j + 1; k < arr.length; k++) {
-                vhod([arr[r], arr[j], arr[k]])
+    for (cxrjk[0] = 0; cxrjk[0] < arr.length; cxrjk[0]++) {
+        for (cxrjk[1] = cxrjk[0] + 1; cxrjk[1] < arr.length; cxrjk[1]++) {
+            for (cxrjk[2] = cxrjk[1] + 1; cxrjk[2] < arr.length; cxrjk[2]++) {
+                let erte = [];
+                erte.push(arr[cxrjk[0]])
+                erte.push(arr[cxrjk[1]])
+                erte.push(arr[cxrjk[2]])
+                vhod(erte)
+                //vhod([arr[r], arr[j], arr[k]])
             }
         }
     }
 
-    for (let x = 0; x < arr.length; x++) {
-        for (let r = x + 1; r < arr.length; r++) {
-            for (let j = r + 1; j < arr.length; j++) {
-                for (let k = j + 1; k < arr.length; k++) {
-                    vhod([arr[x], arr[r], arr[j], arr[k]])
+    for (cxrjk[0] = 0; cxrjk[0] < arr.length; cxrjk[0]++) {
+        for (cxrjk[1] = cxrjk[0] + 1; cxrjk[1] < arr.length; cxrjk[1]++) {
+            for (cxrjk[2] = cxrjk[1] + 1; cxrjk[2] < arr.length; cxrjk[2]++) {
+                for (cxrjk[3] = cxrjk[2] + 1; cxrjk[3] < arr.length; cxrjk[3]++) {
+                    let erte = [];
+                    erte.push(arr[cxrjk[0]])
+                    erte.push(arr[cxrjk[1]])
+                    erte.push(arr[cxrjk[2]])
+                    erte.push(arr[cxrjk[3]])
+                    vhod(erte)
+                    //vhod([arr[x], arr[r], arr[j], arr[k]])
                 }
             }
         }
     }
-    for (let c = 0; c < arr.length; c++) {
-        for (let x = c + 1; x < arr.length; x++) {
-            for (let r = x + 1; r < arr.length; r++) {
-                for (let j = r + 1; j < arr.length; j++) {
-                    for (let k = j + 1; k < arr.length; k++) {
-                        vhod([arr[c], arr[x], arr[r], arr[j], arr[k]])
+
+    for (cxrjk[0] = 0; cxrjk[0] < arr.length; cxrjk[0]++) {
+        for (cxrjk[1] = cxrjk[0] + 1; cxrjk[1] < arr.length; cxrjk[1]++) {
+            for (cxrjk[2] = cxrjk[1] + 1; cxrjk[2] < arr.length; cxrjk[2]++) {
+                for (cxrjk[3] = cxrjk[2] + 1; cxrjk[3] < arr.length; cxrjk[3]++) {
+                    for (cxrjk[4] = cxrjk[3] + 1; cxrjk[4] < arr.length; cxrjk[4]++) {
+                        jadro(cxrjk)
                     }
                 }
             }
         }
+    }
+
+    function jadro(cxrjk) {
+        let erte = [];
+        for (let z = 0; z < 5; z++) {
+            erte.push(arr[cxrjk[z]])
+        }
+        result.push(erte)
     }
 
 
@@ -63,7 +91,7 @@ function sostavChisla(massivChisel, chislo) {
         result.push(sum)
     }
 
-//    console.log(result.length)
+    console.log(result.length)
     return result.filter((x) => {
         return x.reduce((a, b) => {
             return a + b
@@ -72,28 +100,5 @@ function sostavChisla(massivChisel, chislo) {
 }
 
 
-//console.log(sostavChisla(massivChisel, chislo))
+console.log(sostavChisla(massivChisel, chislo))
 
-
-let result1 = [];
-let result2 = [1,2,3,4];
-
-function perebor(arr, zveno) {
-    if (zveno <= 0) {
-        return
-    }
-
-    //result2.length = 0;
-    for (let k = 0; k < arr.length; k++) {
-       // perebor(arr, zveno - 1)
-        arr.map((a)=>{
-           return a.push(result2[k])
-        })
-        //result2.push(arr[k], arr[k], arr[k], arr[k], arr[k])
-    }
-    //result1.push(result2)
-   // return result1
-    return arr
-}
-
-console.log(perebor([[1], [2], [3], [4]], 1))
