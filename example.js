@@ -1,5 +1,5 @@
-let massivChisel = [0,1, 2, 3, 4, 5, 6,7];
-let chislo = 6;
+let massivChisel = [1, 2, 3, 4, 5, 6,7,8,9,10];
+let chislo = 40;
 
 
 function sostavChisla(massivChisel, chislo) {
@@ -20,7 +20,7 @@ function sostavChisla(massivChisel, chislo) {
 
     let cxrjk = [];
 
-    for (cxrjk[0] = 0; cxrjk[0] < arr.length; cxrjk[0]++) {
+ /*   for (cxrjk[0] = 0; cxrjk[0] < arr.length; cxrjk[0]++) {
         let erte = [];
         erte.push(arr[cxrjk[0]])
         //vhod(erte)
@@ -76,17 +76,19 @@ function sostavChisla(massivChisel, chislo) {
                 }
             }
         }
-    }
+    }*/
 
    let cxrjk2=[]
+    let koef = 7;
     function forArr(cxrjk2, gg){
+        gg=gg+1;
+        //console.log(arr.length)
+        //for (cxrjk2[gg] = (!!cxrjk2[gg-1]? cxrjk2[gg-1]+1: 1); cxrjk2[gg] < arr.length; cxrjk2[gg]++) {
+        for (cxrjk2[gg] = (gg===0? 0: cxrjk2[gg-1]+1); cxrjk2[gg] < arr.length; cxrjk2[gg]++) {
 
-        console.log(gg)
-        for (cxrjk2[gg] = (!!cxrjk2[gg-1]? cxrjk2[gg-1]: 0) + 1; cxrjk2[gg] < arr.length; cxrjk2[gg]++) {
-            gg=gg+1;
-            if(gg>2){
+            if(gg>koef-2){
                 //console.log(cxrjk2)
-                jadro(cxrjk2,4)
+                jadro(cxrjk2,koef)
                 //return
                 continue
             }
@@ -97,13 +99,12 @@ function sostavChisla(massivChisel, chislo) {
 
     }
 
-    forArr(cxrjk2,0);
+    forArr(cxrjk2,-1);
 
 
-    function jadro(cxrjk2, zz=20) {
+    function jadro(cxrjk2, zz=50) {
         let erte = [];
         for (let z = 0; z < zz; z++) {
-            console.log(arr[cxrjk2[z]])
             erte.push(arr[cxrjk2[z]])
         }
         vhod(erte)
@@ -114,14 +115,15 @@ function sostavChisla(massivChisel, chislo) {
         result.push(sum)
     }
 
-   // console.log(result)
-/*    return result.filter((x) => {
+    console.log(result)
+    return result.filter((x) => {
         return x.reduce((a, b) => {
             return a + b
         }) === chislo
-    })*/
+    })
 
-    return result
+    //return result
+    //return null
 }
 
 
