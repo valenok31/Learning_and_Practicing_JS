@@ -1,64 +1,40 @@
-let massivChisel = [7, 8, 3, 4, 5, 6];
-let chislo = 15;
+let money = 10;
+let coins = [7, 8, 3, 4, 5, 6, 1];
 
 
-function sostavChisla(massivChisel, chislo) {
+function countChange(money, coins) {
+    // your implementation here
+    let answer = 0;
+    let a = coins.filter((one) => one <= money);
 
-
-    let arr = massivChisel.filter((a) => {
-        return a <= chislo
+    a.sort((c, b) => {
+        return c - b;
     })
-
-    if (arr.reduce((a, b) => {
-        return a + b
-    }) < chislo) {
-        return []
-    }
-
-
-
-    let result = [];
-    let koefi = 2;
-
-    for (let i=koefi; i<8; i++){
-
-        let cxrjk2 = []
-        forArr(cxrjk2, -1, i);
-
-    }
-
-
-
-    function forArr(cxrjk2, gg, koef) {
-        gg = gg + 1;
-        for (cxrjk2[gg] = (gg === 0 ? 0 : cxrjk2[gg - 1] + 1); cxrjk2[gg] < arr.length; cxrjk2[gg]++) {
-            if (gg > koef - 2) {
-                jadro(cxrjk2, koef)
-                continue
-            }
-            forArr(cxrjk2, gg,koef);
+    for (let key in a) {
+        if (money % a[key] === 0) {
+            console.log(a[key])
+            answer = answer + 1;
+        }else{
+            money % a[key]
         }
+
     }
 
-
-
-
-    function jadro(cxrjk2, zz = 50) {
-        let erte = [];
-        for (let z = 0; z < zz; z++) {
-            erte.push(arr[cxrjk2[z]])
+    function rek(money, one) {
+        if (money % one === 0) {
+            answer = answer + 1;
+            return;
         }
-        result.push(erte)
+        one = money % one;
+
+        rek(money, one);
     }
 
-    //console.log(result)
-    return result.filter((x) => {
-        return x.reduce((a, b) => {
-            return a + b
-        }) === chislo
-    })
+
+    //return answer;
+    return {a, answer};
 }
 
 
-console.log(sostavChisla(massivChisel, chislo))
+console.log(countChange(money, coins))
 
