@@ -5,51 +5,33 @@ let coins = [5, 7, 1];
 function countChange(money, coins) {
     // your implementation here
     let answer = [];
+    let iX=0
     let interimResponse = []
-    rek(money, coins);
+    rek(money, coins, iX);
 
-    function rek(moneyR, coinsR) {
-        //interimResponse.length=0;
-        let a = coinsR.filter((one) => one <= moneyR);
-        /*        a.sort((c, b) => {
-                    return c - b;
-                })*/
-        for (let key in a) {
-            if (moneyR % a[key] === 0) {
-                for (let i = 0; i < Math.floor(moneyR / a[key]); i++) {
-                    interimResponse.push(a[key]);
-                }
-                let check = interimResponse.reduce((a, b) => {
-                    return a + b
-                })
-                if (check < money) {
-                    interimResponse.push(money - check)
-                }
-
+    function rek(moneyR, coinsR, iX) {
+        console.log(iX)
+        if (moneyR<= coinsR[iX]) {
+            if(coinsR.includes(moneyR)){
+                interimResponse.push(moneyR)
                 answer.push([...interimResponse]);
-                interimResponse.length = 0;
-                //console.log(answer)
-                return;
-            } else {
-                if (a.length == 1) {
-                    console.log('length=1')
-                    return;
-                } else {
-                    //console.log('rek' + moneyR % a[key]);
-
-                    for (let i = 0; i < Math.floor(moneyR / a[key]); i++) {
-                        interimResponse.push(a[key]);
-                    }
-
-/*                    for(let i=1; i<Math.floor(moneyR/a[key])+1;i++){
-                        rek(moneyR - a[key]*i, a);
-                    }*/
-                    rek(moneyR % a[key], a);
-                   // rek((moneyR % a[key])+a[key], a);
-                }
+                interimResponse.length=0;
+                iX=iX+1
+                if(iX>=coins.length){return}
+                rek(money, coins, iX);
+            }else{
+                //iX=iX+1
+                if(iX>=coins.length){return}
+                //interimResponse.length=0;
+return
+                rek(moneyR, coinsR, 0);
             }
         }
-
+        else{
+            moneyR = moneyR - coinsR[iX];
+            interimResponse.push(coinsR[iX])
+            rek(moneyR, coinsR, iX);
+        }
     }
 
     return answer;
