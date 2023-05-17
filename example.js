@@ -1,5 +1,5 @@
-let money = 11;
-let coins = [5, 7, 1];
+let money = 5;
+let coins = [2, 1,3];
 
 
 function countChange(money, coins) {
