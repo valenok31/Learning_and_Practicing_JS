@@ -8,7 +8,7 @@ function sudoku(puzzle) {
     puzzle.forEach((rete1, n1) => {
         rete1.forEach((rete2, n2) => {
             if (rete2 == 0) {
-                puzzle[n1][n2] = pusto;
+                puzzle[n1][n2] = [...pusto];
                 spisokPust.push([n1, n2])
             }
         })
@@ -16,13 +16,21 @@ function sudoku(puzzle) {
 
 
     // из пустых ячеек (с полными массивами) удаляем числа находящиеся в этом ряду
-    // НЕ ДОДЕЛАЛ: если после удаления осталось одно число => записываем его в ячейку и рекурсией опять обходим массив
-    spisokPust.forEach((ab)=>{
-        puzzle[ab[0]].forEach((v, n)=>{
-            if(n!=ab[1]){
-                puzzle[ab[0]][ab[1]].push('!!!!')
+    // Обход идет по строке
+    // если после удаления осталось одно число => записываем его в ячейку и рекурсией опять обходим массив
+    spisokPust.forEach((ab) => {
+
+        //let ab=[0,2];
+        puzzle[ab[0]].forEach((v, n) => {
+            if (n != ab[1]) {
+                if (puzzle[ab[0]][ab[1]].indexOf(v) != -1) {
+                    puzzle[ab[0]][ab[1]].splice(puzzle[ab[0]][ab[1]].indexOf(v), 1)
+                }
+
             }
+            return
         })
+        console.log( puzzle[ab[0]][ab[1]]);
     })
 
 
