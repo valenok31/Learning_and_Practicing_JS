@@ -62,23 +62,21 @@ function sudoku(puzzle) {
 
         })
 
-/*        spisokPust.forEach((ab, abN) => {
-            if (puzzle[ab[0]][ab[1]].length === 1) {
-                puzzle[ab[0]][ab[1]] = puzzle[ab[0]][ab[1]][0];
-                spisokPust.splice(abN, 1);
-            }
-        })*/
+        /*        spisokPust.forEach((ab, abN) => {
+                    if (puzzle[ab[0]][ab[1]].length === 1) {
+                        puzzle[ab[0]][ab[1]] = puzzle[ab[0]][ab[1]][0];
+                        spisokPust.splice(abN, 1);
+                    }
+                })*/
 
-        for(let k=0; k<spisokPust.length; k++){
-            let ab=spisokPust[k];
+        for (let k = 0; k < spisokPust.length; k++) {
+            let ab = spisokPust[k];
             if (puzzle[ab[0]][ab[1]].length === 1) {
                 puzzle[ab[0]][ab[1]] = puzzle[ab[0]][ab[1]][0];
                 spisokPust.splice(k, 1);
-                k=k-1
+                k = k - 1
             }
         }
-
-
 
 
         function malKvadrJ(ab) {
@@ -105,9 +103,13 @@ function sudoku(puzzle) {
             }
         }
 
-        if(spisokPust.length==0){
+
+
+
+
+        if (spisokPust.length == 0) {
             return
-        }else{
+        } else {
             console.log(spisokPust.length);
             obhod();
         }
