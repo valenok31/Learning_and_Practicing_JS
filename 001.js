@@ -1,4 +1,3 @@
-const men = ["Tom", "Sam", "Bob"];
-const women = [];
-const people = men.concat(women);
-console.log(people==men);
+let str = "Любо, братцы, любо!";
+
+console.log( str.match(/б/ig) );
