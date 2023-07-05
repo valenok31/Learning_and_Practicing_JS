@@ -1,7 +1,6 @@
-if ("geolocation" in navigator) {
-    /* местоположение доступно */
-    console.log(navigator.getCurrentPosition)
-} else {
-    /* местоположение НЕ доступно */
-    console.log('false')
+function lalu (numberCard){
+    let checkResult = true;
+    return checkResult
 }
+
+console.log(lalu(345234))
