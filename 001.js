@@ -1,16 +1,14 @@
-function lalu(numberCard) {
-    let arrNumberCard = Array.from(String(numberCard), Number);
-    let checkResult = arrNumberCard.map((n, x) => {
-            if (!(x % 2)) {
-                if (n * 2 < 10) {
-                    return n * 2
-                }
-                return (n * 2 - 10) + 1
-            }
-            return n
-        }
-    )
-    return !(checkResult.reduce((a, b) => a + b) % 10)
+function luhn(numberCard) {
+    let x2 = (n, x) => {
+        if (!!(x % 2)) return n
+        if (n * 2 < 10) return n * 2
+        return (n * 2 - 10) + 1
+    }
+    return !(Array
+        .from(String(numberCard), Number)
+        .map((n,x)=>x2(n,x))
+        .reduce((a, b) => a + b) % 10)
 }
 
-console.log(lalu(4586_6549_4568_4585))
+console.log(luhn(5536_9140_6279_9220))
+
