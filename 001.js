@@ -2,6 +2,10 @@ function luhn(numberCard) {
     if (Array.from(String(numberCard))[0]==5){
         console.log('mir')
     }
+switch(Array.from(String(numberCard))[0]){
+    case '5': console.log('mir')
+}
+
         let x2 = (n, x) => {
             if (!!(x % 2)) return n
             if (n * 2 < 10) return n * 2
