@@ -1,7 +1,4 @@
 function luhn(numberCard) {
-    if (Array.from(String(numberCard))[0] == 5) {
-        console.log('mir')
-    }
     switch (Array.from(String(numberCard))[0]) {
         case '5':
             console.log('mir')
