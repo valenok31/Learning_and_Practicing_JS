@@ -1,6 +1,6 @@
 const promis = new Promise (
     (a,b)=>{
-        a('Ok')
+        throw  a('Ok')
         b('Error')
     }
 )
