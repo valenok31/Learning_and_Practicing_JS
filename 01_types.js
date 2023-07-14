@@ -1,9 +1,6 @@
-const promis = new Promise (
-    (a,b)=>{
-        throw  a('Ok')
-        b('Error')
-    }
-)
+let arr = new Array(2,5,4,'error');
+[a,b,c,error]=arr;
 
-promis.then(console.log)
-.catch(console.log)
+[b1,b2,b3,b4,b5]=error;
+
+console.log(b4)
