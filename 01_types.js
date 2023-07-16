@@ -1,6 +1,5 @@
-let arr = new Array(2,5,4,'error');
-[a,b,c,error]=arr;
+let arr = {aa:2,bb:5,cc:4,obj:34};
 
-[b1,b2,b3,b4,b5]=error;
+let {obj,bb,cc,aa}=arr;
 
-console.log(b4)
+console.log(obj===arr.obj);
