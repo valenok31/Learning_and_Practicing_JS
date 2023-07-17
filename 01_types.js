@@ -1,5 +1,15 @@
-let arr = {aa:2,bb:5,cc:4,obj:34};
+let json = '{ "age": 30 }'; // данные неполны
 
-let {obj,bb,cc,aa}=arr;
+try {
 
-console.log(obj===arr.obj);
+    let user = JSON.parse(json); // <-- выполнится без ошибок
+
+    if (!user.name) {
+        throw new SyntaxError("Данные неполны: нет имени"); // (*)
+    }
+
+    console.log( user.name );
+
+} catch(e) {
+    console.log( "JSON Error: " + e.message ); // JSON Error: Данные неполны: нет имени
+}
