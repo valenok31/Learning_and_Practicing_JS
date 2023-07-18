@@ -1,11 +1,12 @@
-let name = "Васясява";
-function sayHi() {
-    let ret =name.match(/Ва/ig)
-    console.log(ret);
-}
+let animal = {
+    eats: true
+};
+let rabbit = {
+    jumps: true
+};
 
-setTimeout(function() {
+rabbit.__proto__ = animal; // (*)
 
-    sayHi();
-    name = "Петя"
-}, 1000);
+// теперь мы можем найти оба свойства в rabbit:
+console.log( rabbit.eats ); // true (**)
+console.log( rabbit.jumps ); // true
