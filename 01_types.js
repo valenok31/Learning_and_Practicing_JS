@@ -6,8 +6,8 @@ let rabbit = {
     __proto__:animal
 };
 
-
+let cat = Object.create(animal)
 
 // теперь мы можем найти оба свойства в rabbit:
-console.log( rabbit.eats ); // true (**)
+console.log( Object.getPrototypeOf(cat) ); // true (**)
 console.log( rabbit.jumps ); // true
