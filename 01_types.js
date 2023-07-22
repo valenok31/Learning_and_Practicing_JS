@@ -1,13 +1,13 @@
-let animal = {
-    eats: true
-};
-let rabbit = {
-    jumps: true,
-    __proto__:animal
-};
+let a = {a: 1};
+// a ---> Object.prototype ---> null
 
-let cat = Object.create(animal)
+let b = Object.create(a);
+// b ---> a ---> Object.prototype ---> null
+console.log(b.a); // 1 (унаследовано)
 
-// теперь мы можем найти оба свойства в rabbit:
-console.log( Object.getPrototypeOf(cat) ); // true (**)
-console.log( rabbit.jumps ); // true
+let c = Object.create(b);
+// c ---> b ---> a ---> Object.prototype ---> null
+
+let d = Object.create(null);
+// d ---> null
+console.log(a.hasOwnProperty);
