@@ -1,13 +1,8 @@
-let a = {a: 1};
-// a ---> Object.prototype ---> null
+async function f() {
+    let a = await 4;
+    console.log(a)
+    return a;
+}
 
-let b = Object.create(a);
-// b ---> a ---> Object.prototype ---> null
-console.log(b.a); // 1 (унаследовано)
 
-let c = Object.create(b);
-// c ---> b ---> a ---> Object.prototype ---> null
-
-let d = Object.create(null);
-// d ---> null
-console.log(a.hasOwnProperty);
+f().then((r)=>console.log(r));
