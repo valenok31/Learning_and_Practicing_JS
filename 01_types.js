@@ -1,8 +1,8 @@
-async function f() {
+let prom = new Promise((resolve, reject) => {
+    resolve('ok');
+    reject('false')
+});
 
-}
 
-
-let promis = new Promise(()=>{});
-
-promis.then(console.log)
+prom.then(console.log)
+    .catch(console.log)
