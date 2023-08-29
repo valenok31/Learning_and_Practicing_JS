@@ -4,5 +4,14 @@ let prom = new Promise((resolve, reject) => {
 });
 
 
-prom.then(console.log)
-    .catch(console.log)
+//prom.then(console.log)
+  //  .catch(console.log)
+
+async function fun1(){
+    console.log(true);
+
+    return 4;
+}
+
+
+fun1().then(console.log)
