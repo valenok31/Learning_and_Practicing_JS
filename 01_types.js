@@ -9,7 +9,11 @@ let prom = new Promise((resolve, reject) => {
 
 async function fun1(){
     console.log(true);
+let fun2 =  function () {
+    return 5;
+    }
 
+    await fun2();
     return 4;
 }
 
