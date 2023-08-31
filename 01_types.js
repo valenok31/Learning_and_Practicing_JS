@@ -1,21 +1,5 @@
-let prom = new Promise((resolve, reject) => {
-    resolve('ok');
-    reject('false')
-});
+let number = 4*1/0+59-'hjk';
 
+let NaN = isNaN(number)
 
-//prom.then(console.log)
-  //  .catch(console.log)
-
-async function fun1(){
-    console.log(true);
-let fun2 =  function () {
-    return 5;
-    }
-
-    await fun2();
-    return 4;
-}
-
-
-fun1().then(console.log)
+console.log(NaN)
