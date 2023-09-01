@@ -1,5 +1,5 @@
-let number = 4*1/0+59-'hjk';
+{let number = 4*1/0+59-'hjk';}
 
-let NaN = isNaN(number)
+let number = '0'
 
-console.log(NaN)
+console.log(!!+''&&number)
