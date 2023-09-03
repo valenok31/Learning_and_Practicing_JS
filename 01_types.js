@@ -1,9 +1,14 @@
-
-let vid;
-console.log(vid)
-if('0'===1-1){vid = 5}else{vid = 0}
+try{
 
 
+for(let i = 0; i<10; i++){
+    console.log(i)
+    if(i===4){
+throw 'ошибка выполнения. Начните с 5 шага'
+    }
+}
 
-
-console.log(vid)
+}
+catch(e) {
+    console.log('error ' + e)
+}
