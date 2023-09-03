@@ -1,5 +1,9 @@
-let number = 4*1/0+59-'hjk';
 
- number = '0'
+let vid;
+console.log(vid)
+if('0'===1-1){vid = 5}else{vid = 0}
 
-console.log(!!+''&&number)
+
+
+
+console.log(vid)
