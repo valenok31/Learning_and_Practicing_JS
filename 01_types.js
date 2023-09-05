@@ -12,3 +12,9 @@ throw 'ошибка выполнения. Начните с 5 шага'
 catch(e) {
     console.log('error ' + e)
 }
+
+let ret=34;
+let rot='lkjs';
+let obj = {ret,rot}
+
+console.log(obj.rot)
