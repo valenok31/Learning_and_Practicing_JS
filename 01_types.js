@@ -1,4 +1,8 @@
-let ret=0;
+let ret=function (){
+    console.log('proto')
+}
 let obj={ret};
 
-console.log(obj)
+let obj2 = Object.create(obj)
+
+console.log(obj2)
