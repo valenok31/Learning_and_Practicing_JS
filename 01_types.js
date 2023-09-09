@@ -1,5 +1,4 @@
-let f1 = function (){
-    return arguments.length
+var theLift = function(queues, capacity) {
+    // Your code here!
+    return [0,2,5,0]
 }
-
-console.log(f1(2,5,4,3,6,7,8,4,7,8,9,0,6,4,3))
