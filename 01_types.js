@@ -1,8 +1,5 @@
-let ret=function (){
-    console.log('proto')
+let f1 = function (){
+    return arguments.length
 }
-let obj={ret};
 
-let obj2 = Object.create(obj)
-
-console.log(obj2)
+console.log(f1(2,5,4,3,6,7,8,4,7,8,9,0,6,4,3))
