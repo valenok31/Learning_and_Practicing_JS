@@ -1,4 +1,8 @@
-var theLift = function(queues, capacity) {
-    // Your code here!
-    return [0,2,5,0]
+let func1 = function (a){
+    return a
 }
+
+
+let func2 = new func1;
+
+console.log(func2(2))

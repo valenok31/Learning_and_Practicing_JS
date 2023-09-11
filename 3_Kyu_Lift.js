@@ -4,24 +4,56 @@ let theLift = function (queues, capacity) {
     let stops = [0];
     let nextFloor = [];
     let floors = queuesA.length;
-    for (let i = 0; i < floors; i++) {
-        if (!!queues[i][0]) {
-            //console.log(i)
-            if (stops[stops.length - 1] < i) {
-                stops.push(i);
-                nextFloor.push(queues[i][0])
+
+    let down = function (stops, nextFloor) {
+        let queuesA = queues;
+        let floors = queuesA.length;
+        console.log(nextFloor)
+        console.log(queuesA)
+        for (let i = floors - 1; i === 0; i--) {
+            if (!!queuesA[i][0]) {
+                //console.log(i)
+                if (stops[stops.length - 1] > i) {
+                    stops.push(i);
+                    nextFloor.push(queuesA[i][0])
+                    queuesA[i] = [];
+                }
+            }
+            if (nextFloor.indexOf(i) !== -1) {
+                if (stops[stops.length - 1] !== i) {
+                    stops.push(i);
+                }
+                nextFloor.splice(nextFloor.indexOf(i), 1)
+            }
+            if (i === 0) {
+                stops.push(0);
             }
         }
-        if (nextFloor.indexOf(i) !== -1) {
+    }
+
+
+    for (let i = 0; i < floors; i++) {
+        if (!!queuesA[i][0]) {
+            //console.log(i)
+            if (stops[stops.length - 1] < i) {
+                console.log(stops[stops.length - 1] + ' ' + i)
+                stops.push(i);
+                nextFloor.push(queuesA[i][0])
+                queuesA[i] = [];
+            }
+        }
+        if (nextFloor.indexOf(i) !== -1 && stops[stops.length - 1] < i) {
             if (stops[stops.length - 1] !== i) {
                 stops.push(i);
             }
             nextFloor.splice(nextFloor.indexOf(i), 1)
         }
-        if(i===floors-1){
-            stops.push(0);
+        if (i === floors - 1) {
+            down(stops, nextFloor);
         }
     }
+
+
     return stops;
 }
 
@@ -29,9 +61,9 @@ let queues = [
     [], // G
     [3], // 1
     [4], // 2
-    [], // 3
+    [2], // 3
     [5], // 4
-    [], // 5
+    [1], // 5
     [], // 6
 ];
 
