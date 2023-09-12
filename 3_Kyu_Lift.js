@@ -9,20 +9,20 @@ let theLift = function (queues, capacity) {
         let queuesA = [...queues];
         let floors = queuesA.length;
 
-        console.log(nextFloor)
+        //console.log(nextFloor)
 
-        for (let i = floors - 1; i >-1; i--) {
-        //for (let i = 0; i < 10; i++) {
+        for (let i = floors - 1; i > -1; i--) {
+            //for (let i = 0; i < 10; i++) {
             //console.log(floors)
-            if (queuesA[i][0]!==undefined) {
+            if (queuesA[i][0] !== undefined) {
                 //console.log(i)
 
-/*                if (stops[stops.length - 1] > i) {
-                    stops.push(i);
-                    nextFloor.push(queuesA[i][0])
+                /*                if (stops[stops.length - 1] > i) {
+                                    stops.push(i);
+                                    nextFloor.push(queuesA[i][0])
 
-                    queuesA[i] = [];
-                }*/
+                                    queuesA[i] = [];
+                                }*/
 
                 if (queuesA[i][0] < i) {
                     //console.log(stops[stops.length - 1] + ' ' + i)
@@ -49,22 +49,32 @@ let theLift = function (queues, capacity) {
 
 
     for (let i = 0; i < floors; i++) {
+        //console.log(queuesA[i][0])
         if (!!queuesA[i][0]) {
-            //console.log(i)
-/*            if (stops[stops.length - 1] < i) {
-                //console.log(stops[stops.length - 1] + ' ' + i)
-                stops.push(i);
-                nextFloor.push(queuesA[i][0])
-                queuesA[i] = [];
-            }*/
 
-            if (queuesA[i][0] > i) {
-                //console.log(stops[stops.length - 1] + ' ' + i)
-                stops.push(i);
-                nextFloor.push(queuesA[i][0])
-                queuesA[i] = [];
+
+            let fellow = queuesA[i].length;
+            queuesA[i].sort((a,b)=>{
+               return a-b
+            });
+            //console.log(queuesA[i])
+            for (let h = 0; h < fellow; h++) {
+
+                if (queuesA[i][h] > i) {
+                    //console.log(stops[stops.length - 1] + ' ' + i)
+                    //stops.push(i);
+                    if (stops[stops.length - 1] !== i) {
+                        stops.push(i);
+                    }
+                    console.log(queuesA[i])
+                    nextFloor.push(queuesA[i][h])
+
+                    //queuesA[i].splice(0, 1)
+                    //console.log(queuesA[i])
+                    //queuesA[i] = [];
+                }
+
             }
-
 
 
         }
@@ -85,11 +95,11 @@ let theLift = function (queues, capacity) {
 
 let queues = [
     [], // G
-    [0,3,5], // 1
+    [4, 3, 5], // 1
     [], // 2
-    [], // 3
+    [2], // 3
     [], // 4
-    [], // 5
+    [3], // 5
     [], // 6
 ];
 
