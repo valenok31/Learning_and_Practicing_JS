@@ -23,14 +23,21 @@ let theLift = function (queues, capacity) {
 
                                     queuesA[i] = [];
                                 }*/
+                let fellow = queuesA[i].length;
+                queuesA[i].sort((a, b) => {
+                    return b - a
+                });
+                for (let h = 0; h < fellow; h++) {
 
-                if (queuesA[i][0] < i) {
-                    //console.log(stops[stops.length - 1] + ' ' + i)
-                    stops.push(i);
-                    nextFloor.push(queuesA[i][0])
-                    queuesA[i] = [];
+                    if (queuesA[i][h] < i) {
+                        //console.log(stops[stops.length - 1] + ' ' + i)
+                        if (stops[stops.length - 1] !== i) {
+                            stops.push(i);
+                        }
+                        nextFloor.push(queuesA[i][h])
+                        // queuesA[i] = [];
+                    }
                 }
-
 
             }
 
@@ -54,8 +61,8 @@ let theLift = function (queues, capacity) {
 
 
             let fellow = queuesA[i].length;
-            queuesA[i].sort((a,b)=>{
-               return a-b
+            queuesA[i].sort((a, b) => {
+                return a - b
             });
             //console.log(queuesA[i])
             for (let h = 0; h < fellow; h++) {
@@ -95,11 +102,11 @@ let theLift = function (queues, capacity) {
 
 let queues = [
     [], // G
-    [4, 3, 5], // 1
+    [0], // 1
     [], // 2
-    [2], // 3
+    [], // 3
     [], // 4
-    [3], // 5
+    [3, 2, 4, 6], // 5
     [], // 6
 ];
 
