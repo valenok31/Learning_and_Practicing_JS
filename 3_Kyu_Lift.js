@@ -20,18 +20,19 @@ let theLift = function (queues, capacity) {
                             stops.push(i);
                         }
                         nextFloor.push(queuesA[i][h])
-                        console.log(i + ' - ' + nextFloor)
+                        //queuesA[i][h]=0;
+                        //console.log(i + ' < ' + nextFloor)
                     }
                 }
             }
 
-            if (nextFloor.indexOf(i) !== -1) {
-            //while (nextFloor.indexOf(i) !== -1) {
+            //if (nextFloor.indexOf(i) !== -1) {
+            while (nextFloor.indexOf(i) !== -1) {
                 if (stops[stops.length - 1] !== i) {
                     stops.push(i);
                 }
                 nextFloor.splice(nextFloor.indexOf(i), 1)
-                console.log(i + ' - ' + nextFloor)
+                console.log(i + ' < ' + nextFloor)
             }
 
             if(nextFloor.length>0 && i==0){
@@ -52,6 +53,16 @@ let theLift = function (queues, capacity) {
         let floors = queuesA.length;
 
         for (let i = 0; i < floors; i++) {
+            //console.log(queuesA + ' / ' + nextFloor)
+            while (nextFloor.indexOf(i) !== -1) {
+                nextFloor.splice(nextFloor.indexOf(i), 1)
+                if (stops[stops.length - 1] !== i) {
+                    stops.push(i);
+                }
+                //console.log(i + ' > ' + nextFloor)
+            }
+
+
             if (queuesA[i][0] !== undefined) {
                 let fellow = queuesA[i].length;
                 queuesA[i].sort((a, b) => {
@@ -62,20 +73,25 @@ let theLift = function (queues, capacity) {
                         if (stops[stops.length - 1] !== i) {
                             stops.push(i);
                         }
-                        nextFloor.push(queuesA[i][h])
-                        console.log(i + ' - ' + nextFloor)
+                        if(nextFloor.length<capacity){
+                            nextFloor.push(queuesA[i][h])
+                            queuesA[i][h]=undefined;
+                        }
+
+                        //queuesA[i].splice(h, 1)
+                        //console.log(i + ' > ' + nextFloor)
                     }
                 }
             }
 
-            if (nextFloor.indexOf(i) !== -1) {
-            //while (nextFloor.indexOf(i) !== -1) {
+            //if (nextFloor.indexOf(i) !== -1) {
+/*            while (nextFloor.indexOf(i) !== -1) {
                 if (stops[stops.length - 1] !== i) {
                     stops.push(i);
                 }
                 nextFloor.splice(nextFloor.indexOf(i), 1)
-                console.log(i + ' - ' + nextFloor)
-            }
+                console.log(i + ' > ' + nextFloor)
+            }*/
             if (i === floors - 1) {
                 down(stops, nextFloor);
             }
@@ -100,6 +116,6 @@ let queues = [
     [4, 4, 4], // 6
 ];
 
-let capacity = 5;
+let capacity = 3;
 
 console.log(theLift(queues, capacity))
