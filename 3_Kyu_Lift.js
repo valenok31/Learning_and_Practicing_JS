@@ -19,7 +19,11 @@ let theLift = function (queues, capacity) {
                         if (stops[stops.length - 1] !== i) {
                             stops.push(i);
                         }
-                        nextFloor.push(queuesA[i][h])
+                        if(nextFloor.length<capacity) {
+                            nextFloor.push(queuesA[i][h])
+                            queuesA[i].slice(h,1);
+                            //delete queuesA[i][h];
+                        }
                         //queuesA[i][h]=0;
                         //console.log(i + ' < ' + nextFloor)
                     }
@@ -32,20 +36,22 @@ let theLift = function (queues, capacity) {
                     stops.push(i);
                 }
                 nextFloor.splice(nextFloor.indexOf(i), 1)
-                console.log(i + ' < ' + nextFloor)
+                //console.log(queuesA)
             }
 
             if(nextFloor.length>0 && i==0){
-                console.log(i + ' = ' + nextFloor)
+                //console.log(i + ' = ' + nextFloor)
                 //up(stops, nextFloor);
             }
 
             if (i === 0 && stops[stops.length - 1] !== 0) {
                 stops.push(0);
-                console.log(i + ' - ' + nextFloor)
-            }
-        }
 
+                //console.log(i + ' - ' + nextFloor)
+            }
+
+        }
+        console.log(queuesA)
     }
 
     let up = function (stops, nextFloor) {
@@ -74,8 +80,12 @@ let theLift = function (queues, capacity) {
                             stops.push(i);
                         }
                         if(nextFloor.length<capacity){
-                            nextFloor.push(queuesA[i][h])
-                            queuesA[i][h]=undefined;
+                            nextFloor.push(queuesA[i][h]);
+                            //console.log(queuesA[i])
+                            queuesA[i].splice(h,1);
+                            //h=h-1;
+                            //console.log('2='+queuesA[i])
+                            //delete  queuesA[i][h];
                         }
 
                         //queuesA[i].splice(h, 1)
@@ -116,6 +126,6 @@ let queues = [
     [4, 4, 4], // 6
 ];
 
-let capacity = 3;
+let capacity = 30;
 
 console.log(theLift(queues, capacity))
