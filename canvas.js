@@ -1,9 +1,7 @@
-let a = function (){
-    let b = [...arguments];
-    b.push(343)
-    return b;
+const arr = ['a', 'b', 'c' , {promo: 56}];
+
+arr.test = 'bad';
+
+for (let i in arr) {
+    console.log(arr[i]);
 }
-
-
-
-console.log(a(3,4,5,3,2))
