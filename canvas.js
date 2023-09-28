@@ -1,7 +1,8 @@
-const arr = ['a', 'b', 'c' , {promo: 56}];
-
-arr.test = 'bad';
-
-for (let i in arr) {
-    console.log(arr[i]);
-}
+let o=[];// = new Object();
+ o.a = 42;
+o.b = 'fgs';
+o.c = true;
+o.push(5)
+//o = [...o,8,9,8,7]
+o.length=3
+console.log(o);
