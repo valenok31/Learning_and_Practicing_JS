@@ -1,3 +1,5 @@
+console.log(1)
+
 let ret = new Promise((resolve, reject) => {
     setTimeout(() => {
             resolve('Промис выполнился!');
@@ -10,6 +12,6 @@ async function func1() {
     console.log(result)
 }
 
-console.log(1)
+console.log(2)
 console.log(func1());
 console.log(3)
