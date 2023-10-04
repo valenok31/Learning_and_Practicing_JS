@@ -1,10 +1,15 @@
-let p = new Promise((resolve, reject) => {
-    resolve(34);
-    reject(new Error('error'));
-});
+let ret = new Promise((resolve, reject) => {
+    setTimeout(() => {
+            resolve('Промис выполнился!');
+        }, 2000
+    );
+})
 
-let res = e => console.log(e);
-let rej = d => console.log(d);
-// resolve запустит первую функцию, переданную в .then
-p.then(res, rej);
+async function func1() {
+    let result = await ret;
+    console.log(result)
+}
 
+console.log(1)
+console.log(func1());
+console.log(3)
