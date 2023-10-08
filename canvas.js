@@ -12,6 +12,11 @@ async function func1() {
     console.log(result)
 }
 
+
+let func2 = function (f){
+    return f()
+}
+
 console.log(2)
 console.log(func1());
-console.log(3)
+console.log(func2(func1))
