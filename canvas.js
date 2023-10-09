@@ -19,4 +19,4 @@ let func2 = function (f){
 
 console.log(2)
 console.log(func1());
-console.log(func2(func1))
+console.log(func2(null))
