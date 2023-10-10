@@ -1,22 +1,9 @@
-console.log(1)
-
-let ret = new Promise((resolve, reject) => {
-    setTimeout(() => {
-            resolve('Промис выполнился!');
-        }, 2000
-    );
-})
-
-async function func1() {
-    let result = await ret;
-    console.log(result)
-}
-
-
-let func2 = function (f){
-    return f()
-}
+let entity = {
+    quot: '"',
+    lt: '<',
+    gt: '>'
+};
 
 console.log(2)
-console.log(func1());
-console.log(func2(null))
+console.log(entity);
+console.log()
