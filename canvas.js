@@ -1,9 +1,22 @@
+String.method('deentityify', function () {
+
 let entity = {
     quot: '"',
     lt: '<',
     gt: '>'
 };
 
-console.log(2)
-console.log(entity);
-console.log()
+return function () {
+// Метод deentityify. Метод строки вызывается для замены найденной
+// подстроки, начинающейся с символа '&' и заканчивающейся символом ';'.
+// Если символы внутри есть в таблице сущностей, то эти элементы
+// заменяются символами из таблицы. Метод используется
+// в регулярных выражениях (см. главу 7).
+    return this.replace(/&([A&;]+);/g,
+        function (a, b) {
+            let r = entity[b];
+            return typeof r === 'string' ? r : a;
+        }
+    );
+};
+}());
