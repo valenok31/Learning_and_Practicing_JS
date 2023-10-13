@@ -1,17 +1,17 @@
-String.method('deentityify', function () {
+let func = function(){
+    let a = 0;
+    return function(){
+        return a++;
+    }
+}
 
-let entity = {
-    quot: '"',
-    lt: '<',
-    gt: '>'
-};
+let f1 = func();
+let f2 = func();
 
-return function () {
-    return this.replace(/&([A&;]+);/g,
-        function (a, b) {
-            let r = entity[b];
-            return typeof r === 'string' ? r : a;
-        }
-    );
-};
-}());
+
+console.log(f1());
+console.log(f1());
+console.log(f1());
+console.log(f2());
+console.log(f2());
+console.log(f2());
