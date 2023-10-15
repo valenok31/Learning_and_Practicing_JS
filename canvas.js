@@ -5,13 +5,5 @@ let func = function(){
     }
 }
 
-let f1 = func();
-let f2 = func();
 
-
-console.log(f1());
-console.log(f1());
-console.log(f1());
-console.log(f2());
-console.log(f2());
-console.log(f2());
+console.log(func()());
