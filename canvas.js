@@ -20,6 +20,13 @@ function toChineseNumeral(num) {
     let but = String(num).split('.');
     //console.log(but)
     let arr_num = String(but[0]).split('');
+    if(but[0]==10){
+        arr_num = [but[0]];
+    }
+    if(but[0]<20 && but[0]>10){
+
+    }
+
     let arr_dot = String(but[1]).split('');
 
     let num_chin = [];
@@ -45,9 +52,13 @@ if(but.length>1){
 if(num_chin[num_chin.length - 1] === "零"){
     num_chin.length = num_chin.length - 1;
 }
+    if(num_chin.length === 0){
+        num_chin = ["零"];
+    }
 
     return num_chin.join('').concat(dot_chin.join(''));
     //console.log(dot_chin.join(''))
+
 }
 
-console.log(toChineseNumeral(10000))
+console.log(toChineseNumeral(18))
