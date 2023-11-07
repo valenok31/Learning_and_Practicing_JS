@@ -42,10 +42,12 @@ if(but.length>1){
     dot_chin.unshift("点")
 }
 
+if(num_chin[num_chin.length - 1] === "零"){
+    num_chin.length = num_chin.length - 1;
+}
 
-
-    console.log(num_chin.join('').concat(dot_chin.join('')))
+    return num_chin.join('').concat(dot_chin.join(''));
     //console.log(dot_chin.join(''))
 }
 
-toChineseNumeral(110)
+console.log(toChineseNumeral(10000))
