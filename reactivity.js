@@ -5,7 +5,6 @@ function generateRandomLong() {
     if (posorneg > 0.5) {
         num = num * -1;
     }
-
     return Math.round(num / 5) * 5;
 }
 
@@ -18,6 +17,7 @@ function generateRandomLat() {
     }
     return Math.round(num / 5) * 5 ;
 }
+
 
 
 console.log(generateRandomLat() + " / " + generateRandomLong())
