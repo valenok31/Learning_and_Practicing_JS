@@ -12,10 +12,14 @@ function generateRandomLong() {
 function generateRandomLat() {
     var num = (Math.random() * 90).toFixed(3);
     var posorneg = Math.random();
+    num=Math.round(num / 5) * 5
     if (posorneg > 0.5) {
-        num = num * -1;
+        //num = num * -1;
+        num = num + ' Ю.Ш.'
+    }else{
+        num = num + ' C.Ш.'
     }
-    return Math.round(num / 5) * 5 ;
+    return num ;
 }
 
 
