@@ -2,10 +2,14 @@
 function generateRandomLong() {
     var num = (Math.random() * 180).toFixed(3);
     var posorneg = Math.random();
+    num=Math.round(num / 5) * 5
     if (posorneg > 0.5) {
-        num = num * -1;
+        //num = num * -1;
+        num = num + ' З.Д.'
+    }else{
+        num = num + ' В.Д.'
     }
-    return Math.round(num / 5) * 5;
+    return num;
 }
 
 // Широта -90 до +90
