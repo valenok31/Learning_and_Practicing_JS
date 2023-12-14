@@ -5,9 +5,9 @@ function generateRandomLong() {
     num=Math.round(num / 5) * 5
     if (posorneg > 0.5) {
         //num = num * -1;
-        num = num + ' З.Д.'
+        num = num + '°W'
     }else{
-        num = num + ' В.Д.'
+        num = num + '°E'
     }
     return num;
 }
@@ -19,13 +19,13 @@ function generateRandomLat() {
     num=Math.round(num / 5) * 5
     if (posorneg > 0.5) {
         //num = num * -1;
-        num = num + ' Ю.Ш.'
+        num = num + '°S'
     }else{
-        num = num + ' C.Ш.'
+        num = num + '°N'
     }
     return num ;
 }
 
 
 
-console.log(generateRandomLat() + " / " + generateRandomLong())
+console.log(generateRandomLat() + " " + generateRandomLong())
