@@ -1,4 +1,4 @@
-let okrugl = 10;
+let okrugl = 1;
 // Долгота -180 до +180
 function generateRandomLong() {
     var num = (Math.random() * 180).toFixed(3);
