@@ -2,7 +2,6 @@ let log = 6;
 let okrugl = 1/10**log;
 
 
-
 // Долгота -180 до +180
 function generateRandomLong() {
     var num = (Math.random() * 180).toFixed(log);
@@ -30,8 +29,9 @@ function generateRandomLat() {
     }else{
         num = num + '°N'
     }
+
     return num ;
 }
-
-
-console.log(generateRandomLat() + " " + generateRandomLong())
+let returnes = generateRandomLat() + " " + generateRandomLong();
+// Copy
+console.log(returnes)
