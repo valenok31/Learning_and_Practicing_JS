@@ -1,13 +1,18 @@
 let log = 6;
 let okrugl = 1/10**log;
 
+let funcOkrugl = function (num, okrugl) {
+    num=Math.round(num / okrugl) * okrugl
+    num = num.toFixed(log);
+    return num;
+}
+
 
 // Долгота -180 до +180
 function generateRandomLong() {
-    var num = (Math.random() * 180).toFixed(log);
-    var posorneg = Math.random();
-    num=Math.round(num / okrugl) * okrugl
-    num = num.toFixed(log);
+    let num = (Math.random() * 180).toFixed(log);
+    let posorneg = Math.random();
+    funcOkrugl(num, okrugl);
     if (posorneg > 0.5) {
         //num = num * -1;
         num = num + '°W'
@@ -19,10 +24,9 @@ function generateRandomLong() {
 
 // Широта -90 до +90
 function generateRandomLat() {
-    var num = (Math.random() * 90).toFixed(log);
-    var posorneg = Math.random();
-    num=Math.round(num / okrugl) * okrugl
-    num = num.toFixed(log);
+    let num = (Math.random() * 90).toFixed(log);
+    let posorneg = Math.random();
+    funcOkrugl(num, okrugl);
     if (posorneg > 0.5) {
         //num = num * -1;
         num = num + '°S'
