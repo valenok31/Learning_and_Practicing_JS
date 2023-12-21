@@ -1,7 +1,8 @@
 let log = 6;
-let okrugl = 1/10**log;
 
-let funcOkrugl = function (num, okrugl) {
+
+let funcOkrugl = function (num, log) {
+    let okrugl = 1/10**log;
     num=Math.round(num / okrugl) * okrugl
     num = num.toFixed(log);
     return num;
@@ -12,7 +13,7 @@ let funcOkrugl = function (num, okrugl) {
 function generateRandomLong() {
     let num = (Math.random() * 180).toFixed(log);
     let posorneg = Math.random();
-    funcOkrugl(num, okrugl);
+    funcOkrugl(num, log);
     if (posorneg > 0.5) {
         //num = num * -1;
         num = num + '°W'
@@ -26,7 +27,7 @@ function generateRandomLong() {
 function generateRandomLat() {
     let num = (Math.random() * 90).toFixed(log);
     let posorneg = Math.random();
-    funcOkrugl(num, okrugl);
+    funcOkrugl(num, log);
     if (posorneg > 0.5) {
         //num = num * -1;
         num = num + '°S'
