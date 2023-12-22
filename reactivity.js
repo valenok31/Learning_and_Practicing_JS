@@ -1,4 +1,4 @@
-let log = 6;
+let log = 0.01;
 
 
 let funcOkrugl = function (num, log) {
